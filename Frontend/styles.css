@@ -102,18 +102,6 @@
             width: auto;
         }
 
-        .icons {
-            align-items: right;
-        }
-
-        .icons a {
-            display: inline-block;
-        }
-
-        .icons img {
-            display: block
-        }
-
         .search-container{
             position: relative;
         }
