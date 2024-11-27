@@ -102,10 +102,6 @@
             width: auto;
         }
 
-        .search-container{
-            position: relative;
-        }
-
         .search-bar{
             display: none;
             position: absolute;
