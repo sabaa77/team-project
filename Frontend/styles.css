@@ -102,6 +102,10 @@
             width: auto;
         }
 
+        .search-container{
+            position: fixed;
+        }
+
         .search-bar{
             display: none;
             position: absolute;
