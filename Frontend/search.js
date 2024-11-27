@@ -1,4 +1,4 @@
-    const searchLogo = document.getElementById('search-logo');
+    const searchIcon = document.getElementById('search-icon');
     const searchBar = document.getElementById('search-bar');
     
     searchIcon.addEventListener('click', () => {
