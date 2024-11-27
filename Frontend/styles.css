@@ -103,7 +103,7 @@
         }
 
         .search-container{
-            position: fixed;
+            position: absolute;
         }
 
         .search-bar{
