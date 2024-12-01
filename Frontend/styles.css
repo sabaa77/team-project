@@ -55,6 +55,7 @@
         .product img {
             width: 100%;
             border-radius: 8px;
+            height: 400px;
         }
 
         .product h3 {
