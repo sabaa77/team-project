@@ -62,9 +62,10 @@
         }
 
         .product img {
-            width: 100%;
+            width: 50%;
             border-radius: 8px;
-            height: 400px;
+            height: 200px;
+            margin: 0 auto;
         }
 
         .product h3 {
@@ -142,9 +143,6 @@
         .search-bar button:hover {
             background-color: #333;
         }
-
-
-
 
         .product-container {
             display: flex;
@@ -245,5 +243,5 @@
         a.logo-link img {
             display: block;
             height: 100%;
-            width: auto;
+            width: a;
         }
