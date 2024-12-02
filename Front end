@@ -4,128 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Essence Wear</title>
-    <style>
-        body{
-            font-family: 'Lemon Milk', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fff;
-        }
-
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #000;
-            color:#fff;
-            padding: 10px 0;
-            position: relative;
-        }
-
-        .header-text {
-            text-align: center;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #000;
-            padding: 10px;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 0 15px;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 1); 
-        }
-
-        .product {
-            display:inline-block;
-            width: 30%;
-            margin: 1%;
-            text-align: center;
-        }
-
-        .product img {
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        .product h3 {
-            margin: 10px 0 5px;
-        }
-
-        .product p {
-            color: #666
-        }
-
-        footer {
-            background-color: #000;
-            color: #fff;
-            text-align: center;
-            padding: 5px 0;
-            bottom: 0;
-            width: 100%;
-        }
-
-        .logo {
-            position:absolute;
-            left: 20px;
-            height: 200px;
-            width: auto;
-        }
-
-        .search-logo {
-            position:absolute;
-            right: 210px;
-            height: 30px;
-            width: auto;
-        }
-
-        .basket-logo {
-            position:absolute;
-            right: 130px;
-            height: 30px;
-            width: auto;
-        }
-
-        .user-logo {
-            position:absolute;
-            right: 50px;
-            height: 30px;
-            width: auto;
-        }
-
-        .icons {
-            align-items: right;
-        }
-
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
    <header>
-    <img src="C:\Users\minij\OneDrive - Aston University\Team Project\Frontend\essence wear logo (black).png" alt="logo" class="logo">
+    <img src="essence wear logo (black).png" alt="logo" class="logo">
     <div class="header-text">
        <h1>Essence Wear</h1>
        <p>Your Style, Your Way</p>
     </div>
     <div class="icons">
-    <img src="C:\Users\minij\OneDrive - Aston University\Team Project\Frontend\searchlogo.png" alt="search-logo" class="search-logo">
-    <img src="C:\Users\minij\OneDrive - Aston University\Team Project\Frontend\basketlogo.png" alt="basket-logo" class="basket-logo">
-    <img src="C:\Users\minij\OneDrive - Aston University\Team Project\Frontend\userlogo.png" alt="user-logo" class="user-logo">
+    <img src="searchlogo.png" alt="search-logo" class="search-logo">
+    <img src="basketlogo.png" alt="basket-logo" class="basket-logo">
+    <img src="userlogo.png" alt="user-logo" class="user-logo">
     </div>
    </header>
    <nav>
