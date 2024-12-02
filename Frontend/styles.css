@@ -55,6 +55,7 @@
         .product img {
             width: 100%;
             border-radius: 8px;
+            height: 400px;
         }
 
         .product h3 {
@@ -130,5 +131,96 @@
         }
 
         .search-bar button:hover {
+            background-color: #333;
+        }
+
+
+
+
+        .product-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            gap: 20px;
+        }
+        
+        .product-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .product-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .product-details {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-details h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .product-details .price {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .product-details .description {
+            line-height: 1.5;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .product-details .features {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .product-details .features li {
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .add-to-cart-form {
+            margin-top: 20px;
+        }
+        
+        .add-to-cart-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .add-to-cart-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .add-to-cart-btn {
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+        
+        .add-to-cart-btn:hover {
             background-color: #333;
         }
