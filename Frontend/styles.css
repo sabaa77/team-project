@@ -45,6 +45,15 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 1); 
         }
 
+        .about-container {
+            max-width: 95%;
+            margin: 10px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 2px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 1); 
+        }
+
         .product {
             display:inline-block;
             width: 30%;
