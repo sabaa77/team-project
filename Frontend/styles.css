@@ -259,29 +259,30 @@
             }
         }
 
-        .product:nth-child(1) {
+        .product:nth-child(0) {
             animation-delay: 0s;
         }
 
-        .product:nth-child(2) {
+        .product:nth-child(1) {
             animation-delay: 0.2s;
         }
 
-        .product:nth-child(3) {
+        .product:nth-child(2) {
             animation-delay: 0.4s;
         }
 
-        .product:nth-child(4) {
+        .product:nth-child(3) {
             animation-delay: 0.6s;
         }
 
-        .product:nth-child(5) {
+        .product:nth-child(4) {
             animation-delay: 0.8s;
         }
 
-        .product:nth-child(6) {
-            animation-delay: 3s;
+        .product:nth-child(5) {
+            animation-delay: 1s;
         }
+
 
 
 
