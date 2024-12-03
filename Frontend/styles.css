@@ -45,6 +45,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 1); 
         }
 
+        .factory-image {
+            width: 60%;
+            height: 60%;
+        }
+
         .about-container {
             max-width: 95%;
             margin: 10px auto;
