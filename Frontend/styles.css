@@ -304,11 +304,11 @@
             height: 300px;
         }
 
-
         .auth-buttons {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 30px;
+            padding-bottom: 30px;
         }
 
         .auth-btn {
@@ -326,6 +326,35 @@
         .auth-btn:hover {
             background-color: #444;
         }
+
+        .container-heading {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .orders-button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .orders-button {
+            background-color: #000;
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+        
+        .orders-button:hover {
+            background-color: #444;
+        }
+
 
 
 
