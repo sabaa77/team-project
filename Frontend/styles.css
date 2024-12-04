@@ -131,6 +131,14 @@
             width: auto;
         }
 
+        .search-logo {
+            transition: transform 0.3s ease;
+        }
+
+        .search-logo:hover {
+            transform: scale(1.2);
+        }
+
         .basket-logo {
             position:absolute;
             right: 130px;
@@ -138,11 +146,27 @@
             width: auto;
         }
 
+        .basket-logo {
+            transition: transform 0.3s ease;
+        }
+
+        .basket-logo:hover {
+            transform: scale(1.2);
+        }
+
         .user-logo {
             position:absolute;
             right: 50px;
             height: 30px;
             width: auto;
+        }
+
+        .user-logo {
+            transition: transform 0.3s ease;
+        }
+
+        .user-logo:hover {
+            transform: scale(1.2);
         }
 
         .search-bar{
