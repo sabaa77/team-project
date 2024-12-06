@@ -492,6 +492,28 @@
             transform: scale(1.2);
         }
 
+        .eco-warehouse-section {
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        .eco-warehouse-section h2 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .eco-warehouse-section p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+
 
 
 
