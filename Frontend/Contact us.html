@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="essence wear logo (black).png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">    
-    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header> 
@@ -37,21 +37,28 @@
         <nav>
          <a href="Mens.html">Men</a>
          <a href="Womens.html">Women</a>
-         <a href="#">Kids</a>
+         <a href="Kids.html">Kids</a>
          <a href="About Us Page.html">About Us</a>
          <a href="Contact us.html">Contact Us</a>       
         </nav>
     
     <section class="Contact"> 
-<div class="Content">
+<div class="Contact-container">
 <h2 class="wide">CONTACT US</h2>
 <br>
 <p>Follow us on our social media for the latest updates!</p>
-<ul>
-    <li><a href="https://facebook.com/essencewear"><i class="fab fa-facebook"></i></a></li>
-    <li><a href="https://instagram.com/essencewear"><i class="fab fa-instagram"></i></a></li>
-    <li><a href="https://twitter.com/essencewear"><i class="fab fa-twitter"></i></a></li>
-</ul>
+<div class="social-links">
+    <a href="https://facebook.com/essencewear" target="_blank">
+        <img src="Facebook Logo.png" alt="Facebook" class="social-icon">
+    </a>
+    <a href="https://instagram.com/essencewear" target="_blank">
+        <img src="Instagram Logo.png" alt="Instagram" class="social-icon">
+    </a>
+    <a href="https://twitter.com/essencewear" target="_blank">
+        <img src="X Logo.png" alt="X" class="social-icon">
+    </a>
+</div>
+
 </div>
 
 <div class="container">
@@ -83,24 +90,24 @@
         </div>
     </div>
     
-    <div class="contact_form"></div>
-    <form>
+    <div class="form-container">
+    <form id="contactForm">
         <h2>Send Message</h2> 
         <br>
-        <div class="input_box">
+        <div class="form-group">
             <input type="text" name="name" required="required" placeholder="Full Name">
         </div>
         <br>
-        <div class="input_box">
+        <div class="form-group">
             <input type="text" name="email" required="required" placeholder="Email"> 
         </div>
         <br>
-        <div class="input_box">
+        <div class="form-group">
             <textarea name="message" required="required" placeholder="Type your message..."></textarea>
         </div>
         <br>
-        <div class="input_box">
-            <input type="submit" name="" value="Send">
+        <div class="form-group">
+            <button type="submit" class="contact-btn">SendMessage</button>
         </div>
     </form>
 
