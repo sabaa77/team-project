@@ -1,22 +1,23 @@
-const basket = [];
-
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', event => {
-        const prodElement = event.target.closest('.product');
-        const prodID = productElement.dataset.id;
-        const prodName = prodElement.dataset.name;
-        const prodPrice = parseFloat(productElement.dataset.price);
-
-        const existingProduct = basketProduct = basket.find(item => item.id === prodID);
-        if (existingProduct){
-            existingProduct.quantity += 1;
-        } else {
-            basket.push({ id:prodID, name:prodName, price: productPrice, quantity: 1});
-        }
-
-        updateBasketUI();
+function initialiseBasket(){
+    const basket = [];
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', event => {
+            const prodElement = event.target.closest('.product');
+            const prodID = productElement.dataset.id;
+            const prodName = prodElement.dataset.name;
+            const prodPrice = parseFloat(productElement.dataset.price);
+    
+            const existingProduct = basketProduct = basket.find(item => item.id === prodID);
+            if (existingProduct){
+                existingProduct.quantity += 1;
+            } else {
+                basket.push({ id:prodID, name:prodName, price: productPrice, quantity: 1});
+            }
+    
+            updateBasketUI();
+        });
     });
-});
+}
 
 function updateBasketUI() {
     const basketItems = document.getElementById('basket-items');

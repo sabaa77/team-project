@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Essence Wear | Account</title>
+    <title>Essence Wear | Home</title>
     <link rel="icon" type="image/png" href="/images/logos/essence wear logo (black).png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="signuplogin.css">
 </head>
 <body>
    <header>
     <a href="Home Page.html" class="logo-link">
-        <img src="essence wear logo (black).png" alt="logo" class="logo">
+    <img src="/images/logos/essence wear logo (black).png" alt="logo" class="logo">
     </a>
     <div class="header-text">
        <h1>Essence Wear</h1>
@@ -18,45 +18,57 @@
     </div>
     <div class="icons">
         <div class="search-container">
-            <img src="searchlogo.png" alt="search-logo" class="search-logo" id="search-icon">
+            <img src="/images/logos/searchlogo.png" alt="search-logo" class="search-logo" id="search-icon">
             <div class="search-bar" id="search-bar">
                 <input type="text" placeholder="Search...">
                 <button type="button">Go</button>
             </div>
         </div>
         <a href="/basket" title="Basket">
-            <img src="basketlogo.png" alt="basket-logo" class="basket-logo">
+            <img src="/images/logos/basketlogo.png" alt="basket-logo" class="basket-logo">
         </a>
         <a href="User Page.html" title="User Profile">
-            <img src="userlogo.png" alt="user-logo" class="user-logo">
+            <img src="/images/logos/userlogo.png" alt="user-logo" class="user-logo">
         </a>
     </div>
    </header>
-
    <nav>
     <a href="Mens.html">Men</a>
     <a href="Womens.html">Women</a>
     <a href="Kids.html">Kids</a>
     <a href="About Us Page.html">About Us</a>
     <a href="Contact us.html">Contact Us</a> 
-   </nav>
+    </nav>
 
-   <div class="auth-buttons">
-    <a href="login.html" class="auth-btn">Login</a>
-    <a href="signup.html" class="auth-btn">Sign Up</a>
-</div>
+   <div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id = "basket-items">
 
-<div class="container">
-    <h2 class="container-heading">Your Order History</h2>
-    <div class="orders-button-container">
-        <button class="orders-button">View Past Orders</button>
-    </div>
-</div>
+        </tbody>
+    </table>
 
-   <footer>
+    <p id = "total-price-container" class = "empty-cart">Your basket is empty</p>
+
+    <a href = "" class = "checkout-btn" id = "checkout-btn">Proceed to Checkout</a>
+
+
+   </div>
+
+    
+
+<footer>
     <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
-   </footer>
+</footer>
 
 <script src="search.js"></script>
-</body>
+</body> 
 </html>
