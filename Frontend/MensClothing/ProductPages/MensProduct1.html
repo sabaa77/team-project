@@ -40,13 +40,13 @@
     <a href="../../Contact us.html">Contact Us</a> 
    </nav>
 
-   <div class="product-container">
+   <div class="product-container" data-name="Canada Goose HyBridge® Coat" data-price="£895">
     <div class="product-image">
         <img src="../../CanadaGooseCoat.png" alt="Canada Goose HyBridge® Coat">
     </div>
     <div class="product-details">
-        <h3>Canada Goose HyBridge® Coat</h3>
-        <p class="price">£895</p>
+        <h3 id="product-name">Canada Goose HyBridge® Coat</h3>
+        <p class="price" id="product-price">£895</p>
         <p class="description">
             The Canada Goose HyBridge® Coat is designed for superior warmth and style. 
             Crafted with advanced insulation technology, it's perfect for cold-weather conditions. 
@@ -67,13 +67,9 @@
                 <option value="L">Large</option>
                 <option value="XL">Extra Large</option>
             </select>
-            <button type="button" class="add-to-cart-btn" onclick="updateBasketUI()">Add to Cart</button>
+            <button type="button" class="add-to-cart-btn" onclick="addProductToBasket()">Add to Cart</button>
+
         </form>
     </div>
+    <script src="addtobasket.js"></script>
 </div>
-
-<footer>
-    <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
-</footer>
-</body>
-</html>

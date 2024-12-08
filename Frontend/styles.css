@@ -524,6 +524,30 @@
             line-height: 1.6;
         }
         
+        .checkout-btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .checkout-btn {
+            background-color: #333; 
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #555;
+            transform: scale(1.05); 
+        }
+        
+        .checkout-btn:active {
+            transform: scale(0.95);
+        }
 
 
 

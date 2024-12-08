@@ -1,59 +1,62 @@
-const BASKET_KEY = "basket_items";
+// Array to store cart items
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-function getBasketItems() {
-    const items = localStorage.getItem(BASKET_KEY);
-    return items ? JSON.parse(items) : [];
+// Function to add an item to the cart
+function addToCart(product) {
+    const existingProduct = cart.find(item => item.name === product.name && item.size === product.size);
+
+    if (existingProduct) {
+        existingProduct.quantity += 1; // Increase quantity if item exists
+    } else {
+        cart.push({ ...product, quantity: 1 }); // Add new product to cart
+    }
+
+    updateBasketUI();
+    localStorage.setItem('cart', JSON.stringify(cart)); // Persist cart in localStorage
 }
 
-function saveBasketItems(items) {
-    localStorage.setItem(BASKET_KEY, JSON.stringify(items));
-}
-
-function addToBasket(product) {
-    const basket = getBasketItems();
-    basket.push(product);
-    saveBasketItems(basket);
-    alert(`${product.name} added to the basket!`);
-}
-
+// Function to update the basket UI
 function updateBasketUI() {
-    const basket = getBasketItems();
-    const basketItemsContainer = document.getElementById("basket-items");
-    const totalPriceContainer = document.getElementById("total-price-container");
+    const basketItemsContainer = document.getElementById('basket-items');
+    const totalPriceContainer = document.getElementById('total-price-container');
 
-    if (basket.length === 0) {
-        basketItemsContainer.innerHTML = "";
+    // Clear existing UI
+    basketItemsContainer.innerHTML = '';
+
+    if (cart.length === 0) {
         totalPriceContainer.textContent = "Your basket is empty";
         return;
     }
 
     let totalPrice = 0;
-    basketItemsContainer.innerHTML = basket
-        .map(
-            (item, index) => `
-        <tr>
-            <td>${item.name}</td>
-            <td>${item.price}</td>
-            <td>${item.size}</td>
-            <td>${item.price}</td>
-            <td><button class="remove-btn" onclick="removeFromBasket(${index})">Remove</button></td>
-        </tr>
-    `
-        )
-        .join("");
 
-    basket.forEach((item) => {
-        totalPrice += parseFloat(item.price.replace("£", ""));
+    // Populate basket UI
+    cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        totalPrice += itemTotal;
+
+        basketItemsContainer.innerHTML += `
+            <tr>
+                <td>${item.name} (Size: ${item.size})</td>
+                <td>£${item.price}</td>
+                <td>${item.quantity}</td>
+                <td>£${itemTotal.toFixed(2)}</td>
+                <td><button onclick="removeFromCart('${item.name}', '${item.size}')">Remove</button></td>
+            </tr>
+        `;
     });
 
-    totalPriceContainer.textContent = `Total Price: £${totalPrice.toFixed(2)}`;
+    totalPriceContainer.textContent = `Total: £${totalPrice.toFixed(2)}`;
 }
 
-function removeFromBasket(index) {
-    const basket = getBasketItems();
-    basket.splice(index, 1);
-    saveBasketItems(basket);
+// Function to remove an item from the cart
+function removeFromCart(productName, productSize) {
+    cart = cart.filter(item => !(item.name === productName && item.size === productSize));
     updateBasketUI();
+    localStorage.setItem('cart', JSON.stringify(cart)); // Update storage
 }
 
-document.addEventListener("DOMContentLoaded", updateBasketUI);
+// Initialize the basket UI on page load
+document.addEventListener('DOMContentLoaded', () => {
+    updateBasketUI();
+});
