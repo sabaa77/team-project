@@ -1,43 +1,82 @@
-let basket = JSON.parse(localStorage.getItem('basket')) || [];
+function getBasket() {
+    const basket = localStorage.getItem('basket');
+    return basket ? JSON.parse(basket) : [];
+}
 
-function updateBasketUI() {
-    const basketItems = document.getElementById('basket-items');
-    basketItems.innerHTML = '';
+function saveBasket(basket) {
+    localStorage.setItem('basket', JSON.stringify(basket));
+}
 
-    if (basket.length === 0) {
-        document.getElementById('total-price-container').innerText = "Your basket is empty";
+function renderBasket() {
+    const basketItems = getBasket();
+    const basketContainer = document.getElementById('basket-items');
+    const totalPriceContainer = document.getElementById('total-price-container');
+
+    basketContainer.innerHTML = '';
+
+    if (basketItems.length === 0) {
+        totalPriceContainer.innerText = 'Your basket is empty';
         return;
     }
 
     let totalPrice = 0;
 
-    basket.forEach((product, index) => {
+    basketItems.forEach((item, index) => {
         const row = document.createElement('tr');
 
-        row.innerHTML = `
-            <td>${product.name}</td>
-            <td>£${product.price}</td>
-            <td>${product.quantity}</td>
-            <td>£${product.price * product.quantity}</td>
-            <td><button class="remove-btn" onclick="removeFromBasket(${index})">Remove</button></td>
-        `;
+        const productCell = document.createElement('td');
+        productCell.innerText = item.name;
 
-        basketItems.appendChild(row);
+        const priceCell = document.createElement('td');
+        priceCell.innerText = `£${item.price}`;
 
-        totalPrice += product.price * product.quantity;
+        const quantityCell = document.createElement('td');
+        quantityCell.innerText = item.quantity;
+
+        const totalCell = document.createElement('td');
+        const itemTotal = item.price * item.quantity;
+        totalCell.innerText = `£${itemTotal}`;
+        totalPrice += itemTotal;
+
+        const removeCell = document.createElement('td');
+        const removeBtn = document.createElement('button');
+        removeBtn.innerText = 'Remove';
+        removeBtn.className = 'remove-btn';
+        removeBtn.addEventListener('click', () => {
+            basketItems.splice(index, 1);
+            saveBasket(basketItems);
+            renderBasket();
+        });
+        removeCell.appendChild(removeBtn);
+
+        row.appendChild(productCell);
+        row.appendChild(priceCell);
+        row.appendChild(quantityCell);
+        row.appendChild(totalCell);
+        row.appendChild(removeCell);
+
+        basketContainer.appendChild(row);
     });
 
-    document.getElementById('total-price-container').innerText = `Total: £${totalPrice}`;
+    totalPriceContainer.innerText = `Total: £${totalPrice}`;
 }
 
-function removeFromBasket(index) {
-    basket.splice(index, 1);
-    localStorage.setItem('basket', JSON.stringify(basket));
-    updateBasketUI();
+function addToBasket(productName, price) {
+    const basketItems = getBasket();
+
+    const existingItem = basketItems.find(item => item.name === productName);
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        basketItems.push({ name: productName, price: price, quantity: 1 });
+    }
+
+    saveBasket(basketItems);
+    renderBasket();
 }
 
 document.getElementById('checkout-btn').addEventListener('click', () => {
-    alert('Proceed to checkout functionality coming soon.');
+    alert('Proceed to checkout with your basket');
 });
 
-updateBasketUI();
+document.addEventListener('DOMContentLoaded', renderBasket);
