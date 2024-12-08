@@ -45,7 +45,6 @@
     <section class="Contact"> 
 <div class="Contact-container">
 <h2 class="wide">CONTACT US</h2>
-<br>
 <p>Follow us on our social media for the latest updates!</p>
 <div class="social-links">
     <a href="https://facebook.com/essencewear" target="_blank">
@@ -95,15 +94,16 @@
         <h2>Send Message</h2> 
         <br>
         <div class="form-group">
-            <input type="text" name="name" required="required" placeholder="Full Name">
+            <input type="text" name="name" placeholder="Full Name" required pattern="[A-Za-z\s]+" title="Name can only contain letters and spaces">
         </div>
         <br>
         <div class="form-group">
-            <input type="text" name="email" required="required" placeholder="Email"> 
+            <input type="text" name="email" placeholder="Email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" 
+            title="Please enter a valid email address"> 
         </div>
         <br>
         <div class="form-group">
-            <textarea name="message" required="required" placeholder="Type your message..."></textarea>
+            <textarea name="message" placeholder="Type your message..." required minlength="10" maxlength="500" oninput="this.value = this.value.slice(0, 500)" title="Message must be between 10 and 500 characters"></textarea>
         </div>
         <br>
         <div class="form-group">
