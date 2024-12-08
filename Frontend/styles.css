@@ -379,25 +379,19 @@
             background-color: #444;
         }
 
-        .contact-container {
-            max-width: 600px;
-            margin: 50px auto;
+        .Contact-container {
+            max-width: 95%;
+            margin: 10px auto;
             padding: 20px;
-            background-color: #000;
-            border-radius: 8px;
-            color: #fff;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-            text-align: center;
+            background-color: #fff;
+            border-radius: 2px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 1);
         }
 
-        .contact-container h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-        
-        .contact-container p {
+        .Contact-container p {
             font-size: 1rem;
             margin-bottom: 20px;
+            text-align: center;
         }
         
         .social-links {
@@ -410,11 +404,7 @@
             margin: 0 10px;
             transition: color 0.3s ease;
         }
-        
-        .social-links a:hover {
-            color: #f39c12;
-        }
-        
+         
         .contact_info {
             display: flex;
             flex-direction: row;
