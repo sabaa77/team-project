@@ -415,14 +415,25 @@
             color: #f39c12;
         }
         
+        .contact_info {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            text-align: center;
+        }
+
+
         .form-container {
             text-align: left;
         }
-        
+
         #contactForm {
             display: flex;
             flex-direction: column;
             gap: 15px;
+            text-align: center;
         }
 
         .form-group {
