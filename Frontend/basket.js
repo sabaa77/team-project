@@ -1,38 +1,59 @@
-function initialiseBasket(){
-    const basket = [];
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', event => {
-            const prodElement = event.target.closest('.product');
-            const prodID = productElement.dataset.id;
-            const prodName = prodElement.dataset.name;
-            const prodPrice = parseFloat(productElement.dataset.price);
-    
-            const existingProduct = basketProduct = basket.find(item => item.id === prodID);
-            if (existingProduct){
-                existingProduct.quantity += 1;
-            } else {
-                basket.push({ id:prodID, name:prodName, price: productPrice, quantity: 1});
-            }
-    
-            updateBasketUI();
-        });
-    });
+const BASKET_KEY = "basket_items";
+
+function getBasketItems() {
+    const items = localStorage.getItem(BASKET_KEY);
+    return items ? JSON.parse(items) : [];
+}
+
+function saveBasketItems(items) {
+    localStorage.setItem(BASKET_KEY, JSON.stringify(items));
+}
+
+function addToBasket(product) {
+    const basket = getBasketItems();
+    basket.push(product);
+    saveBasketItems(basket);
+    alert(`${product.name} added to the basket!`);
 }
 
 function updateBasketUI() {
-    const basketItems = document.getElementById('basket-items');
-    const totalPriceElement = document.getElementById('total-price');
+    const basket = getBasketItems();
+    const basketItemsContainer = document.getElementById("basket-items");
+    const totalPriceContainer = document.getElementById("total-price-container");
 
-    basketItems.innerHTML = '';
+    if (basket.length === 0) {
+        basketItemsContainer.innerHTML = "";
+        totalPriceContainer.textContent = "Your basket is empty";
+        return;
+    }
 
     let totalPrice = 0;
-    basket.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = '${item.name} - $$(item.price) x ${item.quantity}';
-        basketItems.appendChild(li);
+    basketItemsContainer.innerHTML = basket
+        .map(
+            (item, index) => `
+        <tr>
+            <td>${item.name}</td>
+            <td>${item.price}</td>
+            <td>${item.size}</td>
+            <td>${item.price}</td>
+            <td><button class="remove-btn" onclick="removeFromBasket(${index})">Remove</button></td>
+        </tr>
+    `
+        )
+        .join("");
 
-        totalPrice += item.price * item.quantity;
+    basket.forEach((item) => {
+        totalPrice += parseFloat(item.price.replace("£", ""));
     });
 
-    totalPriceElement.textContent = totalPrice.toFixed(2);
+    totalPriceContainer.textContent = `Total Price: £${totalPrice.toFixed(2)}`;
 }
+
+function removeFromBasket(index) {
+    const basket = getBasketItems();
+    basket.splice(index, 1);
+    saveBasketItems(basket);
+    updateBasketUI();
+}
+
+document.addEventListener("DOMContentLoaded", updateBasketUI);
