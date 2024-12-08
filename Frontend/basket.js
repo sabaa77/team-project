@@ -1,56 +1,43 @@
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-function addToCart(product) {
-    const existingProduct = cart.find(item => item.name === product.name && item.size === product.size);
-
-    if (existingProduct) {
-        existingProduct.quantity += 1;
-    } else {
-        cart.push({ ...product, quantity: 1 });
-    }
-
-    updateBasketUI();
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
+let basket = JSON.parse(localStorage.getItem('basket')) || [];
 
 function updateBasketUI() {
-    const basketItemsContainer = document.getElementById('basket-items');
-    const totalPriceContainer = document.getElementById('total-price-container');
+    const basketItems = document.getElementById('basket-items');
+    basketItems.innerHTML = '';
 
-    basketItemsContainer.innerHTML = '';
-
-    if (cart.length === 0) {
-        totalPriceContainer.textContent = "Your basket is empty";
+    if (basket.length === 0) {
+        document.getElementById('total-price-container').innerText = "Your basket is empty";
         return;
     }
 
     let totalPrice = 0;
 
+    basket.forEach((product, index) => {
+        const row = document.createElement('tr');
 
-    cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        totalPrice += itemTotal;
-
-        basketItemsContainer.innerHTML += `
-            <tr>
-                <td>${item.name} (Size: ${item.size})</td>
-                <td>£${item.price}</td>
-                <td>${item.quantity}</td>
-                <td>£${itemTotal.toFixed(2)}</td>
-                <td><button onclick="removeFromCart('${item.name}', '${item.size}')">Remove</button></td>
-            </tr>
+        row.innerHTML = `
+            <td>${product.name}</td>
+            <td>£${product.price}</td>
+            <td>${product.quantity}</td>
+            <td>£${product.price * product.quantity}</td>
+            <td><button class="remove-btn" onclick="removeFromBasket(${index})">Remove</button></td>
         `;
+
+        basketItems.appendChild(row);
+
+        totalPrice += product.price * product.quantity;
     });
 
-    totalPriceContainer.textContent = `Total: £${totalPrice.toFixed(2)}`;
+    document.getElementById('total-price-container').innerText = `Total: £${totalPrice}`;
 }
 
-function removeFromCart(productName, productSize) {
-    cart = cart.filter(item => !(item.name === productName && item.size === productSize));
+function removeFromBasket(index) {
+    basket.splice(index, 1);
+    localStorage.setItem('basket', JSON.stringify(basket));
     updateBasketUI();
-    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    updateBasketUI();
+document.getElementById('checkout-btn').addEventListener('click', () => {
+    alert('Proceed to checkout functionality coming soon.');
 });
+
+updateBasketUI();
