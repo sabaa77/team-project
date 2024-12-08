@@ -67,9 +67,16 @@
                 <option value="L">Large</option>
                 <option value="XL">Extra Large</option>
             </select>
-            <button type="button" class="add-to-cart-btn" onclick="addProductToBasket()">Add to Cart</button>
-
+            <button type="button" class="add-to-cart-btn" 
+                onclick="addToCart({
+                    name: 'Canada Goose HyBridge® Coat',
+                    price: 895,
+                    size: document.getElementById('size').value
+                })">
+                Add to Cart
+            </button>
         </form>
+        
     </div>
     <script src="addtobasket.js"></script>
 </div>

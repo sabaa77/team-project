@@ -1,26 +1,22 @@
-// Array to store cart items
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-// Function to add an item to the cart
 function addToCart(product) {
     const existingProduct = cart.find(item => item.name === product.name && item.size === product.size);
 
     if (existingProduct) {
-        existingProduct.quantity += 1; // Increase quantity if item exists
+        existingProduct.quantity += 1;
     } else {
-        cart.push({ ...product, quantity: 1 }); // Add new product to cart
+        cart.push({ ...product, quantity: 1 });
     }
 
     updateBasketUI();
-    localStorage.setItem('cart', JSON.stringify(cart)); // Persist cart in localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Function to update the basket UI
 function updateBasketUI() {
     const basketItemsContainer = document.getElementById('basket-items');
     const totalPriceContainer = document.getElementById('total-price-container');
 
-    // Clear existing UI
     basketItemsContainer.innerHTML = '';
 
     if (cart.length === 0) {
@@ -30,7 +26,7 @@ function updateBasketUI() {
 
     let totalPrice = 0;
 
-    // Populate basket UI
+
     cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
         totalPrice += itemTotal;
@@ -49,14 +45,12 @@ function updateBasketUI() {
     totalPriceContainer.textContent = `Total: £${totalPrice.toFixed(2)}`;
 }
 
-// Function to remove an item from the cart
 function removeFromCart(productName, productSize) {
     cart = cart.filter(item => !(item.name === productName && item.size === productSize));
     updateBasketUI();
-    localStorage.setItem('cart', JSON.stringify(cart)); // Update storage
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-// Initialize the basket UI on page load
 document.addEventListener('DOMContentLoaded', () => {
     updateBasketUI();
 });
