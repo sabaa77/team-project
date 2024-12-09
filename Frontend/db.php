@@ -2,10 +2,10 @@
 session_start();
 
 try {
-    $host = 'localhost';
-    $db   = 'essence_wear';
-    $user = 'root';
-    $pass = '';
+    $host = 'cs2410-web01pvm.aston.ac.uk';
+    $db   = 'cs2team49_db';
+    $user = 'cs2team49';
+    $pass = 'wHP74YYCEr1LqhK';
     $charset = 'utf8mb4';
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
