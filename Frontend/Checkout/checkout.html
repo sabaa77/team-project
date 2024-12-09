@@ -1,3 +1,4 @@
+<?php include 'checkout.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +10,9 @@
 <body>
 
   <div class="header">CHECKOUT</div>
-
-  <a href="home page.html">Keep Shopping</a>
+  <div class="keep-shopping"></div>
+  <a href="home page.html"id="keep-shopping">Forgot something? Keep Shopping</a>
+</div>
   <div class="icons">
     <div class="search-container">
         <img src="/images/logos/searchlogo.png" alt="search-logo" class="search-logo" id="search-icon">
@@ -77,17 +79,15 @@
     <div class="summary-column">
       <div class="order-summary">
         <h2>Order Summary</h2>
+        <?php foreach ($basketItems as $item): ?>
         <div class="summary-item">
-          <span>Luxury Bag</span>
-          <span>$2,000</span>
+            <span><?php echo $item['name']; ?> (x<?php echo $item['quantity']; ?>)</span>
+            <span>$<?php echo $item['price'] * $item['quantity']; ?></span>
         </div>
-        <div class="summary-item">
-          <span>Tax</span>
-          <span>$200</span>
-        </div>
-        <div class="summary-item total">
-          <span>Total</span>
-          <span>$2,200</span>
+    <?php endforeach; ?>
+    <div class="summary-item total">
+        <span>Total</span>
+        <span>$<?php echo $totalPrice; ?></span>
         </div>
       </div>
       <div class="payment">
