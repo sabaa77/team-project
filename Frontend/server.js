@@ -4,7 +4,7 @@ const mysql = require('mysql2');
 
 const app = express();
 const pool = mysql.createPool({
-    host: 'localhost',
+    host: 'cs2410-web01pvm.aston.ac.uk',
     user: 'cs2team49',
     password: 'wHP74YYCEr1LqhK',
     database: 'cs2team49_db'

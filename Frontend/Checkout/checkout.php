@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-$host = "DB_HOST";
-$user = "DB_USER";
-$password = "DB_PASSWORD";
-$database = "DB_NAME";
+$host = "localhost";
+$user = "cs2team49";
+$password = "wHP74YYCEr1LqhK";
+$database = "cs2team49_db";
 
 $conn = new mysqli($host, $user, $password, $database);
 
