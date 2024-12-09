@@ -1,87 +1,38 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
-const { Pool } = require('pg');
-const session = require('express-session');
+const multer = require('multer');
+const mysql = require('mysql2');
 
 const app = express();
-const port = 3000;
-
-const pool = new Pool({
-    user: 'yourUsername',
+const pool = mysql.createPool({
     host: 'localhost',
-    database: 'yourDatabase',
-    password: 'yourPassword',
-    port: 5432
+    user: 'cs2team49',
+    password: 'wHP74YYCEr1LqhK',
+    database: 'cs2team49_db'
 });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({
-    secret: 'yourSecretKey',
-    resave: false,
-    saveUninitialized: true
-}));
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: './uploads',
+        filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
+    })
+});
 
-app.use(express.static('public'));
+app.post('/upload', upload.single('file'), (req, res) => {
+    const fileName = req.file.originalname;
+    const filePath = req.file.path;
 
-app.post('/signup', async (req, res) => {
-    const { email, password, name } = req.body;
-
-    try {
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        const existingUser = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
-        if (existingUser.rows.length > 0) {
-            return res.status(400).send('User already exists.');
+    pool.query(
+        'INSERT INTO files (name, file_path) VALUES (?, ?)',
+        [fileName, filePath],
+        (err) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send('Error saving file.');
+            } else {
+                res.status(201).send('File uploaded successfully!');
+            }
         }
-
-        await pool.query('INSERT INTO users (email, password, name) VALUES ($1, $2, $3)', [email, hashedPassword, name]);
-        res.status(201).send('Signup successful');
-    } catch (err) {
-        res.status(500).send('Signup error: ' + err.message);
-    }
+    );
 });
 
-app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-
-    try {
-        const userResult = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
-        const user = userResult.rows[0];
-
-        if (user && await bcrypt.compare(password, user.password)) {
-            req.session.user = { id: user.id, email: user.email };
-            res.status(200).send('Login successful');
-        } else {
-            res.status(400).send('Invalid email or password');
-        }
-    } catch (err) {
-        res.status(500).send('Login error: ' + err.message);
-    }
-});
-
-app.post('/saveBasket', async (req, res) => {
-    const { email, basket } = req.body;
-
-    try {
-        const userResult = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
-        const user = userResult.rows[0];
-
-        if (user) {
-            const basketData = JSON.stringify(basket);
-
-            await pool.query('INSERT INTO baskets (user_id, basket_data) VALUES ($1, $2)', [user.id, basketData]);
-
-            res.status(200).send('Basket saved successfully!');
-        } else {
-            res.status(404).send('User not found');
-        }
-    } catch (err) {
-        res.status(500).send('Basket saving error: ' + err.message);
-    }
-});
-
-app.listen(port, () => {
-    console.log(`App running on http://localhost:${port}`);
-});
+app.listen(3000, () => console.log('Server running on port 3000'));
