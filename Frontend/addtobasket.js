@@ -1,21 +1,44 @@
-function addProductToBasket() {
+let basket = [];
+
+function addToBasket(product, price) {
+    basket.push({ product, price });
+    renderBasket();
+}
+
+function renderBasket() {
+    const basketItemsDiv = document.getElementById('basketItems');
+    basketItemsDiv.innerHTML = '';
     
-    const productContainer = document.querySelector(".product-container");
+    basket.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.innerHTML = `${item.product} - $${item.price} <button onclick="removeFromBasket(${index})">Remove</button>`;
+        basketItemsDiv.appendChild(div);
+    });
+}
 
-    const productName = productContainer.getAttribute("data-name");
-    const productPrice = productContainer.getAttribute("data-price");
-    const size = document.getElementById("size").value;
+function removeFromBasket(index) {
+    basket.splice(index, 1);
+    renderBasket();
+}
 
-    if (!size) {
-        alert("Please select a size.");
+async function saveBasket() {
+    const email = prompt('Enter your email to save your basket');
+
+    if (!email) {
+        alert('Email is required to save the basket.');
         return;
     }
 
-    const product = {
-        name: productName,
-        price: productPrice,
-        size: size,
-    };
+    const response = await fetch('/saveBasket', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, basket })
+    });
 
-    addToBasket(product);
+    const result = await response.text();
+    if (response.ok) {
+        alert(result);
+    } else {
+        alert('Failed to save basket: ' + result);
+    }
 }

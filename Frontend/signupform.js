@@ -1,15 +1,18 @@
-const signupForm = document.getElementById('signupForm');
+async function signup() {
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
 
-signupForm.addEventListener('submit', function (event) {
-    event.preventDefault();
+    const response = await fetch('/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+    });
 
-    const newUsername = document.getElementById('newUsername').value.trim();
-    const newPassword = document.getElementById('newPassword').value.trim();
-
-    if (newUsername && newPassword) {
-        alert('Signup successful! You can now log in.');
-        window.location.href = 'login.html';
+    const result = await response.text();
+    if (response.ok) {
+        alert(result);
     } else {
-        alert('Please fill out all fields!');
+        alert('Signup failed: ' + result);
     }
-});
+}

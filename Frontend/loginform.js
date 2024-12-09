@@ -1,18 +1,17 @@
-const loginForm = document.getElementById('loginForm');
-const errorMsg = document.getElementById('errorMsg');
+async function login() {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
 
-const validUser = { username: 'user123', password: 'pass123' };
+    const response = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    });
 
-loginForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value.trim();
-
-    if (username === validUser.username && password === validUser.password) {
-        alert('Login successful!');
-        errorMsg.textContent = '';
+    const result = await response.text();
+    if (response.ok) {
+        alert(result);
     } else {
-        errorMsg.textContent = 'Invalid username or password!';
+        alert('Login failed: ' + result);
     }
-});
+}
