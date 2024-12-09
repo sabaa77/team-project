@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Database connection
 $host = "DB_HOST";
 $user = "DB_USER";
 $password = "DB_PASSWORD";
@@ -13,8 +12,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch basket items for the current user (or session-based basket)
-$userId = $_SESSION['user_id'] ?? null; // Assume a logged-in user
+
+$userId = $_SESSION['user_id'] ?? null; 
 if (!$userId) {
     die("Please log in to proceed with checkout.");
 }
@@ -38,7 +37,7 @@ while ($row = $result->fetch_assoc()) {
     $totalPrice += $row['quantity'] * $row['price'];
 }
 
-// Handle form submission
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $name = $_POST['name'];
@@ -47,14 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $country = $_POST['country'];
     $zip = $_POST['zip'];
 
-    // Insert new order
+
     $orderSql = "INSERT INTO orders (user_id, total_price, status) VALUES (?, ?, 'pending')";
     $orderStmt = $conn->prepare($orderSql);
     $orderStmt->bind_param("id", $userId, $totalPrice);
     $orderStmt->execute();
     $orderId = $conn->insert_id;
 
-    // Copy basket items into order details
+    
     foreach ($basketItems as $item) {
         $orderDetailSql = "INSERT INTO order_details (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
         $orderDetailStmt = $conn->prepare($orderDetailSql);
@@ -68,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $orderDetailStmt->execute();
     }
 
-    // Clear the basket
+  
     $clearBasketSql = "DELETE FROM orders WHERE user_id = ? AND status = 'pending'";
     $clearBasketStmt = $conn->prepare($clearBasketSql);
     $clearBasketStmt->bind_param("i", $userId);

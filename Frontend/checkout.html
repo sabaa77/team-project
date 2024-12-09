@@ -1,109 +1,114 @@
+<?php include 'checkout.php'; ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Essence Wear | Home</title>
-    <link rel="icon" type="image/png" href="essence wear logo (black).png">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="checkoutstyle.css">
+  <title>Essence Wear Checkout</title>
 </head>
 <body>
-   <header>
-    <a href="Home Page.html" class="logo-link">
-    <img src="essence wear logo (black).png" alt="logo" class="logo">
-    </a>
-    <div class="header-text">
-       <h1>Essence Wear</h1>
-       <p>Your Style, Your Way</p>
-    </div>
+
+  <div class="header">CHECKOUT</div>
+
+  <div class="keep-shopping"></div>
+  <a href="home page.html"id="keep-shopping">Home</a>
+</div>
   <div class="icons">
     <div class="search-container">
-        <img src="searchlogo.png" alt="search-logo" class="search-logo" id="search-icon">
+        <img src="/images/logos/searchlogo.png" alt="search-logo" class="search-logo" id="search-icon">
         <div class="search-bar" id="search-bar">
             <input type="text" placeholder="Search...">
             <button type="button">Go</button>
         </div>
-    </div>
-    <a href="basket.html" title="Basket">
-        <img src="basketlogo.png" alt="basket-logo" class="basket-logo">
-    </a>
-    <a href="User Page.html" title="User Profile">
-        <img src="userlogo.png" alt="user-logo" class="user-logo">
-    </a>
+      </div>
+<a href="/basket" title="Basket">
+    <img src="/images/logos/basketlogo.png" alt="basket-logo" class="basket-logo">
+</a>
+<a href="User Page.html" title="User Profile">
+    <img src="/images/logos/userlogo.png" alt="user-logo" class="user-logo">
+</a>
+
 </div>
-</header>
-  <nav>
-    <a href="Mens.html">Men</a>
-    <a href="Womens.html">Women</a>
-    <a href="Kids.html">Kids</a>
-    <a href="About Us Page.html">About Us</a>
-    <a href="Contact us.html">Contact Us</a> 
-    </nav>
   <div class="container">
-    <div class="header">CHECKOUT</div>
+   
+    <div class="checkout-column">
+      <form id="checkoutForm">
+        <h3>1. Contact Details</h3>
+        <h4>Enter your email to continue as a guest or login to your personal account.</h4>
 
-    <form id="checkoutForm">
-    
-       <h3> 1. Contact Details </h3>
-       <h5> Enter your email to continue as a guest or login to your personal account.</h5>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
 
-       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-      </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
 
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-      </div>
+        <div class="form-group">
+          <h3>2. Delivery</h3>
+          <label for="address">Shipping Address</label>
+          <input type="text" id="address" name="address" placeholder="Enter your address" required>
+        </div>
 
-      <div class="form-group">
-        <label for="address">Shipping Address</label>
-        <input type="text" id="address" name="address" placeholder="Enter your address" required>
-      </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" placeholder="Enter your city" required>
+        </div>
 
-      <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" id="city" name="city" placeholder="Enter your city" required>
-      </div>
+        <div class="form-group">
+          <label for="country">Country</label>
+          <select id="country" name="country" required>
+            <option value="">Select your country</option>
+            <option value="US">United States</option>
+            <option value="UK">United Kingdom</option>
+           
+          </select>
+        </div>
 
-      <div class="form-group">
-        <label for="country">Country</label>
-        <select id="country" name="country" required>
-          <option value="">Select your country</option>
-          <option value="US">United States</option>
-          <option value="UK">United Kingdom</option>
-          <option value="FR">France</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="zip">ZIP/Postal Code</label>
-        <input type="text" id="zip" name="zip" placeholder="Enter your ZIP code" required>
-      </div>
+        <div class="form-group">
+          <label for="zip">ZIP/Postal Code</label>
+          <input type="text" id="zip" name="zip" placeholder="Enter your ZIP code" required>
+        </div>
+        
+      </form>
+    </div>
 
 
+    <div class="summary-column">
       <div class="order-summary">
         <h2>Order Summary</h2>
+        <?php foreach ($basketItems as $item): ?>
         <div class="summary-item">
-          <span>Luxury Bag</span>
-          <span>$2,000</span>
+            <span><?php echo $item['name']; ?> (x<?php echo $item['quantity']; ?>)</span>
+            <span>$<?php echo $item['price'] * $item['quantity']; ?></span>
         </div>
-        <div class="summary-item">
-          <span>Tax</span>
-          <span>$200</span>
-        </div>
-        <div class="summary-item total">
-          <span>Total</span>
-          <span>$2,200</span>
+    <?php endforeach; ?>
+    <div class="summary-item total">
+        <span>Total</span>
+        <span>$<?php echo $totalPrice; ?></span>
         </div>
       </div>
-
-      <button type="button" class="btn" id="checkoutButton">Pay Now</button>
-    </form>
+      <div class="payment">
+        <h3>Payment method</h3>
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required> <br> <br>
+        <label for="cardName">Cardholder Name</label>
+        <input type="text" id="cardName" name="cardName" placeholder="John Doe" required><br> <br>
+        <label for="expiryDate">Expiry Date</label>
+        <input type="month" id="expiryDate" name="expiryDate" required><br><br>
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" name="cvv" placeholder="123" required><br><br>
+        <button type="button" class="btn" id="checkoutButton">Pay Now</button>
+      </div>
+    </div>
   </div>
 
-  <script src="checkout.js"></script>
-
+  <footer>
+    <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
+  </footer>
 </body>
 </html>
+
