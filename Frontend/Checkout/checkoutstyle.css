@@ -14,7 +14,12 @@
 .header-text {
   text-align: center;
 }
-
+#keepShopping {
+  float: left; /* Or 'left' for left alignment */
+  margin-left: 20px; /* Adjust spacing */
+  text-decoration: none;
+  color: white;
+}
 .header {
   padding-top: 70px;
   text-align: center;
