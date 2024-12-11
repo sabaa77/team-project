@@ -1,5 +1,4 @@
 const express = require('express');
-const multer = require('multer');
 const mysql = require('mysql2');
 
 const app = express();
@@ -10,29 +9,25 @@ const pool = mysql.createPool({
     database: 'cs2team49_db'
 });
 
-const upload = multer({
-    storage: multer.diskStorage({
-        destination: './uploads',
-        filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
-    })
-});
+app.use(express.json());
 
-app.post('/upload', upload.single('file'), (req, res) => {
-    const fileName = req.file.originalname;
-    const filePath = req.file.path;
+app.get('/search', (req, res) => {
+    const query = req.query.q;
 
-    pool.query(
-        'INSERT INTO files (name, file_path) VALUES (?, ?)',
-        [fileName, filePath],
-        (err) => {
-            if (err) {
-                console.error(err);
-                res.status(500).send('Error saving file.');
-            } else {
-                res.status(201).send('File uploaded successfully!');
-            }
+    if (!query) {
+        return res.status(400).json({ error: 'Search query is required' });
+    }
+
+    const sql = 'SELECT * FROM products WHERE name LIKE ? OR description LIKE ?';
+    const searchValue = `%${query}%`;
+
+    pool.query(sql, [searchValue, searchValue], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: 'Database query failed' });
         }
-    );
+
+        res.json(results);
+    });
 });
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+app.listen(3000, () => console.log('Server is running on port 3000'));

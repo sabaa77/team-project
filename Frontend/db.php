@@ -2,7 +2,7 @@
 session_start();
 
 try {
-    $host = 'cs2410-web01pvm.aston.ac.uk';
+    $host = 'localhost';
     $db   = 'cs2team49_db';
     $user = 'cs2team49';
     $pass = 'wHP74YYCEr1LqhK';
