@@ -1,25 +1,28 @@
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal columns */
-  gap: 20px; /* Adds space between columns */
+  grid-template-columns: 1fr 1fr; 
+  gap: 20px; 
   padding: 20px;
 }
 
 .checkout-column, .summary-column {
-  background-color: white; /* Background color for each column */
+  background-color: white;
   border-radius: 10px;
   padding: 20px;
-  color: black; /* Adjust text color for readability */
+  color: black; 
 }
 .header-text {
   text-align: center;
 }
-#keepShopping {
-  float: left; /* Or 'left' for left alignment */
-  margin-left: 20px; /* Adjust spacing */
-  text-decoration: none;
-  color: white;
+#keep-shopping{
+  position: absolute;
+  top: 170px;
+  padding-left:50px;
+  text-decoration: none; 
+  color: white; 
+  font-size: 20px; 
 }
+
 .header {
   padding-top: 70px;
   text-align: center;
@@ -176,7 +179,7 @@ nav a:hover {
   font-size: 1rem;
 }
 .order-summary {
-  flex: 0 0 35%; /* Adjusted width */
+  flex: 0 0 35%; 
   padding: 15px;
   border: 1px solid ;
   border-radius: 5px;
