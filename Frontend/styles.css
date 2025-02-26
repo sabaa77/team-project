@@ -388,7 +388,7 @@
             box-shadow: 0 0 5px rgb(86, 86, 86);
         }
 
-        .Contact-container p {
+        .Contact-socials p {
             font-size: 1rem;
             margin-bottom: 20px;
             text-align: center;
@@ -413,7 +413,6 @@
             gap: 50px;
             text-align: center;
         }
-
 
         .form-container {
             text-align: left;
@@ -492,6 +491,8 @@
         .social-icon:hover {
             transform: scale(1.2);
         }
+
+
 
         .eco-warehouse-section {
             margin: 40px auto;
