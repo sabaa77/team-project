@@ -42,81 +42,87 @@
          <a href="Contact us.html">Contact Us</a>       
         </nav>
     
-    <section class="Contact"> 
-<div class="Contact-container">
-<h2 class="wide">Contact Us</h2>
-<p>Follow us on our social media for the latest updates!</p>
-<div class="social-links">
-    <a href="https://facebook.com/essencewear" target="_blank">
-        <img src="Facebook Logo.png" alt="Facebook" class="social-icon">
-    </a>
-    <a href="https://instagram.com/essencewear" target="_blank">
-        <img src="Instagram Logo.png" alt="Instagram" class="social-icon">
-    </a>
-    <a href="https://twitter.com/essencewear" target="_blank">
-        <img src="X Logo.png" alt="X" class="social-icon">
-    </a>
-</div>
+    <div class="container"> 
+        <div class="contactServices">
+            <h2 class="wide">Contact Us</h2>
+        </div>
 
-</div>
-
-
-    <div class="contact_info">
-        <div class="box">
-            <div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
-            <div class="text">
-                <h3>Phone</h3>
-                <p>+44 7283920138</p>
+        <div class="contact_info">
+            <div class="box">
+                <div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                <div class="text">
+                    <h3>Phone</h3>
+                    <p>+44 7283920138</p>
+                </div>
+            </div>
+    
+            <div class="box">
+                <div class="icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
+                <div class="text">
+                    <h3>Email</h3>
+                    <p>contact@essencewear.com</p>
+                </div>
+            </div>
+    
+            <div class="box">
+                <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                <div class="text">
+                    <h3>Address</h3>
+                    <p>123 High Street <br>
+                        London, W1A 1AA <br>
+                        United Kingdom</p>
+                </div>
             </div>
         </div>
+    
 
-        <div class="box">
-            <div class="icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
-            <div class="text">
-                <h3>Email</h3>
-                <p>contact@essencewear.com</p>
-            </div>
+        <div class="form-wrapper">
+            <div class="form-container">
+            <form id="contactForm">
+                <h3>Send Message</h3> 
+                <p>For any queries or feedback, please contact us using the form below.</p>
+                <br>
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Full Name" required pattern="[A-Za-z\s]+" 
+                    title="Please enter your full name">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="text" name="email" placeholder="Email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                    title="Email: e.g., name@mail.com"> 
+                </div>
+                <br>
+                <div class="form-group">
+                    <textarea Sname="message" placeholder="Type your message..." required minlength="10" maxlength="500" oninput="this.value = this.value.slice(0, 500)"
+                     title="Enter your message"></textarea>
+                </div>
+                <br>
+                <div class="form-group">
+                    <button type="submit" class="contact-btn">Send Message</button>
+                </div>
+            </form>
+        </div>
         </div>
 
-        <div class="box">
-            <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-            <div class="text">
-                <h3>Address</h3>
-                <p>123 High Street <br>
-                    London, W1A 1AA <br>
-                    United Kingdom</p>
-            </div>
+    <div class="Contact-socials">
+        <p>Follow us on our social media for the latest updates!</p>
+        <div class="social-links">
+            <a href="https://facebook.com/essencewear" target="_blank">
+                <img src="Facebook Logo.png" alt="Facebook" class="social-icon">
+            </a>
+            <a href="https://instagram.com/essencewear" target="_blank">
+                <img src="Instagram Logo.png" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://twitter.com/essencewear" target="_blank">
+                <img src="X Logo.png" alt="X" class="social-icon">
+            </a>
         </div>
-    </div>
-
-
-    <div class="container">
-    <div class="form-container">
-    <form id="contactForm">
-        <h2>Send Message</h2> 
-        <br>
-        <div class="form-group">
-            <input type="text" name="name" placeholder="Full Name" required pattern="[A-Za-z\s]+" 
-            title="Please enter your full name">
-        </div>
-        <br>
-        <div class="form-group">
-            <input type="text" name="email" placeholder="Email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-            title="Email: e.g., name@mail.com"> 
-        </div>
-        <br>
-        <div class="form-group">
-            <textarea Sname="message" placeholder="Type your message..." required minlength="10" maxlength="500" oninput="this.value = this.value.slice(0, 500)"
-             title="Enter your message"></textarea>
-        </div>
-        <br>
-        <div class="form-group">
-            <button type="submit" class="contact-btn">Send Message</button>
-        </div>
-    </form>
-</div>
 
 </section>
+
+<footer>
+    <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
+</footer>
 
 <script src="formValidation.js"></script>
 </body>
