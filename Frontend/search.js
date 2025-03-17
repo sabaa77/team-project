@@ -1,37 +1,27 @@
-const searchIcon = document.getElementById('search-icon');
-const searchBar = document.getElementById('search-bar');
-const searchResultsContainer = document.getElementById('search-results');
+function searchProducts() {
+    let query = document.getElementById("searchInput").value;
 
-searchIcon.addEventListener('click', () => {
-    if (searchBar.style.display === 'none' || searchBar.style.display === '') {
-        searchBar.style.display = 'block';
-    } else {
-        searchBar.style.display = 'none';
-    }
-});
+    fetch(`search.php?query=${encodeURIComponent(query)}`)
+        .then(response => response.json())
+        .then(data => {
+            let resultsDiv = document.getElementById("searchResults");
+            resultsDiv.innerHTML = "";
+            
+            if (data.length === 0) {
+                resultsDiv.innerHTML = "<p>No products found</p>";
+                return;
+            }
 
-searchBar.addEventListener('input', () => {
-    const query = searchBar.value.trim();
-
-    if (query.length > 2) {
-        fetch(`/search?q=${encodeURIComponent(query)}`)
-            .then(response => response.json())
-            .then(results => {
-                searchResultsContainer.innerHTML = '';
-                if (results.length > 0) {
-                    results.forEach(product => {
-                        const productDiv = document.createElement('div');
-                        productDiv.textContent = `${product.name} - ${product.description}`;
-                        searchResultsContainer.appendChild(productDiv);
-                    });
-                } else {
-                    searchResultsContainer.textContent = 'No products found.';
-                }
-            })
-            .catch(error => {
-                searchResultsContainer.textContent = 'An error occurred.';
+            data.forEach(product => {
+                resultsDiv.innerHTML += `
+                    <div>
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <p>Price: $${product.price}</p>
+                        <img src="${product.image_url}" width="100">
+                    </div>
+                    <hr>
+                `;
             });
-    } else {
-        searchResultsContainer.innerHTML = '';
-    }
-});
+        });
+}
