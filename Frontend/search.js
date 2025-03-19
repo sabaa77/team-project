@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("searchInput");
-    const searchButton = document.querySelector("#search-bar button");
+    const searchButton = document.querySelector("#search-container button");
 
     searchButton.addEventListener("click", searchProducts);
 
