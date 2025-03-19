@@ -52,7 +52,6 @@ function renderBasket() {
         row.appendChild(productCell);
         row.appendChild(priceCell);
         row.appendChild(quantityCell);
-        row.appendChild(totalCell);
         row.appendChild(removeCell);
 
         basketContainer.appendChild(row);
@@ -76,7 +75,7 @@ function addToBasket(productName, price) {
 }
 
 document.getElementById('checkout-btn').addEventListener('click', () => {
-    alert('Proceed to checkout with your basket');
+    window.location.href = 'checkout.html';
 });
 
 document.addEventListener('DOMContentLoaded', renderBasket);

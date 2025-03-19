@@ -80,10 +80,19 @@
                 <option value="L">Large</option>
                 <option value="XL">Extra Large</option>
             </select>
-            <button type="button" class="add-to-cart-btn" onclick="updateBasketUI()">Add to Cart</button>
-        </form>
-    </div>
-</div>
+            <button type="button" class="add-to-cart-btn" 
+            onclick="addToBasket({
+                name: 'Burberry Wool Tailored Jacket',
+                price: 1790,
+                size: document.getElementById('size').value
+            })">
+            Add to Cart
+            </button>
+            </form>
+            
+            </div>
+            <script src="addtobasket.js"></script>
+            </div>
 
 <footer>
     <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
