@@ -609,3 +609,5 @@ COMMIT;
 
 SELECT * FROM products 
 WHERE MATCH(name, description) AGAINST (? IN NATURAL LANGUAGE MODE);
+
+ALTER TABLE products ADD FULLTEXT(name, description);
