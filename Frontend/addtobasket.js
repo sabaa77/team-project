@@ -7,7 +7,7 @@ if (localSotrageBasket) {
 }
 
 function addToBasket(product) {
-    var itemExists = basketObject.findIndex((item)=> item.name === product.name);
+    var itemExists = basketObject.findIndex((item)=> item.name === product.name && item.size === product.size);
     if (itemExists!=-1){
         basketObject[itemExists]["quantity"]+= 1;
     }else{
