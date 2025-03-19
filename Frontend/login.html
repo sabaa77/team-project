@@ -13,27 +13,42 @@
         <a href="index.html" class="home-button">Home</a>
     </nav>
 
-    <div class="login-container">
+    <div class="container">
+        <div class="form-box active" id="login-form">
         <h2>Login</h2>
-        <form id="loginForm">
+        <form action="loginForm">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" name="login">Login</button>
+            <p>Dont have an account? <a href="#" onclick="showForm('register-form')">Register</a></p>
 
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
+            
+            <p class="error" id="errorMsg"></p>
+        </form>
+    </div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
 
-            <button type="submit" class="login-btn">Login</button>
+
+    <div class="form-box" id="register-form">
+        <h2>Register</h2>
+        <form action="loginForm">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <select name="role" required>
+                <option value="">--Select Role--</option>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+            <button type="submit" name="register">Register</button>
+            <p>Already have an account? <a href="#" onclick="showForm('login-form')"> Login</a></p>
+
             
             <p class="error" id="errorMsg"></p>
         </form>
 
-        <a href="signup.html" class="signup-link">Don't have an account? Sign up</a>
-    </div>
-    <script src="loginform.js"></script>
+
+    
+    <script src="login.js"></script>
 </body>
 </html>
