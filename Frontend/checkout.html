@@ -80,6 +80,7 @@
     <div class="summary-column">
       <div class="order-summary">
         <h2>Order Summary</h2>
+
         <?php foreach ($basketItems as $item): ?>
         <div class="summary-item">
             <span><?php echo $item['name']; ?> (x<?php echo $item['quantity']; ?>)</span>
@@ -88,7 +89,8 @@
     <?php endforeach; ?>
     <div class="summary-item total">
         <span>Total</span>
-        <span>$<?php echo $totalPrice; ?></span>
+        <span>$<?php $totalPrice; ?></span>
+     
         </div>
       </div>
       <div class="payment">

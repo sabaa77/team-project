@@ -1,25 +1,34 @@
 <?php
-session_start();
+include "db.php";
 
-$host = "localhost";
-$user = "cs2team49";
-$password = "wHP74YYCEr1LqhK";
-$database = "cs2team49_db";
+$category = isset($_GET['category']) ? $_GET['category'] : '';
+$search = isset($_GET['search']) ? $_GET['search'] : '';
 
-$conn = new mysqli($host, $user, $password, $database);
+$sql = "SELECT * FROM Products WHERE 1";
+if ($category) $sql .= " AND category_id = ?";
+if ($search) $sql .= " AND name LIKE ?";
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$stmt = $conn->prepare($sql);
+if ($category && $search) {
+    $search = "%$search%";
+    $stmt->bind_param("is", $category, $search);
+} elseif ($category) {
+    $stmt->bind_param("i", $category);
+} elseif ($search) {
+    $search = "%$search%";
+    $stmt->bind_param("s", $search);
 }
 
-$stmt = $pdo->query('SELECT * FROM products');
-$products = $stmt->fetchAll();
+$stmt->execute();
+$result = $stmt->get_result();
 
-foreach ($products as $product) {
-    echo "<div class='product'>
-            <img src='{$product['image_url']}' alt='{$product['name']}'>
-            <h3>{$product['name']}</h3>
-            <p>Price: £{$product['price']}</p>
+while ($row = $result->fetch_assoc()) {
+    echo "<div>
+            <img src='{$row['image_url']}' alt='{$row['name']}' width='100'>
+            <h3>{$row['name']}</h3>
+            <p>{$row['description']}</p>
+            <p>Price: \${$row['price']}</p>
+            <button onclick='addToCart({$row['product_id']})'>Add to Cart</button>
          </div>";
 }
 ?>
