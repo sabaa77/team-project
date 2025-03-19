@@ -1,7 +1,20 @@
-let basket = [];
+let basketObject;
+const localSotrageBasket = localStorage.getItem('basket');
+if (localSotrageBasket) {
+    basketObject = JSON.parse(localSotrageBasket);
+}else{
+    basketObject = []
+}
 
-function addToBasket(product, price) {
-    basket.push({ product, price });
+function addToBasket(product) {
+    var itemExists = basketObject.findIndex((item)=> item.name === product.name);
+    if (itemExists!=-1){
+        basketObject[itemExists]["quantity"]+= 1;
+    }else{
+        product.quantity = 1;
+        basketObject.push(product);
+    }
+    localStorage.setItem('basket',JSON.stringify(basketObject));
     renderBasket();
 }
 
