@@ -1,42 +1,43 @@
 <?php
-header('Content-Type: application/json');
-
-$host = 'cs2410-web01pvm.aston.ac.uk';
+$servername = 'localhost';
 $user = 'cs2team49';
 $password = 'wHP74YYCEr1LqhK';
 $database = 'cs2team49_db';
 
-$conn = new mysqli($host, $user, $password, $database);
+$conn = new mysqli($servername, $user, $password, $database);
 
 if ($conn->connect_error) {
-    http_response_code(500);
-    die(json_encode(['error' => 'Database connection failed']));
+    die("connection failed: " . $conn->connect_error);
 }
 
-$query = isset($_GET['query']) ? trim($_GET['query']) : '';
+if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET['products'])) {
+    $searchTerm = $_GET['products'];
+    
+    $sql = "SELECT * FROM products WHERE name LIKE ? OR product_name LIKE ?";
+    $stmt = $conn->prepare($sql);
 
-if (empty($query)) {
-    http_response_code(400);
-    die(json_encode(['error' => 'No search term provided']));
+    if ($stmt) {
+        $searchTermWithWildcards = "%" . $searchTerm . "%"; 
+        $stmt->bind_param("ss", $searchTermWithWildcards, $searchTermWithWildcards);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            echo "<h2>Search Results:</h2>";
+            while ($row = $result->fetch_assoc()) {
+                echo "<p><strong>" . $row['name'] . "</strong> - " . $row['description'] . "</p>";
+            }
+        } else {
+            echo "<p>No results found. Please try again with a different search term.</p>";
+        }
+
+        $stmt->close();
+    } else {
+        echo "<p>Oops! Something went wrong. Please try again later.</p>";
+    }
+} else {
+    echo "<p>Please enter a search term to begin your search.</p>";
 }
 
-$stmt = $conn->prepare("
-    SELECT id, name, description, price, image_url 
-    FROM products 
-    WHERE name LIKE CONCAT('%', ?, '%') 
-       OR description LIKE CONCAT('%', ?, '%')
-");
-$stmt->bind_param("ss", $query, $query);
-$stmt->execute();
-$result = $stmt->get_result();
-
-$products = [];
-while ($row = $result->fetch_assoc()) {
-    $products[] = $row;
-}
-
-echo json_encode($products);
-
-$stmt->close();
 $conn->close();
 ?>
