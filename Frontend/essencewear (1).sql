@@ -454,20 +454,20 @@ UPDATE `products`
 SET `product_page_url` = 'ShoesProduct2.html' 
 WHERE `product_id` = 26;
 
-UPDATE `products` 
-SET `product_page_url` = 'ShoesProduct3.html' 
+UPDATE `products`
+SET `product_page_url` = 'ShoesProduct3.html'
 WHERE `product_id` = 27;
 
-UPDATE `products` 
-SET `product_page_url` = 'ShoesProduct4.html' 
+UPDATE `products`
+SET `product_page_url` = 'ShoesProduct4.html'
 WHERE `product_id` = 28;
 
-UPDATE `products` 
-SET `product_page_url` = 'ShoesProduct5.html' 
+UPDATE `products`
+SET `product_page_url` = 'ShoesProduct5.html'
 WHERE `product_id` = 29;
 
-UPDATE `products` 
-SET `product_page_url` = 'ShoesProduct6.html' 
+UPDATE `products`
+SET `product_page_url` = 'ShoesProduct6.html'
 WHERE `product_id` = 30;
 
 -- --------------------------------------------------------
