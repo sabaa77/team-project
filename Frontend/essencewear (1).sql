@@ -470,7 +470,6 @@ UPDATE `products`
 SET `product_page_url` = 'ShoesProduct6.html' 
 WHERE `product_id` = 30;
 
-
 -- --------------------------------------------------------
 
 --
