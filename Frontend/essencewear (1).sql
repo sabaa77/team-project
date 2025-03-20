@@ -311,12 +311,13 @@ CREATE TABLE `products` (
   `image_url` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+ALTER TABLE `products` ADD COLUMN `product_page_url` VARCHAR(500) DEFAULT NULL;
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `size`, `product_name`, `product_description`, `price`, `category_id`, `image_url`) VALUES
-(1, 'S', 'Canada Goose HyBridge® Coat', 'The Canada Goose HyBridge® Coat is designed for superior warmth and style. Crafted with advanced insulation technology, its perfect for cold-weather conditions. A blend of functionality and luxury for modern adventurers', 895.00, 1, 'CanadaGooseCoat.png'),
+INSERT INTO `products` (`product_id`, `size`, `product_name`, `product_description`, `price`, `category_id`, `image_url`, 'product_page_url') VALUES
+(1, 'S', 'Canada Goose HyBridge® Coat', 'The Canada Goose HyBridge® Coat is designed for superior warmth and style. Crafted with advanced insulation technology, its perfect for cold-weather conditions. A blend of functionality and luxury for modern adventurers', 895.00, 1, '"CanadaGooseCoat.png"'),
 (2, 'S', 'Valentino Cotton Hooded Sweatshirt', 'Cotton sweatshirt with hood and Chez Valentino print.', 825.00, 1, '"ValentinoHoodie.png"'),
 (3, 'S', 'Balencia Back T-Shirt', 'Balenciaga Back T-Shirt Medium Fit in grey painted vintage jersey', 690.00, 1, '"BalenciagaTshirt.png"'),
 (4, 'S', 'Gucci Cotton polo shirt', 'The GG motif appears in unexpected colours and fabric combinations, from linen blend to nylon. This regular fit polo shirt is presented in a GG stretch cotton piquet jacquard and enriched with a Gucci embroidery.', 830.00, 1, '"GucciPolo.png"'),
@@ -335,6 +336,80 @@ INSERT INTO `products` (`product_id`, `size`, `product_name`, `product_descripti
 (17, 'S', 'Girls Emporio Armani Joggers', 'Joggers in a comfortable fit with elasticated waist and ankle cuffs. Made of cotton-blend jersey with a dense pattern of all-over jacquard logo lettering.', 190.00, 3, '"GirlsEAJoggers.png"'),
 (18, 'S', 'Girls Fendi Denim Trousers', 'Regular-fit, medium-wash denim junior trousers with chalk white FF Fendi Roma thread embroidery on the front below the pocket.', 410.00, 3, '"GirlsFendiPants.png"');
 
+-- Update the `product_page_url` column for Men's products
+UPDATE `products` 
+SET `product_page_url` = 'MenProductPage1.html' 
+WHERE `product_id` = 1;
+
+UPDATE `products` 
+SET `product_page_url` = 'MenProductPage2.html' 
+WHERE `product_id` = 2;
+
+UPDATE `products` 
+SET `product_page_url` = 'MenProductPage3.html' 
+WHERE `product_id` = 3;
+
+UPDATE `products` 
+SET `product_page_url` = 'MenProductPage4.html' 
+WHERE `product_id` = 4;
+
+UPDATE `products` 
+SET `product_page_url` = 'MenProductPage5.html' 
+WHERE `product_id` = 5;
+
+UPDATE `products` 
+SET `product_page_url` = 'MenProductPage6.html' 
+WHERE `product_id` = 6;
+
+-- Update the `product_page_url` column for Women's products
+UPDATE `products` 
+SET `product_page_url` = 'WomenProductPage1.html' 
+WHERE `product_id` = 7;
+
+UPDATE `products` 
+SET `product_page_url` = 'WomenProductPage2.html' 
+WHERE `product_id` = 8;
+
+UPDATE `products` 
+SET `product_page_url` = 'WomenProductPage3.html' 
+WHERE `product_id` = 9;
+
+UPDATE `products` 
+SET `product_page_url` = 'WomenProductPage4.html' 
+WHERE `product_id` = 10;
+
+UPDATE `products` 
+SET `product_page_url` = 'WomenProductPage5.html' 
+WHERE `product_id` = 11;
+
+UPDATE `products` 
+SET `product_page_url` = 'WomenProductPage6.html' 
+WHERE `product_id` = 12;
+
+-- Update the `product_page_url` column for Kids' products
+UPDATE `products` 
+SET `product_page_url` = 'KidProductPage1.html' 
+WHERE `product_id` = 13;
+
+UPDATE `products` 
+SET `product_page_url` = 'KidProductPage2.html' 
+WHERE `product_id` = 14;
+
+UPDATE `products` 
+SET `product_page_url` = 'KidProductPage3.html' 
+WHERE `product_id` = 15;
+
+UPDATE `products` 
+SET `product_page_url` = 'KidProductPage4.html' 
+WHERE `product_id` = 16;
+
+UPDATE `products` 
+SET `product_page_url` = 'KidProductPage5.html' 
+WHERE `product_id` = 17;
+
+UPDATE `products` 
+SET `product_page_url` = 'KidProductPage6.html' 
+WHERE `product_id` = 18;
 -- --------------------------------------------------------
 
 --
