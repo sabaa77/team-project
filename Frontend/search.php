@@ -27,9 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET['query'])) {
             $results[] = [
                 "name" => $row['product_name'],
                 "description" => $row['product_description'],
-                "image" => $row['image_url'] ?? "#"
-                "link" => $row['product_url'] ?? "#"
-
+                "link" => $row['product_page_url'] ?? "#"
             ];
         }
 
