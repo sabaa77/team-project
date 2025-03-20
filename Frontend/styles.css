@@ -594,10 +594,11 @@
         }
 
         .search-result-image {
-            width: 150px; /* Set the desired width */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 5px; /* Optional: Add rounded corners */
-            margin-bottom: 10px; /* Optional: Add spacing below the image */
+            width: 20%;
+            border-radius: 8px;
+            height: 50px;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
         }
         
         
