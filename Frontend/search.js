@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     searchButton.addEventListener("click", () => {
         const query = searchInput.value.trim();
         if (query) {
-            window.location.href = `searchResults.html?query=${encodeURIComponent(query)}`;
+            window.location.href = `searchresults.html?query=${encodeURIComponent(query)}`;
         } else {
             alert("Please enter a search term.");
         }
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.key === "Enter") {
             const query = searchInput.value.trim();
             if (query) {
-                window.location.href = `searchResults.html?query=${encodeURIComponent(query)}`;
+                window.location.href = `searchresults.html?query=${encodeURIComponent(query)}`;
             } else {
                 alert("Please enter a search term.");
             }
