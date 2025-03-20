@@ -7,11 +7,11 @@ $database = 'cs2team49_db';
 $conn = new mysqli($servername, $user, $password, $database);
 
 if ($conn->connect_error) {
-    die("connection failed: " . $conn->connect_error);
+    die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET['products'])) {
-    $searchTerm = $_GET['products'];
+if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET['query'])) {
+    $searchTerm = $_GET['query'];
     
     $sql = "SELECT * FROM products WHERE name LIKE ? OR product_name LIKE ?";
     $stmt = $conn->prepare($sql);
@@ -22,21 +22,24 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET['products'])) {
         $stmt->execute();
         $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-            echo "<h2>Search Results:</h2>";
-            while ($row = $result->fetch_assoc()) {
-                echo "<p><strong>" . $row['name'] . "</strong> - " . $row['description'] . "</p>";
-            }
-        } else {
-            echo "<p>No results found. Please try again with a different search term.</p>";
+        $results = [];
+        while ($row = $result->fetch_assoc()) {
+            $results[] = [
+                "name" => $row['name'],
+                "description" => $row['description'],
+                "link" => $row['link'] ?? "#"
+            ];
         }
 
-        $stmt->close();
+        header('Content-Type: application/json');
+        echo json_encode($results);
     } else {
-        echo "<p>Oops! Something went wrong. Please try again later.</p>";
+        echo json_encode(["error" => "Failed to prepare the SQL statement."]);
     }
+
+    $stmt->close();
 } else {
-    echo "<p>Please enter a search term to begin your search.</p>";
+    echo json_encode(["error" => "Invalid request or missing query parameter."]);
 }
 
 $conn->close();

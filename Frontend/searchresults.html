@@ -31,7 +31,12 @@
                             results.forEach(result => {
                                 const resultItem = document.createElement("div");
                                 resultItem.className = "search-result";
-                                resultItem.innerHTML = `<a href="${result.link}">${result.name}</a>`;
+                                resultItem.innerHTML = `
+                                    <a href="${result.link}">
+                                        <strong>${result.name}</strong>
+                                    </a>
+                                    <p>${result.description}</p>
+                                `;
                                 resultsContainer.appendChild(resultItem);
                             });
                         } else {
