@@ -20,40 +20,40 @@
 </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const params = new URLSearchParams(window.location.search);
-            const query = params.get("query");
-            const resultsContainer = document.getElementById("searchResultsContainer");
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("query");
+    const resultsContainer = document.getElementById("searchResultsContainer");
 
-            if (query) {
-                fetch(`search.php?query=${encodeURIComponent(query)}`)
-                    .then(response => response.json())
-                    .then(results => {
-                        resultsContainer.innerHTML = "";
-                        if (results.length > 0) {
-                            results.forEach(result => {
-                                const resultItem = document.createElement("div");
-                                resultItem.className = "search-result";
-                                resultItem.innerHTML = `
-                                    <image src="${result.image}" alt="${result.name}">
-                                    <a href="${result.link}">
-                                        <strong>${result.name}</strong>
-                                    </a>
-                                    <p>${result.description}</p>
-                                `;
-                                resultsContainer.appendChild(resultItem);
-                            });
-                        } else {
-                            resultsContainer.innerHTML = "<p>No results found.</p>";
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error fetching search results:", error);
-                        resultsContainer.innerHTML = "<p>Error loading results. Please try again later.</p>";
+    if (query) {
+        fetch(`search.php?query=${encodeURIComponent(query)}`)
+            .then(response => response.json())
+            .then(results => {
+                resultsContainer.innerHTML = "";
+                if (results.length > 0) {
+                    results.forEach(result => {
+                        const resultItem = document.createElement("div");
+                        resultItem.className = "search-result";
+                        resultItem.innerHTML = `
+                            <img src="${result.image}" alt="${result.name}">
+                            <a href="${result.link}">
+                                <strong>${result.name}</strong>
+                            </a>
+                            <p>${result.description}</p>
+                        `;
+                        resultsContainer.appendChild(resultItem);
                     });
-            } else {
-                resultsContainer.innerHTML = "<p>No search query provided.</p>";
-            }
-        });
+                } else {
+                    resultsContainer.innerHTML = "<p>No results found.</p>";
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching search results:", error);
+                resultsContainer.innerHTML = "<p>Error loading results. Please try again later.</p>";
+            });
+    } else {
+        resultsContainer.innerHTML = "<p>No search query provided.</p>";
+    }
+});
     </script>
 </body>
 </html>
