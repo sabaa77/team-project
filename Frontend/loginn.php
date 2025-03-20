@@ -28,7 +28,7 @@ function isActiveForm($formName, $activeForm) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Essence Wear | Log-In</title>
     <link rel="icon" type="image/png" href="essence wear logo (black).png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="signuplogin.css">
 </head>
 <body>
 
