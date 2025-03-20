@@ -581,6 +581,24 @@
         .remove-btn:hover {
             background-color: #ff6b7f;
         }
+
+        .checkout-btn {
+            background-color: #000;
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .search-result-image {
+            width: 150px; /* Set the desired width */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 5px; /* Optional: Add rounded corners */
+            margin-bottom: 10px; /* Optional: Add spacing below the image */
+        }
         
         
 
