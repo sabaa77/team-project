@@ -318,157 +318,37 @@ ALTER TABLE `products` ADD COLUMN `product_page_url` VARCHAR(500) DEFAULT NULL;
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `size`, `product_name`, `product_description`, `price`, `category_id`, `image_url`) VALUES
-(1, 'S', 'Canada Goose HyBridge® Coat', 'The Canada Goose HyBridge® Coat is designed for superior warmth and style. Crafted with advanced insulation technology, its perfect for cold-weather conditions. A blend of functionality and luxury for modern adventurers', 895.00, 1, 'CanadaGooseCoat.png'),
-(2, 'S', 'Valentino Cotton Hooded Sweatshirt', 'Cotton sweatshirt with hood and Chez Valentino print.', 825.00, 1, 'ValentinoHoodie.png'),
-(3, 'S', 'Balencia Back T-Shirt', 'Balenciaga Back T-Shirt Medium Fit in grey painted vintage jersey', 690.00, 1, 'BalenciagaTshirt.png'),
-(4, 'S', 'Gucci Cotton polo shirt', 'The GG motif appears in unexpected colours and fabric combinations, from linen blend to nylon. This regular fit polo shirt is presented in a GG stretch cotton piquet jacquard and enriched with a Gucci embroidery.', 830.00, 1, 'GucciPolo.png'),
-(5, 'S', 'Burberry Wool Tailored Jacket', 'A tailored jacket made in Italy from wool twill. Cut to a slim fit, the single-breasted style has a half-canvas construction for a lightly structured shape. Part of Burberry Classics, wardrobe foundations with a unique Burberry slant.', 1790.00, 1, 'BurberrySuit.png '),
-(6, 'S', 'Givenchy Jogger Pants', 'Jogger pants in double face wool and cashmere', 1250.00, 1, 'GivenchyJoggers.png'),
-(7, 'S', 'Prada Ribbed Knit Jersey Pants', 'These ribbed knit jersey pants with sleek, contemporary lines are decorated with the enameled metal triangle logo.', 1560.00, 2, 'PradaPants.png'),
-(8, 'S', 'Versace Draped-Neck Cady Mini Dress', 'This short-sleeved mini dress in cady has a draped neckline and an archival Gianni Ribbon satin bow with the signature Medusa accent at the waist.', 1940.00, 2, 'VersaceMiniDress.png '),
-(9, 'S', 'Valentino Coat in Textured Wool', 'If you are seeking elegance to complete your cold-weather edit, look no further than this wool coat from Valentino. Designed with a wrap-around style for maximum convenience, the showstopping element lies in the faux fur trim that cloaks the neckline for a parade of timeless femininity.', 4200.00, 2, 'ValentinoCoat.png'),
-(10, 'S', 'Gucci Embroidered Cotton Hoodie', 'Gucci House codes continue to evolve for the new season across relaxed jersey pieces. This regular fit hooded sweatshirt is presented in a cotton jersey and defined by a Gucci embroidery.', 950.00, 2, 'GucciHoodie.png'),
-(11, 'S', 'Saint Laurent Wrap Dress', 'Sheer short wrap dress gathered and tied at the side, featuring a surplice neckline, and gathered shoulders.', 2740.00, 2, 'YSLDress.png'),
-(12, 'S', 'Balenciaga Flared Cargo Pants in Blue', 'Womens Flared Cargo Pants in Blue', 1690.00, 2, 'BalenciagaPants.png'),
-(13, 'S', 'Boys Moncler New Maya Jacket', 'Moncler encapsulate innovation and passion in their beautifully crafted designs. T his boys new Maya jacket is the perfect water repellent puffer for turbulent weather conditions. Engineered in goose down via tiered padding with a detachable hood, side zip pockets, press-stud side sleeves and the iconic Moncler embroidered badge. He will embody unparalleled style.', 545.00, 3, 'BoysMonclerCoat.png'),
-(14, 'S', 'Boys Gucci Printed Cotton Hoodie', 'The archival Web stripe appears throughout the Cruise 2025 childrens collection in a varietyof iterations. Green and red trims across ready-to-wear, shoes and accessories create a sporty attitude, fit for every adventure. This childrens classic fit sweatshirt is stated in cotton jersey and reveals a Gucci overlay Web print.', 285.00, 3, 'BoysGucciHoodie.png '),
-(15, 'S', 'Boys Burberry Check Cotton Shirt', 'A cotton poplin shirt with a point collar, woven in the Burberry Check. Part of Burberry Classics, wardrobe foundations with a unique Burberry slant.', 190.00, 3, 'BoysBurberryShirt.png '),
-(16, 'S', 'Girls Burberry Polo Shirt Dress', 'A polo shirt dress in cotton piqué with a Burberry Check collar.', 240.00, 3, 'GirlsBurberryDress.png'),
-(17, 'S', 'Girls Emporio Armani Joggers', 'Joggers in a comfortable fit with elasticated waist and ankle cuffs. Made of cotton-blend jersey with a dense pattern of all-over jacquard logo lettering.', 190.00, 3, 'GirlsEAJoggers.png'),
-(18, 'S', 'Girls Fendi Denim Trousers', 'Regular-fit, medium-wash denim junior trousers with chalk white FF Fendi Roma thread embroidery on the front below the pocket.', 410.00, 3, 'GirlsFendiPants.png'),
-(19, 'S', 'Mens Versace Sunglasses', 'Stylish and iconic, these Versace sunglasses are perfect for any occasion.', 300.00, 4, 'MensVersaceGlasses.png'),
-(20, 'S', 'Womens Gucci Belt', 'A timeless Gucci belt with the iconic GG logo.', 320.00, 4, 'GucciBelt.png'),
-(21, 'S', 'Mens Saint Laurent Chain', 'A sleek and modern chain from Saint Laurent.', 690.00, 4, 'YSLChain.png'),
-(22, 'S', 'Womens Balenciaga Headband', 'A chic Balenciaga headband for a stylish look.', 395.00, 4, 'BalenciagaHeadband.png'),
-(23, 'S', 'Mens Valentino Wallet', 'A premium leather wallet from Valentino.', 330.00, 4, 'ValentinoWallet.png'),
-(24, 'S', 'Womens Prada Bracelet', 'An elegant bracelet from Prada.', 410.00, 4, 'PradaBracelet.png'),
-(25, 'S', 'Mens Louboutin Shoes', 'The refined Chambeliss Night Strass enchants with its tapered silhouette.', 1075.00, 5, 'MensLouboutinShoes.png'),
-(26, 'S', 'Womens Louis Vuitton High Heels', 'Crafted from supple lambskin, these elegant high heels feature signature hardware.', 845.00, 5, 'WomensLVHeels.png'),
-(27, 'S', 'Mens Gucci Trainers', 'A chunkier construction defines the shape of these iconic Gucci trainers.', 620.00, 5, 'MensGucciTrainers.png'),
-(28, 'S', 'Womens Prada Slides', 'Minimalist geometric pattern enriches the design of these Prada slides.', 730.00, 5, 'WomensPradaSlides.png'),
-(29, 'S', 'Mens Nike Air Max', 'The iconic Nike Air Max with superior cushioning and style.', 150.00, 5, 'MensNikeAirMax.png'),
-(30, 'S', 'Womens Adidas Ultraboost', 'High-performance running shoes with unmatched comfort.', 180.00, 5, 'WomensAdidasUltraboost.png');
-
-UPDATE `products` 
-SET `product_page_url` = 'MensProduct1.html' 
-WHERE `product_id` = 1;
-
-UPDATE `products` 
-SET `product_page_url` = 'MensProduct2.html' 
-WHERE `product_id` = 2;
-
-UPDATE `products` 
-SET `product_page_url` = 'MensProduct3.html' 
-WHERE `product_id` = 3;
-
-UPDATE `products` 
-SET `product_page_url` = 'MensProduct4.html' 
-WHERE `product_id` = 4;
-
-UPDATE `products` 
-SET `product_page_url` = 'MensProduct5.html' 
-WHERE `product_id` = 5;
-
-UPDATE `products` 
-SET `product_page_url` = 'MensProduct6.html' 
-WHERE `product_id` = 6;
-
-UPDATE `products` 
-SET `product_page_url` = 'WomensProduct1.html' 
-WHERE `product_id` = 7;
-
-UPDATE `products` 
-SET `product_page_url` = 'WomensProduct2.html' 
-WHERE `product_id` = 8;
-
-UPDATE `products` 
-SET `product_page_url` = 'WomensProduct3.html' 
-WHERE `product_id` = 9;
-
-UPDATE `products` 
-SET `product_page_url` = 'WomensProduct4.html' 
-WHERE `product_id` = 10;
-
-UPDATE `products` 
-SET `product_page_url` = 'WomensProduct5.html' 
-WHERE `product_id` = 11;
-
-UPDATE `products` 
-SET `product_page_url` = 'WomensProduct6.html' 
-WHERE `product_id` = 12;
-
-UPDATE `products` 
-SET `product_page_url` = 'KidsProduct1.html' 
-WHERE `product_id` = 13;
-
-UPDATE `products` 
-SET `product_page_url` = 'KidsProduct2.html' 
-WHERE `product_id` = 14;
-
-UPDATE `products` 
-SET `product_page_url` = 'KidsProduct3.html' 
-WHERE `product_id` = 15;
-
-UPDATE `products` 
-SET `product_page_url` = 'KidsProduct4.html' 
-WHERE `product_id` = 16;
-
-UPDATE `products` 
-SET `product_page_url` = 'KidsProduct5.html' 
-WHERE `product_id` = 17;
-
-UPDATE `products` 
-SET `product_page_url` = 'KidsProduct6.html' 
-WHERE `product_id` = 18;
-
-UPDATE `products` 
-SET `product_page_url` = 'AccessoriesProduct1.html' 
-WHERE `product_id` = 19;
-
-UPDATE `products` 
-SET `product_page_url` = 'AccessoriesProduct2.html' 
-WHERE `product_id` = 20;
-
-UPDATE `products` 
-SET `product_page_url` = 'AccessoriesProduct3.html' 
-WHERE `product_id` = 21;
-
-UPDATE `products` 
-SET `product_page_url` = 'AccessoriesProduct4.html' 
-WHERE `product_id` = 22;
-
-UPDATE `products` 
-SET `product_page_url` = 'AccessoriesProduct5.html' 
-WHERE `product_id` = 23;
-
-UPDATE `products` 
-SET `product_page_url` = 'AccessoriesProduct6.html' 
-WHERE `product_id` = 24;
-
-UPDATE `products` 
-SET `product_page_url` = 'ShoesProduct1.html' 
-WHERE `product_id` = 25;
-
-UPDATE `products` 
-SET `product_page_url` = 'ShoesProduct2.html' 
-WHERE `product_id` = 26;
-
-UPDATE `products`
-SET `product_page_url` = 'ShoesProduct3.html'
-WHERE `product_id` = 27;
-
-UPDATE `products`
-SET `product_page_url` = 'ShoesProduct4.html'
-WHERE `product_id` = 28;
-
-UPDATE `products`
-SET `product_page_url` = 'ShoesProduct5.html'
-WHERE `product_id` = 29;
-
-UPDATE `products`
-SET `product_page_url` = 'ShoesProduct6.html'
-WHERE `product_id` = 30;
+INSERT INTO `products` (`product_id`, `size`, `product_name`, `product_description`, `price`, `category_id`, `image_url`, `product_page_url`) VALUES
+(1, 'S', 'Canada Goose HyBridge® Coat', 'The Canada Goose HyBridge® Coat is designed for superior warmth and style.', 895.00, 1, 'CanadaGooseCoat.png', 'MensProduct1.html'),
+(2, 'S', 'Valentino Cotton Hooded Sweatshirt', 'Cotton sweatshirt with hood and Chez Valentino print.', 825.00, 1, 'ValentinoHoodie.png', 'MensProduct2.html'),
+(3, 'S', 'Balencia Back T-Shirt', 'Balenciaga Back T-Shirt Medium Fit in grey painted vintage jersey', 690.00, 1, 'BalenciagaTshirt.png', 'MensProduct3.html'),
+(4, 'S', 'Gucci Cotton polo shirt', 'The GG motif appears in unexpected colours and fabric combinations.', 830.00, 1, 'GucciPolo.png', 'MensProduct4.html'),
+(5, 'S', 'Burberry Wool Tailored Jacket', 'A tailored jacket made in Italy from wool twill.', 1790.00, 1, 'BurberrySuit.png', 'MensProduct5.html'),
+(6, 'S', 'Givenchy Jogger Pants', 'Jogger pants in double face wool and cashmere.', 1250.00, 1, 'GivenchyJoggers.png', 'MensProduct6.html'),
+(7, 'S', 'Prada Ribbed Knit Jersey Pants', 'These ribbed knit jersey pants with sleek, contemporary lines.', 1560.00, 2, 'PradaPants.png', 'WomensProduct1.html'),
+(8, 'S', 'Versace Draped-Neck Cady Mini Dress', 'This short-sleeved mini dress in cady has a draped neckline.', 1940.00, 2, 'VersaceMiniDress.png', 'WomensProduct2.html'),
+(9, 'S', 'Valentino Coat in Textured Wool', 'If you are seeking elegance to complete your cold-weather edit.', 4200.00, 2, 'ValentinoCoat.png', 'WomensProduct3.html'),
+(10, 'S', 'Gucci Embroidered Cotton Hoodie', 'Gucci House codes continue to evolve for the new season.', 950.00, 2, 'GucciHoodie.png', 'WomensProduct4.html'),
+(11, 'S', 'Saint Laurent Wrap Dress', 'Sheer short wrap dress gathered and tied at the side.', 2740.00, 2, 'YSLDress.png', 'WomensProduct5.html'),
+(12, 'S', 'Balenciaga Flared Cargo Pants in Blue', 'Womens Flared Cargo Pants in Blue.', 1690.00, 2, 'BalenciagaPants.png', 'WomensProduct6.html'),
+(13, 'S', 'Boys Moncler New Maya Jacket', 'This boys new Maya jacket is the perfect water repellent puffer.', 545.00, 3, 'BoysMonclerCoat.png', 'KidsProduct1.html'),
+(14, 'S', 'Boys Gucci Printed Cotton Hoodie', 'Green and red trims across ready-to-wear, shoes and accessories.', 285.00, 3, 'BoysGucciHoodie.png', 'KidsProduct2.html'),
+(15, 'S', 'Boys Burberry Check Cotton Shirt', 'A cotton poplin shirt with a point collar, woven in the Burberry Check.', 190.00, 3, 'BoysBurberryShirt.png', 'KidsProduct3.html'),
+(16, 'S', 'Girls Burberry Polo Shirt Dress', 'A polo shirt dress in cotton piqué with a Burberry Check collar.', 240.00, 3, 'GirlsBurberryDress.png', 'KidsProduct4.html'),
+(17, 'S', 'Girls Emporio Armani Joggers', 'Joggers in a comfortable fit with elasticated waist and ankle cuffs.', 190.00, 3, 'GirlsEAJoggers.png', 'KidsProduct5.html'),
+(18, 'S', 'Girls Fendi Denim Trousers', 'Regular-fit, medium-wash denim junior trousers.', 410.00, 3, 'GirlsFendiPants.png', 'KidsProduct6.html'),
+(19, 'S', 'Mens Versace Sunglasses', 'Stylish and iconic, these Versace sunglasses are perfect for any occasion.', 300.00, 4, 'MensVersaceGlasses.png', 'AccessoriesProduct1.html'),
+(20, 'S', 'Womens Gucci Belt', 'A timeless Gucci belt with the iconic GG logo.', 320.00, 4, 'GucciBelt.png', 'AccessoriesProduct2.html'),
+(21, 'S', 'Mens Saint Laurent Chain', 'A sleek and modern chain from Saint Laurent.', 690.00, 4, 'YSLChain.png', 'AccessoriesProduct3.html'),
+(22, 'S', 'Womens Balenciaga Headband', 'A chic Balenciaga headband for a stylish look.', 395.00, 4, 'BalenciagaHeadband.png', 'AccessoriesProduct4.html'),
+(23, 'S', 'Mens Valentino Wallet', 'A premium leather wallet from Valentino.', 330.00, 4, 'ValentinoWallet.png', 'AccessoriesProduct5.html'),
+(24, 'S', 'Womens Prada Bracelet', 'An elegant bracelet from Prada.', 410.00, 4, 'PradaBracelet.png', 'AccessoriesProduct6.html'),
+(25, 'S', 'Mens Louboutin Shoes', 'The refined Chambeliss Night Strass enchants with its tapered silhouette.', 1075.00, 5, 'MensLouboutinShoes.png', 'ShoesProduct1.html'),
+(26, 'S', 'Womens Louis Vuitton High Heels', 'Crafted from supple lambskin, these elegant high heels feature signature hardware.', 845.00, 5, 'WomensLVHeels.png', 'ShoesProduct2.html'),
+(27, 'S', 'Mens Gucci Trainers', 'A chunkier construction defines the shape of these iconic Gucci trainers.', 620.00, 5, 'MensGucciTrainers.png', 'ShoesProduct3.html'),
+(28, 'S', 'Womens Prada Slides', 'Minimalist geometric pattern enriches the design of these Prada slides.', 730.00, 5, 'WomensPradaSlides.png', 'ShoesProduct4.html'),
+(29, 'S', 'Mens Nike Air Max', 'The iconic Nike Air Max with superior cushioning and style.', 150.00, 5, 'MensNikeAirMax.png', 'ShoesProduct5.html'),
+(30, 'S', 'Womens Adidas Ultraboost', 'High-performance running shoes with unmatched comfort.', 180.00, 5, 'WomensAdidasUltraboost.png', 'ShoesProduct6.html');
 
 -- --------------------------------------------------------
 
