@@ -305,7 +305,7 @@ CREATE TABLE `products` (
   `product_id` int(10) UNSIGNED NOT NULL,
   `size` enum('S','M','L','XL') NOT NULL,
   `product_name` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
+  `product_description` text DEFAULT NULL,
   `price` decimal(10,2) NOT NULL,
   `category_id` int(10) UNSIGNED NOT NULL,
   `image_url` varchar(500) DEFAULT NULL

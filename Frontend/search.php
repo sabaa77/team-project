@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET['query'])) {
     $searchTerm = $_GET['query'];
     
-    $sql = "SELECT * FROM products WHERE name LIKE ? OR product_name LIKE ?";
+    $sql = "SELECT * FROM products WHERE product_name LIKE ? OR product_description LIKE ?";
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
@@ -25,9 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET['query'])) {
         $results = [];
         while ($row = $result->fetch_assoc()) {
             $results[] = [
-                "name" => $row['name'],
-                "description" => $row['description'],
-                "link" => $row['link'] ?? "#"
+                "name" => $row['product_name'],
+                "description" => $row['product_description'],
+                "link" => $row['image_url'] ?? "#"
             ];
         }
 
