@@ -594,9 +594,9 @@
         }
 
         .search-result-image {
-            width: 50%;
+            width: 25%;
             border-radius: 8px;
-            height: 200px;
+            height: 100px;
             margin: 0 auto;
             transition: transform 0.3s ease;
         }
