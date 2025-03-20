@@ -318,7 +318,7 @@ ALTER TABLE `products` ADD COLUMN `product_page_url` VARCHAR(500) DEFAULT NULL;
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `size`, `product_name`, `product_description`, `price`, `category_id`, `image_url`, `product_page_url`) VALUES
+INSERT INTO `products` (`product_id`, `size`, `product_name`, `product_description`, `price`, `category_id`, `image_url`) VALUES
 (1, 'S', 'Canada Goose HyBridge® Coat', 'The Canada Goose HyBridge® Coat is designed for superior warmth and style. Crafted with advanced insulation technology, its perfect for cold-weather conditions. A blend of functionality and luxury for modern adventurers', 895.00, 1, 'CanadaGooseCoat.png'),
 (2, 'S', 'Valentino Cotton Hooded Sweatshirt', 'Cotton sweatshirt with hood and Chez Valentino print.', 825.00, 1, 'ValentinoHoodie.png'),
 (3, 'S', 'Balencia Back T-Shirt', 'Balenciaga Back T-Shirt Medium Fit in grey painted vintage jersey', 690.00, 1, 'BalenciagaTshirt.png'),
