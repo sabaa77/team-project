@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && !empty($_GET['query'])) {
                 "name" => $row['product_name'],
                 "description" => $row['product_description'],
                 "link" => $row['product_page_url'] ?? "#"
+                "image" => $row['image_url'] ?? "https://via.placeholder.com/150"
             ];
         }
 
