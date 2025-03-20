@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("searchInput");
+    const searchInput = document.querySelector("#search-bar input");
     const searchButton = document.querySelector("#search-bar button");
 
     if (!searchInput || !searchButton) {
