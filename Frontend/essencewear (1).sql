@@ -39,7 +39,9 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`category_id`, `category_name`) VALUES
 (3, 'Kids'),
 (1, 'Men'),
-(2, 'Women');
+(2, 'Women'),
+(4, 'Accessories'),
+(5, 'Shoes');
 
 -- --------------------------------------------------------
 
