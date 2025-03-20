@@ -336,80 +336,93 @@ INSERT INTO `products` (`product_id`, `size`, `product_name`, `product_descripti
 (17, 'S', 'Girls Emporio Armani Joggers', 'Joggers in a comfortable fit with elasticated waist and ankle cuffs. Made of cotton-blend jersey with a dense pattern of all-over jacquard logo lettering.', 190.00, 3, '"GirlsEAJoggers.png"'),
 (18, 'S', 'Girls Fendi Denim Trousers', 'Regular-fit, medium-wash denim junior trousers with chalk white FF Fendi Roma thread embroidery on the front below the pocket.', 410.00, 3, '"GirlsFendiPants.png"');
 
--- Update the `product_page_url` column for Men's products
 UPDATE `products` 
-SET `product_page_url` = 'MenProductPage1.html' 
+SET `product_page_url` = 'MensProduct1.html' 
 WHERE `product_id` = 1;
 
 UPDATE `products` 
-SET `product_page_url` = 'MenProductPage2.html' 
+SET `product_page_url` = 'MensProduct2.html' 
 WHERE `product_id` = 2;
 
 UPDATE `products` 
-SET `product_page_url` = 'MenProductPage3.html' 
+SET `product_page_url` = 'MensProduct3.html' 
 WHERE `product_id` = 3;
 
 UPDATE `products` 
-SET `product_page_url` = 'MenProductPage4.html' 
+SET `product_page_url` = 'MensProduct4.html' 
 WHERE `product_id` = 4;
 
 UPDATE `products` 
-SET `product_page_url` = 'MenProductPage5.html' 
+SET `product_page_url` = 'MensProduct5.html' 
 WHERE `product_id` = 5;
 
 UPDATE `products` 
-SET `product_page_url` = 'MenProductPage6.html' 
+SET `product_page_url` = 'MensProduct6.html' 
 WHERE `product_id` = 6;
 
--- Update the `product_page_url` column for Women's products
 UPDATE `products` 
-SET `product_page_url` = 'WomenProductPage1.html' 
+SET `product_page_url` = 'WomensProduct1.html' 
 WHERE `product_id` = 7;
 
 UPDATE `products` 
-SET `product_page_url` = 'WomenProductPage2.html' 
+SET `product_page_url` = 'WomensProduct2.html' 
 WHERE `product_id` = 8;
 
 UPDATE `products` 
-SET `product_page_url` = 'WomenProductPage3.html' 
+SET `product_page_url` = 'WomensProduct3.html' 
 WHERE `product_id` = 9;
 
 UPDATE `products` 
-SET `product_page_url` = 'WomenProductPage4.html' 
+SET `product_page_url` = 'WomensProduct4.html' 
 WHERE `product_id` = 10;
 
 UPDATE `products` 
-SET `product_page_url` = 'WomenProductPage5.html' 
+SET `product_page_url` = 'WomensProduct5.html' 
 WHERE `product_id` = 11;
 
 UPDATE `products` 
-SET `product_page_url` = 'WomenProductPage6.html' 
+SET `product_page_url` = 'WomensProduct6.html' 
 WHERE `product_id` = 12;
 
--- Update the `product_page_url` column for Kids' products
 UPDATE `products` 
-SET `product_page_url` = 'KidProductPage1.html' 
+SET `product_page_url` = 'KidsProduct1.html' 
 WHERE `product_id` = 13;
 
 UPDATE `products` 
-SET `product_page_url` = 'KidProductPage2.html' 
+SET `product_page_url` = 'KidsProduct2.html' 
 WHERE `product_id` = 14;
 
 UPDATE `products` 
-SET `product_page_url` = 'KidProductPage3.html' 
+SET `product_page_url` = 'KidsProduct3.html' 
 WHERE `product_id` = 15;
 
 UPDATE `products` 
-SET `product_page_url` = 'KidProductPage4.html' 
+SET `product_page_url` = 'KidsProduct4.html' 
 WHERE `product_id` = 16;
 
 UPDATE `products` 
-SET `product_page_url` = 'KidProductPage5.html' 
+SET `product_page_url` = 'KidsProduct5.html' 
 WHERE `product_id` = 17;
 
 UPDATE `products` 
-SET `product_page_url` = 'KidProductPage6.html' 
+SET `product_page_url` = 'KidsProduct6.html' 
 WHERE `product_id` = 18;
+
+INSERT INTO `products` (`product_id`, `size`, `product_name`, `product_description`, `price`, `category_id`, `image_url`, `product_page_url`) VALUES
+(19, 'S', 'Mens Versace Sunglasses', 'Stylish and iconic, these Versace sunglasses are perfect for any occasion.', 300.00, 4, 'MensVersaceGlasses.png', 'AccessoriesProduct1.html'),
+(20, 'S', 'Womens Gucci Belt', 'A timeless Gucci belt with the iconic GG logo.', 320.00, 4, 'GucciBelt.png', 'AccessoriesProduct2.html'),
+(21, 'S', 'Mens Saint Laurent Chain', 'A sleek and modern chain from Saint Laurent.', 690.00, 4, 'YSLChain.png', 'AccessoriesProduct3.html'),
+(22, 'S', 'Womens Balenciaga Headband', 'A chic Balenciaga headband for a stylish look.', 395.00, 4, 'BalenciagaHeadband.png', 'AccessoriesProduct4.html'),
+(23, 'S', 'Mens Valentino Wallet', 'A premium leather wallet from Valentino.', 330.00, 4, 'ValentinoWallet.png', 'AccessoriesProduct5.html'),
+(24, 'S', 'Womens Prada Bracelet', 'An elegant bracelet from Prada.', 410.00, 4, 'PradaBracelet.png', 'AccessoriesProduct6.html');
+
+INSERT INTO `products` (`product_id`, `size`, `product_name`, `product_description`, `price`, `category_id`, `image_url`, `product_page_url`) VALUES
+(25, 'S', 'Mens Louboutin Shoes', 'The refined Chambeliss Night Strass enchants with its tapered silhouette.', 1075.00, 5, 'MensLouboutinShoes.png', 'ShoesProduct1.html'),
+(26, 'S', 'Womens Louis Vuitton High Heels', 'Crafted from supple lambskin, these elegant high heels feature signature hardware.', 845.00, 5, 'WomensLVHeels.png', 'ShoesProduct2.html'),
+(27, 'S', 'Mens Gucci Trainers', 'A chunkier construction defines the shape of these iconic Gucci trainers.', 620.00, 5, 'MensGucciTrainers.png', 'ShoesProduct3.html'),
+(28, 'S', 'Womens Prada Slides', 'Minimalist geometric pattern enriches the design of these Prada slides.', 730.00, 5, 'WomensPradaSlides.png', 'ShoesProduct4.html'),
+(29, 'S', 'Mens Nike Air Max', 'The iconic Nike Air Max with superior cushioning and style.', 150.00, 5, 'MensNikeAirMax.png', 'ShoesProduct5.html'),
+(30, 'S', 'Womens Adidas Ultraboost', 'High-performance running shoes with unmatched comfort.', 180.00, 5, 'WomensAdidasUltraboost.png', 'ShoesProduct6.html');
 -- --------------------------------------------------------
 
 --
