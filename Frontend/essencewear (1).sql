@@ -337,18 +337,18 @@ INSERT INTO `products` (`product_id`, `size`, `product_name`, `product_descripti
 (16, 'S', 'Girls Burberry Polo Shirt Dress', 'A polo shirt dress in cotton piqué with a Burberry Check collar.', 240.00, 3, 'GirlsBurberryDress.png'),
 (17, 'S', 'Girls Emporio Armani Joggers', 'Joggers in a comfortable fit with elasticated waist and ankle cuffs. Made of cotton-blend jersey with a dense pattern of all-over jacquard logo lettering.', 190.00, 3, 'GirlsEAJoggers.png'),
 (18, 'S', 'Girls Fendi Denim Trousers', 'Regular-fit, medium-wash denim junior trousers with chalk white FF Fendi Roma thread embroidery on the front below the pocket.', 410.00, 3, 'GirlsFendiPants.png'),
-(19, 'S', 'Mens Versace Sunglasses', 'Stylish and iconic, these Versace sunglasses are perfect for any occasion.', 300.00, 4, 'MensVersaceGlasses.png', 'AccessoriesProduct1.html'),
-(20, 'S', 'Womens Gucci Belt', 'A timeless Gucci belt with the iconic GG logo.', 320.00, 4, 'GucciBelt.png', 'AccessoriesProduct2.html'),
-(21, 'S', 'Mens Saint Laurent Chain', 'A sleek and modern chain from Saint Laurent.', 690.00, 4, 'YSLChain.png', 'AccessoriesProduct3.html'),
-(22, 'S', 'Womens Balenciaga Headband', 'A chic Balenciaga headband for a stylish look.', 395.00, 4, 'BalenciagaHeadband.png', 'AccessoriesProduct4.html'),
-(23, 'S', 'Mens Valentino Wallet', 'A premium leather wallet from Valentino.', 330.00, 4, 'ValentinoWallet.png', 'AccessoriesProduct5.html'),
-(24, 'S', 'Womens Prada Bracelet', 'An elegant bracelet from Prada.', 410.00, 4, 'PradaBracelet.png', 'AccessoriesProduct6.html'),
-(25, 'S', 'Mens Louboutin Shoes', 'The refined Chambeliss Night Strass enchants with its tapered silhouette.', 1075.00, 5, 'MensLouboutinShoes.png', 'ShoesProduct1.html'),
-(26, 'S', 'Womens Louis Vuitton High Heels', 'Crafted from supple lambskin, these elegant high heels feature signature hardware.', 845.00, 5, 'WomensLVHeels.png', 'ShoesProduct2.html'),
-(27, 'S', 'Mens Gucci Trainers', 'A chunkier construction defines the shape of these iconic Gucci trainers.', 620.00, 5, 'MensGucciTrainers.png', 'ShoesProduct3.html'),
-(28, 'S', 'Womens Prada Slides', 'Minimalist geometric pattern enriches the design of these Prada slides.', 730.00, 5, 'WomensPradaSlides.png', 'ShoesProduct4.html'),
-(29, 'S', 'Mens Nike Air Max', 'The iconic Nike Air Max with superior cushioning and style.', 150.00, 5, 'MensNikeAirMax.png', 'ShoesProduct5.html'),
-(30, 'S', 'Womens Adidas Ultraboost', 'High-performance running shoes with unmatched comfort.', 180.00, 5, 'WomensAdidasUltraboost.png', 'ShoesProduct6.html');
+(19, 'S', 'Mens Versace Sunglasses', 'Stylish and iconic, these Versace sunglasses are perfect for any occasion.', 300.00, 4, 'MensVersaceGlasses.png'),
+(20, 'S', 'Womens Gucci Belt', 'A timeless Gucci belt with the iconic GG logo.', 320.00, 4, 'GucciBelt.png'),
+(21, 'S', 'Mens Saint Laurent Chain', 'A sleek and modern chain from Saint Laurent.', 690.00, 4, 'YSLChain.png'),
+(22, 'S', 'Womens Balenciaga Headband', 'A chic Balenciaga headband for a stylish look.', 395.00, 4, 'BalenciagaHeadband.png'),
+(23, 'S', 'Mens Valentino Wallet', 'A premium leather wallet from Valentino.', 330.00, 4, 'ValentinoWallet.png'),
+(24, 'S', 'Womens Prada Bracelet', 'An elegant bracelet from Prada.', 410.00, 4, 'PradaBracelet.png'),
+(25, 'S', 'Mens Louboutin Shoes', 'The refined Chambeliss Night Strass enchants with its tapered silhouette.', 1075.00, 5, 'MensLouboutinShoes.png'),
+(26, 'S', 'Womens Louis Vuitton High Heels', 'Crafted from supple lambskin, these elegant high heels feature signature hardware.', 845.00, 5, 'WomensLVHeels.png'),
+(27, 'S', 'Mens Gucci Trainers', 'A chunkier construction defines the shape of these iconic Gucci trainers.', 620.00, 5, 'MensGucciTrainers.png'),
+(28, 'S', 'Womens Prada Slides', 'Minimalist geometric pattern enriches the design of these Prada slides.', 730.00, 5, 'WomensPradaSlides.png'),
+(29, 'S', 'Mens Nike Air Max', 'The iconic Nike Air Max with superior cushioning and style.', 150.00, 5, 'MensNikeAirMax.png'),
+(30, 'S', 'Womens Adidas Ultraboost', 'High-performance running shoes with unmatched comfort.', 180.00, 5, 'WomensAdidasUltraboost.png');
 
 UPDATE `products` 
 SET `product_page_url` = 'MensProduct1.html' 
@@ -421,6 +421,54 @@ WHERE `product_id` = 17;
 UPDATE `products` 
 SET `product_page_url` = 'KidsProduct6.html' 
 WHERE `product_id` = 18;
+
+UPDATE `products` 
+SET `product_page_url` = 'AccessoriesProduct1.html' 
+WHERE `product_id` = 19;
+
+UPDATE `products` 
+SET `product_page_url` = 'AccessoriesProduct2.html' 
+WHERE `product_id` = 20;
+
+UPDATE `products` 
+SET `product_page_url` = 'AccessoriesProduct3.html' 
+WHERE `product_id` = 21;
+
+UPDATE `products` 
+SET `product_page_url` = 'AccessoriesProduct4.html' 
+WHERE `product_id` = 22;
+
+UPDATE `products` 
+SET `product_page_url` = 'AccessoriesProduct5.html' 
+WHERE `product_id` = 23;
+
+UPDATE `products` 
+SET `product_page_url` = 'AccessoriesProduct6.html' 
+WHERE `product_id` = 24;
+
+UPDATE `products` 
+SET `product_page_url` = 'ShoesProduct1.html' 
+WHERE `product_id` = 25;
+
+UPDATE `products` 
+SET `product_page_url` = 'ShoesProduct2.html' 
+WHERE `product_id` = 26;
+
+UPDATE `products` 
+SET `product_page_url` = 'ShoesProduct3.html' 
+WHERE `product_id` = 27;
+
+UPDATE `products` 
+SET `product_page_url` = 'ShoesProduct4.html' 
+WHERE `product_id` = 28;
+
+UPDATE `products` 
+SET `product_page_url` = 'ShoesProduct5.html' 
+WHERE `product_id` = 29;
+
+UPDATE `products` 
+SET `product_page_url` = 'ShoesProduct6.html' 
+WHERE `product_id` = 30;
 
 -- --------------------------------------------------------
 
