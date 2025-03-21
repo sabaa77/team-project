@@ -33,11 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $success_message = "Signup successful! <a href='login.html'>Go to Login</a>";
                 header("Location: login.html");
-                exit;
+                exit();
             }
         } catch (PDOException $e) {
             $error_message = "Error: " . $e->getMessage();
-            error_log("Signup error: " . $e->getMessage());
         }
     }
 }
