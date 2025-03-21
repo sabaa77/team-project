@@ -626,3 +626,12 @@ SELECT * FROM products
 WHERE MATCH(name, description) AGAINST (? IN NATURAL LANGUAGE MODE);
 
 ALTER TABLE products ADD FULLTEXT(name, description);
+
+CREATE TABLE `shoppingSession` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `total` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
+);

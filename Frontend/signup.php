@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-                $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?, ?)");
+                $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)");
                 $stmt->execute([$name, $email, $hashed_password]);
 
                 $success_message = "Signup successful! <a href='login.html'>Go to Login</a>";
