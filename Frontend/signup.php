@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)");
                 $stmt->execute([$name, $email, $hashed_password]);
 
-                header("Location: login.html");
+                echo json_encode(['success' => true, 'redirect' => 'login.html']);
                 exit();
             }
         } catch (PDOException $e) {

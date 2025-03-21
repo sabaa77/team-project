@@ -1,18 +1,26 @@
-async function signup() {
-    const name = document.getElementById('signupName').value;
-    const email = document.getElementById('signupEmail').value;
-    const password = document.getElementById('signupPassword').value;
+document.getElementById('signupForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
 
-    const response = await fetch('/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password })
-    });
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-    const result = await response.text();
-    if (response.ok) {
-        alert(result);
-    } else {
-        alert('Signup failed: ' + result);
+    try {
+        const response = await fetch('signup.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({ name, email, password })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            window.location.href = result.redirect;
+        } else {
+            document.getElementById('errorMsg').innerText = result.message;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('errorMsg').innerText = "An error occurred. Please try again.";
     }
-}
+});
