@@ -596,7 +596,7 @@
         .search-result-image {
             width: 25%;
             border-radius: 8px;
-            height: 100px;
+            height: 200px;
             margin: 0 auto;
             transition: transform 0.3s ease;
         }
