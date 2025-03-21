@@ -36,40 +36,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     if (empty($email) || empty($password)) {
-        $error_message = "Please enter both email and password.";
-    } else {
-        try {
-            $stmt = $pdo->prepare("SELECT user_id, password_hash FROM users WHERE email = ?");
-            $stmt->execute([$email]);
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        echo json_encode(['success' => false, 'message' => 'Please enter both email and password.']);
+        exit();
+    }
 
-            if ($user && password_verify($password, $user['password_hash'])) {
-                $stmt = $pdo->prepare("SELECT id FROM shoppingSession WHERE user_id = ?");
-                $stmt->execute([$user['user_id']]);
-                $existing_session = $stmt->fetch(PDO::FETCH_ASSOC);
+    try {
+        $stmt = $pdo->prepare("SELECT user_id, name, password_hash FROM users WHERE email = ?");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                if ($existing_session) {
-                    $session_id = $existing_session['id'];
-                } else {
-                    $session_id = createShoppingSession($user['user_id'], $pdo);
-                }
+        if ($user && password_verify($password, $user['password_hash'])) {
+            $stmt = $pdo->prepare("SELECT id FROM shoppingSession WHERE user_id = ?");
+            $stmt->execute([$user['user_id']]);
+            $existing_session = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                if ($session_id !== false) {
-                    setcookie('session_id', $session_id, time() + 3600, "/", "", false, true);
-                    $_SESSION['userID'] = $user['user_id'];
-                    $_SESSION['loggedin'] = true;
-
-                    header("Location: index.html");
-                    exit();
-                } else {
-                    $error_message = "Failed to create shopping session";
-                }
+            if ($existing_session) {
+                $session_id = $existing_session['id'];
             } else {
-                $error_message = "Invalid credentials.";
+                $session_id = createShoppingSession($user['user_id'], $pdo);
             }
-        } catch (PDOException $e) {
-            $error_message = "Database error: " . $e->getMessage();
+
+            if ($session_id !== false) {
+                setcookie('session_id', $session_id, time() + 3600, "/", "", false, true);
+                $_SESSION['userID'] = $user['user_id'];
+                $_SESSION['loggedin'] = true;
+
+                echo json_encode([
+                    'success' => true,
+                    'userName' => $user['name'],
+                    'userEmail' => $email,
+                    'redirect' => 'index.html'
+                ]);
+                exit();
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Failed to create shopping session.']);
+                exit();
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Invalid credentials.']);
+            exit();
         }
+    } catch (PDOException $e) {
+        echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
+        exit();
     }
 }
 ?>
