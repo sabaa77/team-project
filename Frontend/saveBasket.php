@@ -2,29 +2,41 @@
 session_start();
 include "db.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!isset($_SESSION['userID'])) {
-        echo json_encode(['success' => false, 'message' => 'User not logged in.']);
-        exit();
+if (!isset($_SESSION['userID'])) {
+    echo json_encode(['success' => false, 'message' => 'User not logged in.']);
+    exit();
+}
+
+$user_id = $_SESSION['userID'];
+$data = json_decode(file_get_contents('php://input'), true);
+
+if (!$data || !is_array($data)) {
+    echo json_encode(['success' => false, 'message' => 'Invalid basket data.']);
+    exit();
+}
+
+try {
+    $pdo->beginTransaction();
+
+    $stmt = $pdo->prepare("DELETE FROM basket WHERE user_id = ?");
+    $stmt->execute([$user_id]);
+
+    $stmt = $pdo->prepare("INSERT INTO basket (user_id, product_id, product_name, price, size, quantity) VALUES (?, ?, ?, ?, ?, ?)");
+    foreach ($data as $item) {
+        $stmt->execute([
+            $user_id,
+            $item['product_id'] ?? null,
+            $item['name'],
+            $item['price'],
+            $item['size'],
+            $item['quantity']
+        ]);
     }
 
-    $user_id = $_SESSION['userID'];
-    $basket = json_decode(file_get_contents('php://input'), true);
-
-    try {
-        $stmt = $conn->prepare("DELETE FROM basket WHERE user_id = ?");
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-
-        $stmt = $conn->prepare("INSERT INTO basket (user_id, product_name, price, quantity) VALUES (?, ?, ?, ?)");
-        foreach ($basket as $item) {
-            $stmt->bind_param("isdi", $user_id, $item['name'], $item['price'], $item['quantity']);
-            $stmt->execute();
-        }
-
-        echo json_encode(['success' => true, 'message' => 'Basket saved successfully.']);
-    } catch (Exception $e) {
-        echo json_encode(['success' => false, 'message' => 'Error saving basket: ' . $e->getMessage()]);
-    }
+    $pdo->commit();
+    echo json_encode(['success' => true]);
+} catch (Exception $e) {
+    $pdo->rollBack();
+    echo json_encode(['success' => false, 'message' => 'Error saving basket: ' . $e->getMessage()]);
 }
 ?>
