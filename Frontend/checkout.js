@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const emailField = document.getElementById('email');
         emailField.value = userEmail;
+
+        const guestMessage = document.querySelector('#guestMessage');
+        if (guestMessage) {
+            guestMessage.style.display = 'none';
+        }
     }
 
     const basketItems = JSON.parse(localStorage.getItem('basket')) || [];
