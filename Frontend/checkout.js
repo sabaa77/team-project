@@ -1,17 +1,23 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     const userName = localStorage.getItem('userName');
     const userEmail = localStorage.getItem('userEmail');
 
     if (isLoggedIn) {
         const contactDetails = document.getElementById('contactDetails');
-        contactDetails.style.display = 'none';
+        if (contactDetails) {
+            contactDetails.style.display = 'none';
+        }
 
         const nameField = document.getElementById('name');
-        nameField.value = userName;
+        if (nameField) {
+            nameField.value = userName || '';
+        }
 
         const emailField = document.getElementById('email');
-        emailField.value = userEmail;
+        if (emailField) {
+            emailField.value = userEmail || '';
+        }
 
         const guestMessage = document.querySelector('#guestMessage');
         if (guestMessage) {
@@ -19,9 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const basketItems = JSON.parse(localStorage.getItem('basket')) || [];
-    const orderSummaryContainer = document.querySelector('.order-summary');
+    const basketItems = isLoggedIn
+        ? await fetchBasketFromBackend()
+        : JSON.parse(localStorage.getItem('basket')) || [];
 
+    const orderSummaryContainer = document.querySelector('.order-summary');
     orderSummaryContainer.innerHTML = '<h2>Order Summary</h2>';
 
     if (basketItems.length === 0) {
@@ -51,77 +59,19 @@ document.addEventListener('DOMContentLoaded', () => {
     orderSummaryContainer.appendChild(totalElement);
 });
 
-document.getElementById('checkoutButton').addEventListener('click', async function () {
-    const email = document.getElementById('email').value.trim();
-    const name = document.getElementById('name').value.trim();
-    const address = document.getElementById('address').value.trim();
-    const city = document.getElementById('city').value.trim();
-    const country = document.getElementById('country').value.trim();
-    const zip = document.getElementById('zip').value.trim();
-    const cardNumber = document.getElementById('cardNumber').value.trim();
-    const cardName = document.getElementById('cardName').value.trim();
-    const expiryDate = document.getElementById('expiryDate').value.trim();
-    const cvv = document.getElementById('cvv').value.trim();
-
-    let errorMessages = [];
-
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailPattern.test(email)) {
-        errorMessages.push('Please enter a valid email address.');
-    }
-
-    if (name.length < 2) {
-        errorMessages.push('Name must be at least 2 characters long.');
-    }
-
-    if (!email || !name || !address || !city || !country || !zip) {
-        errorMessages.push('Please fill out all required fields.');
-    }
-
-    if (!cardNumber || cardNumber.length !== 16 || !/^\d+$/.test(cardNumber)) {
-        errorMessages.push('Please enter a valid 16-digit card number.');
-    }
-
-    if (!cardName) {
-        errorMessages.push('Please enter the cardholder name.');
-    }
-
-    if (!expiryDate) {
-        errorMessages.push('Please enter the expiry date.');
-    }
-
-    if (!cvv || cvv.length !== 3 || !/^\d+$/.test(cvv)) {
-        errorMessages.push('Please enter a valid 3-digit CVV.');
-    }
-
-    if (errorMessages.length > 0) {
-        alert('There were some errors:\n' + errorMessages.join('\n'));
-        return;
-    }
-
-    const basketItems = JSON.parse(localStorage.getItem('basket')) || [];
-    if (basketItems.length === 0) {
-        alert('Your basket is empty.');
-        return;
-    }
-
+async function fetchBasketFromBackend() {
     try {
-        const response = await fetch('checkout.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(basketItems)
-        });
-
+        const response = await fetch('loadBasket.php');
         const result = await response.json();
+
         if (result.success) {
-            alert('Checkout successful!');
-            localStorage.removeItem('basket');
-            window.location.href = `payment.html?order_id=${result.order_id}`;
+            return result.basket || [];
         } else {
-            alert('Checkout failed: ' + result.message);
+            console.error('Error loading basket:', result.message);
+            return [];
         }
     } catch (error) {
-        console.error('Error during checkout:', error);
-        alert('An error occurred during checkout. Please try again.');
+        console.error('Error fetching basket from backend:', error);
+        return [];
     }
-});
+}

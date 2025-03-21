@@ -7,7 +7,34 @@ function saveBasket(basket) {
     localStorage.setItem('basket', JSON.stringify(basket));
 }
 
-function renderBasket() {
+async function fetchBasketFromBackend() {
+    try {
+        const response = await fetch('loadBasket.php');
+        const result = await response.json();
+
+        if (result.success) {
+            return result.basket || [];
+        } else {
+            console.error('Error loading basket from backend:', result.message);
+            return [];
+        }
+    } catch (error) {
+        console.error('Error fetching basket from backend:', error);
+        return [];
+    }
+}
+
+async function syncBasket() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (isLoggedIn) {
+        const backendBasket = await fetchBasketFromBackend();
+        saveBasket(backendBasket);
+    }
+}
+
+async function renderBasket() {
+    await syncBasket();
+
     const basketItems = getBasket();
     const basketContainer = document.getElementById('basket-items');
     const totalPriceContainer = document.getElementById('total-price-container');
@@ -25,7 +52,7 @@ function renderBasket() {
         const row = document.createElement('tr');
 
         const productCell = document.createElement('td');
-        productCell.innerText = item.name;
+        productCell.innerText = `${item.name} (Size: ${item.size})`;
 
         const priceCell = document.createElement('td');
         priceCell.innerText = `£${item.price}`;
@@ -42,9 +69,10 @@ function renderBasket() {
         const removeBtn = document.createElement('button');
         removeBtn.innerText = 'Remove';
         removeBtn.className = 'remove-btn';
-        removeBtn.addEventListener('click', () => {
+        removeBtn.addEventListener('click', async () => {
             basketItems.splice(index, 1);
             saveBasket(basketItems);
+            await updateBackendBasket(basketItems);
             renderBasket();
         });
         removeCell.appendChild(removeBtn);
@@ -52,6 +80,7 @@ function renderBasket() {
         row.appendChild(productCell);
         row.appendChild(priceCell);
         row.appendChild(quantityCell);
+        row.appendChild(totalCell);
         row.appendChild(removeCell);
 
         basketContainer.appendChild(row);
@@ -60,17 +89,47 @@ function renderBasket() {
     totalPriceContainer.innerText = `Total: £${totalPrice}`;
 }
 
-function addToBasket(productName, price) {
+async function updateBackendBasket(basket) {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (!isLoggedIn) return;
+
+    try {
+        const response = await fetch('saveBasket.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(basket),
+        });
+
+        const result = await response.json();
+        if (!result.success) {
+            console.error('Error saving basket to backend:', result.message);
+        }
+    } catch (error) {
+        console.error('Error updating backend basket:', error);
+    }
+}
+
+function addToBasket(product) {
     const basketItems = getBasket();
 
-    const existingItem = basketItems.find(item => item.name === productName);
+    const existingItem = basketItems.find(
+        item => item.product_id === product.product_id && item.size === product.size
+    );
+
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
-        basketItems.push({ name: productName, price: price, quantity: 1 });
+        basketItems.push({
+            product_id: product.product_id,
+            name: product.name,
+            price: product.price,
+            size: product.size,
+            quantity: 1,
+        });
     }
 
     saveBasket(basketItems);
+    updateBackendBasket(basketItems);
     renderBasket();
 }
 
