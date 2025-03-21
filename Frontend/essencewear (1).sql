@@ -52,7 +52,7 @@ INSERT INTO `categories` (`category_id`, `category_name`) VALUES
 CREATE TABLE `inventory` (
   `inventory_id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
-  `size` enum('S','M','L','XL') NOT NULL,
+  `size` enum('S','M','L','XL','2','3','4','5','6','7','8','9','10','11','12') NOT NULL,
   `stock_added` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `stock_removed` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `stock_balance` int(11) NOT NULL DEFAULT 0
@@ -62,9 +62,6 @@ CREATE TABLE `inventory` (
 -- Dumping data for table `inventory`
 --
 
-INSERT INTO `inventory` (`inventory_id`, `product_id`, `size`, `stock_added`, `stock_removed`, `stock_balance`) VALUES
--- Clothing products: Categories 1 (Men), 2 (Women) and 3 (Kids)
--- For each product, we insert four rows: S, M, L, XL.
 INSERT INTO inventory (product_id, size, stock_added, stock_removed, stock_balance) VALUES
 (1, 'S', 30, 5, 25),
 (1, 'M', 30, 5, 25),
