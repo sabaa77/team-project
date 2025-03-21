@@ -10,6 +10,8 @@ if (!isset($_SESSION['userID'])) {
 $user_id = $_SESSION['userID'];
 $data = json_decode(file_get_contents('php://input'), true);
 
+file_put_contents('debug.log', print_r($data, true), FILE_APPEND);
+
 if (!$data || !is_array($data)) {
     echo json_encode(['success' => false, 'message' => 'Invalid basket data.']);
     exit();

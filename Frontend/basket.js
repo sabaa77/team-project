@@ -93,6 +93,8 @@ async function updateBackendBasket(basket) {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (!isLoggedIn) return;
 
+    console.log('Sending basket to backend:', basket); // Debugging: Log the basket data
+
     try {
         const response = await fetch('saveBasket.php', {
             method: 'POST',
