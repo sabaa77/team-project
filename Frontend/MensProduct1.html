@@ -10,83 +10,103 @@
 <body>
     <header>
         <a href="index.html" class="logo-link">
-        <img src="essence wear logo (black).png" alt="logo" class="logo">
+            <img src="essence wear logo (black).png" alt="logo" class="logo">
         </a>
         <div class="header-text">
            <h1>Essence Wear</h1>
            <p>Your Style, Your Way</p>
         </div>
-    <div class="icons">
-        <div class="search-container">
-            <img src="searchlogo.png" alt="search-logo" class="search-logo" id="search-icon">
-            <div class="search-bar" id="search-bar">
-                <input type="text" placeholder="Search...">
-                <button type="button">Go</button>
+        <div class="icons">
+            <div class="search-container">
+                <img src="searchlogo.png" alt="search-logo" class="search-logo" id="search-icon">
+                <div class="search-bar" id="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <button type="button">Go</button>
+                </div>
             </div>
+            <a href="basket.html" title="Basket">
+                <img src="basketlogo.png" alt="basket-logo" class="basket-logo">
+            </a>
+            <a href="User Page.html" title="User Profile">
+                <img src="userlogo.png" alt="user-logo" class="user-logo">
+            </a>
         </div>
-        <a href="basket.html" title="Basket">
-            <img src="basketlogo.png" alt="basket-logo" class="basket-logo">
-        </a>
-        <a href="User Page.html"title="User Profile">
-            <img src="userlogo.png" alt="user-logo" class="user-logo">
-        </a>
-    </div>
-   </header>
-   <nav>
-    <a href="Mens.html">Men</a>
-    <a href="Womens.html">Women</a>
-    <a href="Kids.html">Kids</a>
-    <a href="Accessories.html">Accessories</a>
-    <a href="shoes.html">Shoes</a>
-    <a href="About Us Page.html">About Us</a>
-    <a href="Contact us.html">Contact Us</a>
-    <a href="FAQ.html">FAQ</a> 
+    </header>
+    <nav>
+        <a href="Mens.html">Men</a>
+        <a href="Womens.html">Women</a>
+        <a href="Kids.html">Kids</a>
+        <a href="Accessories.html">Accessories</a>
+        <a href="shoes.html">Shoes</a>
+        <a href="About Us Page.html">About Us</a>
+        <a href="Contact us.html">Contact Us</a>
+        <a href="FAQ.html">FAQ</a> 
+    </nav>
 
-   </nav>
+    <div class="product-container">
+        <div class="product-image">
+            <img id="product-image" alt="Product Image">
+        </div>
+        <div class="product-details">
+            <h3 id="product-name"></h3>
+            <p class="price" id="product-price"></p>
+            <p class="description" id="product-description"></p>
+            <ul class="features" id="product-features"></ul>
+            <form class="add-to-cart-form">
+                <label for="size">Select Size:</label>
+                <select id="size" name="size" required>
+                    <option value="" disabled selected>Choose Size</option>
+                    <option value="S">Small</option>
+                    <option value="M">Medium</option>
+                    <option value="L">Large</option>
+                    <option value="XL">Extra Large</option>
+                </select>
+                <button type="button" class="add-to-cart-btn" 
+                    onclick="addToBasket({
+                        name: document.getElementById('product-name').innerText,
+                        price: parseFloat(document.getElementById('product-price').innerText.replace('£', '')),
+                        size: document.getElementById('size').value
+                    })">
+                    Add to Cart
+                </button>
+            </form>
+        </div>
+    </div>
 
-   <div class="product-container" data-name="Canada Goose HyBridge® Coat" data-price="£895">
-    <div class="product-image">
-        <img src="CanadaGooseCoat.png" alt="Canada Goose HyBridge® Coat">
-    </div>
-    <div class="product-details">
-        <h3 id="product-name">Canada Goose HyBridge® Coat</h3>
-        <p class="price" id="product-price">£895</p>
-        <p class="description">
-            The Canada Goose HyBridge® Coat is designed for superior warmth and style. 
-            Crafted with advanced insulation technology, it's perfect for cold-weather conditions. 
-            A blend of functionality and luxury for modern adventurers.
-        </p>
-        <ul class="features">
-            <li>Advanced thermal insulation</li>
-            <li>Water-resistant material</li>
-            <li>Durable and lightweight</li>
-            <li>Available in various sizes</li>
-        </ul>
-        <form class="add-to-cart-form">
-            <label for="size">Select Size:</label>
-            <select id="size" name="size" required>
-                <option value="" disabled selected>Choose Size</option>
-                <option value="S">Small</option>
-                <option value="M">Medium</option>
-                <option value="L">Large</option>
-                <option value="XL">Extra Large</option>
-            </select>
-            <button type="button" class="add-to-cart-btn" 
-                onclick="addToBasket({
-                    name: 'Canada Goose HyBridge® Coat',
-                    price: 895,
-                    size: document.getElementById('size').value
-                })">
-                Add to Cart
-            </button>
-        </form>
-        
-    </div>
-    <script src="addtobasket.js"></script>
-    </div>
     <footer>
         <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const productId = 1; 
+            try {
+                const response = await fetch(`getProduct.php?id=${productId}`);
+                const result = await response.json();
+
+                if (result.success) {
+                    const product = result.product;
+                    document.getElementById('product_name').innerText = product.product_name;
+                    document.getElementById('product_price').innerText = `£${product.price}`;
+                    document.getElementById('product_description').innerText = product.product_description;
+                    document.getElementById('image_url').src = product.image_url;
+
+                    const featuresList = document.getElementById('product-features');
+                    const features = product.features ? product.features.split(',') : [];
+                    features.forEach(feature => {
+                        const li = document.createElement('li');
+                        li.innerText = feature.trim();
+                        featuresList.appendChild(li);
+                    });
+                } else {
+                    console.error(result.message);
+                }
+            } catch (error) {
+                console.error('Error fetching product details:', error);
+            }
+        });
+    </script>
+    <script src="addtobasket.js"></script>
     <script src="search.js"></script>
-    </body>
-    </html>
+</body>
+</html>
