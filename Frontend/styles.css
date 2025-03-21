@@ -593,12 +593,22 @@
             transition: background-color 0.3s ease-in-out;
         }
 
+        .search-result {
+            text-align: center;
+            margin: 20px;
+        }
+
         .search-result-image {
-            width: 50%;
-            border-radius: 8px;
-            height: 200px;
+            max-width: 100%;
+            height: auto;
+            display: block;
             margin: 0 auto;
-            transition: transform 0.3s ease;
+        }
+        
+        .search-result-name {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #000000;
         }
 
         .search-result-image:hover {
@@ -608,13 +618,6 @@
 
         .search-result-image:hover img {
             transform: scale(1.2);
-        }
-
-        .search-result h3 {
-            margin: 10px 0 5px;
-            text-align: center;
-            font-size: x-large;
-            font-family: 'Lemon Milk', sans-serif;
         }
         
         

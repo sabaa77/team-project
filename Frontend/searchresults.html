@@ -34,10 +34,12 @@
                         const resultItem = document.createElement("div");
                         resultItem.className = "search-result";
                         resultItem.innerHTML = `
-                            <a href="${result.link}">
-                                <img src="${result.image}" alt="${result.name}" class="search-result-image">
-                            </a>
-                            <h3>${result.name}</h3>
+                            <div class="search-result-content">
+                                <a href="${result.link}">
+                                    <img src="${result.image}" alt="${result.name}" class="search-result-image">
+                                </a>
+                                <h3 class="search-result-name">${result.name}</h3>
+                            </div>
                         `;
                         resultsContainer.appendChild(resultItem);
                     });
