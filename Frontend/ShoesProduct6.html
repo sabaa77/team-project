@@ -66,17 +66,20 @@
                 <label for="size">Select Size:</label>
                 <select id="size" name="size" required>
                     <option value="" disabled selected>Choose Size</option>
-                    <option value="S">Small</option>
-                    <option value="M">Medium</option>
-                    <option value="L">Large</option>
-                    <option value="XL">Extra Large</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
                 </select>
                 <button type="button" class="add-to-cart-btn" 
-                    onclick="addToCart({
-                        name: 'Canada Goose HyBridge® Coat',
-                        price: 895,
-                        size: document.getElementById('size').value
-                    })">
+                onclick="addToBasket({
+                    name: 'Womens Balenciaga Boots',
+                    price: 1090,
+                    size: document.getElementById('size').value
+                })">
                     Add to Cart
                 </button>
             </form>
