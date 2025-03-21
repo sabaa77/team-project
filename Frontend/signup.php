@@ -11,11 +11,10 @@ $success_message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST['name']);
-    $phone = trim($_POST['phone']);
     $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    if (empty($name) || empty($phone) || empty($email) || empty($password)) {
+    if (empty($name) || empty($email) || empty($password)) {
         $error_message = "All fields are required.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error_message = "Invalid Email";
@@ -29,8 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-                $stmt = $pdo->prepare("INSERT INTO users (name, phone_number, email, password_hash) VALUES (?, ?, ?, ?)");
-                $stmt->execute([$name, $phone, $email, $hashed_password]);
+                $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?, ?)");
+                $stmt->execute([$name, $email, $hashed_password]);
 
                 $success_message = "Signup successful! <a href='logIn.php'>Go to Login</a>";
                 header("Location: logIn.php");
