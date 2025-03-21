@@ -610,11 +610,11 @@
             transform: scale(1.2);
         }
 
-        .search-result-name {
+        .search-result h3 {
             margin: 10px 0 5px;
             text-align: right;
-            font-family: 'Lemon Milk', sans-serif;
             font-size: large;
+            font-family: 'Lemon Milk', sans-serif;
         }
         
         
