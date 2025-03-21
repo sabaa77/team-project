@@ -428,19 +428,6 @@ CREATE TABLE `shoppingSession` (
   FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`user_id`, `name`, `email`, `password_hash`, `user_type`, `address`, `phone_number`) VALUES
-(1, 'John Doe', 'john@example.com', 'hashed_password_123', 'customer', '11 High Street, Newcastle', '07439827718'),
-(2, 'Jules Smith', 'jane@example.com', 'hashed_password_456', 'customer', '45 Oakland Road, Birmingham', '07653728999'),
-(3, 'Admin Sabaa', 'sabaaramzan@outlook.com', 'hashed_password_admin', 'admin', 'Admin HQ, NY', '07466783219'),
-(4, 'Alice Canberre', 'alice677@gmail.com', 'password_hash', 'customer', '64 Zoo Lane, Windenburg, UK', '07889276321');
-
---
--- Indexes for dumped tables
---
 
 --
 -- Indexes for table `categories`
