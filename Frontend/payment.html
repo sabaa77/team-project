@@ -10,11 +10,22 @@
   <div class="container">
     <h1>Payment Successful</h1>
     <p>Thank you for your purchase! Your order has been placed successfully.</p>
-    <p>An email confirmation has been sent to you</p>
+    <p>Your Order ID is: <span id="orderId"></span></p>
+    <p>An email confirmation has been sent to you.</p>
     <a href="index.html" class="btn">Return to Home</a>
   </div>
   <footer>
     <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
   </footer>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('order_id');
+
+    if (orderId) {
+      document.getElementById('orderId').textContent = orderId;
+    } else {
+      document.getElementById('orderId').textContent = 'N/A';
+    }
+  </script>
 </body>
 </html>
