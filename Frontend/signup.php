@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?, ?)");
                 $stmt->execute([$name, $email, $hashed_password]);
 
-                $success_message = "Signup successful! <a href='logIn.php'>Go to Login</a>";
-                header("Location: logIn.php");
+                $success_message = "Signup successful! <a href='login.html'>Go to Login</a>";
+                header("Location: login.html");
                 exit;
             }
         } catch (PDOException $e) {
