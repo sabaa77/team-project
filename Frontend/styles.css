@@ -612,8 +612,8 @@
 
         .search-result h3 {
             margin: 10px 0 5px;
-            text-align: right;
-            font-size: large;
+            text-align: center;
+            font-size: x-large;
             font-family: 'Lemon Milk', sans-serif;
         }
         
