@@ -86,10 +86,10 @@
 
                 if (result.success) {
                     const product = result.product;
-                    document.getElementById('product_name').innerText = product.product_name;
-                    document.getElementById('product_price').innerText = `£${product.price}`;
-                    document.getElementById('product_description').innerText = product.product_description;
-                    document.getElementById('image_url').src = product.image_url;
+                    document.getElementById('product-name').innerText = product.product_name;
+                    document.getElementById('product-price').innerText = `£${product.price}`;
+                    document.getElementById('product-description').innerText = product.product_description;
+                    document.getElementById('product-image').src = product.image_url;
 
                     const featuresList = document.getElementById('product-features');
                     const features = product.features ? product.features.split(',') : [];
