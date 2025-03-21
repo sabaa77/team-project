@@ -21,17 +21,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error_message = "Invalid Email";
     } else {
         try {
-
-            $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+            $stmt = $pdo->prepare("SELECT user_id FROM users WHERE email = ?");
             $stmt->execute([$email]);
 
             if ($stmt->rowCount() > 0) {
                 $error_message = "Email already in use. Please try a different email.";
             } else {
-
                 $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-                $stmt = $pdo->prepare("INSERT INTO users (name, phone_number, email, password) VALUES (?, ?, ?, ?)");
+                $stmt = $pdo->prepare("INSERT INTO users (name, phone_number, email, password_hash) VALUES (?, ?, ?, ?)");
                 $stmt->execute([$name, $phone, $email, $hashed_password]);
 
                 $success_message = "Signup successful! <a href='logIn.php'>Go to Login</a>";
@@ -40,8 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } catch (PDOException $e) {
             $error_message = "Error: " . $e->getMessage();
-             error_log("Signup error: " . $e->getMessage());
-
+            error_log("Signup error: " . $e->getMessage());
         }
     }
 }
