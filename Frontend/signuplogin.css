@@ -160,7 +160,7 @@ h2 {
 .form-group input:focus {
     outline: none;
     border-color: #000;
-    background-color: #c42121; 
+    background-color: #e4e4e4; 
 }
 
 .login-btn, .signup-btn {
