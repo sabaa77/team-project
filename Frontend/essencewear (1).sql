@@ -345,10 +345,10 @@ INSERT INTO `products` (`product_id`, `size`, `product_name`, `product_descripti
 (24, 'S', 'Womens Prada Bracelet', 'An elegant bracelet from Prada.', 410.00, 4, 'PradaBracelet.png', 'AccessoriesProduct6.html'),
 (25, 'S', 'Mens Louboutin Shoes', 'The refined Chambeliss Night Strass enchants with its tapered silhouette.', 1075.00, 5, 'MensLouboutinShoes.png', 'ShoesProduct1.html'),
 (26, 'S', 'Womens Louis Vuitton High Heels', 'Crafted from supple lambskin, these elegant high heels feature signature hardware.', 845.00, 5, 'WomensLVHeels.png', 'ShoesProduct2.html'),
-(27, 'S', 'Mens Gucci Trainers', 'A chunkier construction defines the shape of these iconic Gucci trainers.', 620.00, 5, 'MensGucciTrainers.png', 'ShoesProduct3.html'),
+(27, 'S', 'Mens Jimmy Choo Loafers', 'Our Marti Reverse loafers are crafted in a buffalo leather. ', 620.00, 5, 'MensjimmyChooLoafer.png', 'ShoesProduct3.html'),
 (28, 'S', 'Womens Prada Slides', 'Minimalist geometric pattern enriches the design of these Prada slides.', 730.00, 5, 'WomensPradaSlides.png', 'ShoesProduct4.html'),
-(29, 'S', 'Mens Nike Air Max', 'The iconic Nike Air Max with superior cushioning and style.', 150.00, 5, 'MensNikeAirMax.png', 'ShoesProduct5.html'),
-(30, 'S', 'Womens Adidas Ultraboost', 'High-performance running shoes with unmatched comfort.', 180.00, 5, 'WomensAdidasUltraboost.png', 'ShoesProduct6.html');
+(29, 'S', 'Mens Gucci Trainers', 'Inspired by the summer spirit and beach clubs on the Italian coast, this item is part of Gucci Lido.', 150.00, 5, 'MensGucciTrainers.png', 'ShoesProduct5.html'),
+(30, 'S', 'Womens Balenciaga Boots', 'Strike Platform Bootie in black soft bullskin', 180.00, 5, 'WomensBalenciagaBoots.png', 'ShoesProduct6.html');
 
 -- --------------------------------------------------------
 
