@@ -4,11 +4,10 @@ $db_user = "cs2team49";
 $db_password = "wHP74YYCEr1LqhK"; 
 $db_name = "cs2team49_db";
 
-$conn = new mysqli($db_server, $db_user, $db_password, $db_name);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} else {
-    echo "You are connected!";
+try {
+    $pdo = new PDO("mysql:host=$db_server;dbname=$db_name;charset=utf8mb4", $db_user, $db_password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Database connection failed: " . $e->getMessage());
 }
 ?>
