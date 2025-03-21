@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const basketItems = JSON.parse(localStorage.getItem('basket')) || [];
   const orderSummaryContainer = document.querySelector('.order-summary');
 
+  orderSummaryContainer.innerHTML = '<h2>Order Summary</h2>';
+
   if (basketItems.length === 0) {
       orderSummaryContainer.innerHTML = '<p>Your basket is empty.</p>';
       return;
