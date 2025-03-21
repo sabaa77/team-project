@@ -30,16 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.getElementById('checkoutButton').addEventListener('click', function () {
-  const email = document.getElementById('email').value;
-  const name = document.getElementById('name').value;
-  const address = document.getElementById('address').value;
-  const city = document.getElementById('city').value;
-  const country = document.getElementById('country').value;
-  const zip = document.getElementById('zip').value;
-  const cardNumber = document.getElementById('cardNumber').value;
-  const cardName = document.getElementById('cardName').value;
-  const expiryDate = document.getElementById('expiryDate').value;
-  const cvv = document.getElementById('cvv').value;
+  const email = document.getElementById('email').value.trim();
+  const name = document.getElementById('name').value.trim();
+  const address = document.getElementById('address').value.trim();
+  const city = document.getElementById('city').value.trim();
+  const country = document.getElementById('country').value.trim();
+  const zip = document.getElementById('zip').value.trim();
+  const cardNumber = document.getElementById('cardNumber').value.trim();
+  const cardName = document.getElementById('cardName').value.trim();
+  const expiryDate = document.getElementById('expiryDate').value.trim();
+  const cvv = document.getElementById('cvv').value.trim();
 
   let errorMessages = [];
 
