@@ -115,8 +115,10 @@ async function saveBasket() {
         const result = await response.json();
         if (!result.success) {
             console.error('Failed to save basket to backend:', result.message);
+            alert('Failed to sync basket with the server. Please try again.');
         }
     } catch (error) {
         console.error('Error saving basket to backend:', error);
+        alert('An error occurred while syncing your basket. Please try again.');
     }
 }
