@@ -12,7 +12,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-
 $userId = $_SESSION['user_id'] ?? null; 
 if (!$userId) {
     die("Please log in to proceed with checkout.");
@@ -37,7 +36,6 @@ while ($row = $result->fetch_assoc()) {
     $totalPrice += $row['quantity'] * $row['price'];
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $name = $_POST['name'];
@@ -46,14 +44,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $country = $_POST['country'];
     $zip = $_POST['zip'];
 
-
     $orderSql = "INSERT INTO orders (user_id, total_price, status) VALUES (?, ?, 'pending')";
     $orderStmt = $conn->prepare($orderSql);
     $orderStmt->bind_param("id", $userId, $totalPrice);
     $orderStmt->execute();
     $orderId = $conn->insert_id;
 
-    
     foreach ($basketItems as $item) {
         $orderDetailSql = "INSERT INTO order_details (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
         $orderDetailStmt = $conn->prepare($orderDetailSql);
@@ -67,7 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $orderDetailStmt->execute();
     }
 
-  
     $clearBasketSql = "DELETE FROM orders WHERE user_id = ? AND status = 'pending'";
     $clearBasketStmt = $conn->prepare($clearBasketSql);
     $clearBasketStmt->bind_param("i", $userId);
