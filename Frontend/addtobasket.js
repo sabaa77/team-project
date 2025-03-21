@@ -22,10 +22,8 @@ function addToBasket(product) {
     );
 
     if (itemExists !== -1) {
-
         basketObject[itemExists].quantity += 1;
     } else {
-
         product.quantity = 1;
         basketObject.push(product);
     }
@@ -37,6 +35,8 @@ function addToBasket(product) {
     }
 
     renderBasket();
+
+    displaySuccessMessage(`${product.name} (Size: ${product.size}) has been added to your basket.`);
 }
 
 async function renderBasket() {
