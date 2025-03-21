@@ -1,13 +1,22 @@
 let basketObject;
 const localStorageBasket = localStorage.getItem('basket');
 if (localStorageBasket) {
-    basketObject = JSON.parse(localStorageBasket);
+    try {
+        basketObject = JSON.parse(localStorageBasket);
+    } catch (error) {
+        basketObject = [];
+    }
 } else {
     basketObject = [];
 }
 
 function addToBasket(product) {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+    if (!product.name || !product.price || !product.size) {
+        alert('Failed to add product to basket. Please try again.');
+        return;
+    }
 
     const itemExists = basketObject.findIndex(
         (item) => item.name === product.name && item.size === product.size
@@ -40,15 +49,15 @@ async function renderBasket() {
             if (result.success) {
                 basketObject = result.basket;
                 localStorage.setItem('basket', JSON.stringify(basketObject));
-            } else {
-                console.error('Error loading basket:', result.message);
             }
-        } catch (error) {
-            console.error('Error:', error);
-        }
+        } catch (error) {}
     }
 
     const basketItemsDiv = document.getElementById('basketItems');
+    if (!basketItemsDiv) {
+        return;
+    }
+
     basketItemsDiv.innerHTML = '';
 
     if (basketObject.length === 0) {
@@ -64,14 +73,18 @@ async function renderBasket() {
 }
 
 function removeFromBasket(index) {
-    basket.splice(index, 1);
+    if (index < 0 || index >= basketObject.length) {
+        return;
+    }
+
+    basketObject.splice(index, 1);
+    localStorage.setItem('basket', JSON.stringify(basketObject));
     renderBasket();
 }
 
 async function saveBasket() {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (!isLoggedIn) {
-        alert('You must be logged in to save your basket.');
         return;
     }
 
@@ -83,13 +96,6 @@ async function saveBasket() {
         });
 
         const result = await response.json();
-        if (result.success) {
-            alert('Basket saved successfully.');
-        } else {
-            alert('Failed to save basket: ' + result.message);
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred while saving the basket.');
-    }
+        if (!result.success) {}
+    } catch (error) {}
 }
