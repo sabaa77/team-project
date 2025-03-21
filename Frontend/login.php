@@ -1,74 +1,81 @@
 <?php
 session_start();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-$errors = [
-    'login'    => $_SESSION['login_error']    ?? '',
-    'register' => $_SESSION['register_error'] ?? ''
-];
+require_once 'db.php';
 
-$activeForm = $_SESSION['active_form'] ?? 'login';
+function createShoppingSession($user_id, $pdo) {
+    $total = 0.00;
+    $created_at = date("Y-m-d H:i:s");
+    $modified_at = $created_at;
 
-session_unset();
+    try {
+        $stmt = $pdo->prepare("INSERT INTO shoppingSession (userID, total, created_at, modified_at) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$user_id, $total, $created_at, $modified_at]);
+        return $pdo->lastInsertId();
 
-function showError($error) {
-    return !empty($error) ? "<p class='error-message'>$error</p>" : '';
+    } catch (PDOException $e) {
+        error_log("Error creating shopping session: " . $e->getMessage());
+        return false;
+    }
 }
 
-function isActiveForm($formName, $activeForm) {
-    return $formName === $activeForm 
-        ? 'active' 
-        : '';
+function updateShoppingSession($session_id, $new_total, $pdo) {
+    $modified_at = date("Y-m-d H:i:s");
+
+    try {
+        $stmt = $pdo->prepare("UPDATE shoppingSession SET total = ?, modified_at = ? WHERE id = ?");
+        $stmt->execute([$new_total, $modified_at, $session_id]);
+        return true;
+
+    } catch (PDOException $e) {
+        error_log("Error updating shopping session: " . $e->getMessage());
+        return false;
+    }
 }
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $email = $_POST['email'];
+  $password = $_POST['password_hash'];
+
+  if (empty($email) || empty($password)) {
+      $error_message = "Please enter both email and password.";
+  } else {
+      try {
+          $stmt = $pdo->prepare("SELECT id, password FROM users WHERE email = ?");
+          $stmt->execute([$email]);
+          $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+          if ($user && password_verify($password, $user['password'])) {
+              $stmt = $pdo->prepare("SELECT id FROM shoppingSession WHERE userID = ?");
+              $stmt->execute([$user['id']]);
+              $existing_session = $stmt->fetch(PDO::FETCH_ASSOC);
+
+              if ($existing_session) {
+                  $session_id = $existing_session['id'];
+              } else {
+                  $session_id = createShoppingSession($user['id'], $pdo);
+              }
+
+              if ($session_id !== false) {
+
+                  setcookie('session_id', $session_id, time() + 1000, "/", "", false, true);
+                  $_SESSION['userID'] = $user['id'];
+                  $_SESSION['loggedin'] = true;
+
+                  header("Location: index.html");
+                  exit();
+              } else {
+                  $error_message = "Failed to create shopping session";
+              }
+          } else {
+              $error_message = "Invalid credentials.";
+          }
+      } catch (PDOException $e) {
+          $error_message = "Database error: " . $e->getMessage();
+      }
+  }
+}
+
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Essence Wear | Log-In</title>
-    <link rel="icon" type="image/png" href="essence wear logo (black).png">
-    <link rel="stylesheet" href="signuplogin.css">
-</head>
-<body>
-
-    <nav class="navbar">
-        <a href="index.html" class="home-button">Home</a>
-    </nav>
-
-    <div class="container">
-        <div class="form-box <?= isActiveForm('login', $activeForm); ?>" id="login-form">
-        <h2>Login</h2>
-        <?= showError($errors['login']); ?>
-        <form action="Frontend.php" method="post">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit" name="login">Login</button>
-            <p>Dont have an account? <a href="#" onclick="showForm('register-form')">Register</a></p>
-
-            
-            <p class="error" id="errorMsg"></p>
-        </form>
-    </div>
-
-
-
-    <div class="form-box <?= isActiveForm('register', $activeForm); ?>" id="register-form">
-        <h2>Register</h2>
-        <?= showError($errors['register']); ?>
-        <form action="Frontend.php" method="post">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit" name="register">Register</button>
-            <p>Already have an account? <a href="#" onclick="showForm('login-form')"> Login</a></p>
-
-            
-            <p class="error" id="errorMsg"></p>
-        </form>
-
-
-    
-    <script src="login.js"></script>
-</body>
-</html>
