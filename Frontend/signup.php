@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 
 session_start();
 
-require_once 'db.php'; 
+include 'db.php'; 
 
 $error_message = "";
 $success_message = "";
@@ -12,7 +12,7 @@ $success_message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
-    $password = $_POST['password_hash'];
+    $password = $_POST['password'];
 
     if (empty($name) || empty($email) || empty($password)) {
         $error_message = "All fields are required.";

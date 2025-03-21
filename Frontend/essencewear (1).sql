@@ -404,13 +404,15 @@ INSERT INTO `reviews` (`review_id`, `user_id`, `product_id`, `rating`, `review_t
 --
 
 CREATE TABLE `users` (
-  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `user_type` enum('customer','admin') NOT NULL DEFAULT 'customer',
   `address` text DEFAULT NULL,
-  `phone_number` varchar(20) DEFAULT NULL
+  `phone_number` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

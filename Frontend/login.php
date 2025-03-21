@@ -3,7 +3,7 @@ session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require_once 'db.php';
+include 'db.php';
 
 function createShoppingSession($user_id, $pdo) {
     $total = 0.00;
