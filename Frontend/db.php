@@ -1,5 +1,5 @@
 <?php
-$db_server = "cs2410-web01pvm.aston.ac.uk"; 
+$db_server = "localhost"; 
 $db_user = "cs2team49"; 
 $db_password = "wHP74YYCEr1LqhK"; 
 $db_name = "cs2team49_db";

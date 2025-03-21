@@ -1,44 +1,48 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
-include "db.php";
+
+require_once 'connection.php'; 
+
+$error_message = "";
+$success_message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    $address = $_POST["address"];
-    $phone_number = $_POST["phone_number"];
-    $user_type = "customer";  // Default to 'customer'
+    $name = trim($_POST['name']);
+    $phone = trim($_POST['phone']);
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
 
-    // Check if email already exists
-    $stmt = $conn->prepare("SELECT user_id FROM Users WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        echo "Email already registered!";
+    if (empty($name) || empty($phone) || empty($email) || empty($password)) {
+        $error_message = "All fields are required.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error_message = "Invalid Email";
     } else {
-        // Insert new user
-        $stmt = $conn->prepare("INSERT INTO Users (name, email, password_hash, user_type, address, phone_number) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssss", $name, $email, $password, $user_type, $address, $phone_number);
-        
-        if ($stmt->execute()) {
-            $_SESSION["user_id"] = $stmt->insert_id;
-            header("Location: index.php"); // Redirect to homepage
-        } else {
-            echo "Error signing up!";
+        try {
+
+            $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+            $stmt->execute([$email]);
+
+            if ($stmt->rowCount() > 0) {
+                $error_message = "Email already in use. Please try a different email.";
+            } else {
+
+                $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+                $stmt = $pdo->prepare("INSERT INTO users (name, phone_number, email, password) VALUES (?, ?, ?, ?)");
+                $stmt->execute([$name, $phone, $email, $hashed_password]);
+
+                $success_message = "Signup successful! <a href='logIn.php'>Go to Login</a>";
+                header("Location: logIn.php");
+                exit;
+            }
+        } catch (PDOException $e) {
+            $error_message = "Error: " . $e->getMessage();
+             error_log("Signup error: " . $e->getMessage());
+
         }
     }
 }
 ?>
-
-<!-- Signup Form -->
-<form method="POST">
-    <input type="text" name="name" placeholder="Full Name" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <input type="text" name="address" placeholder="Full Address" required>
-    <input type="text" name="phone_number" placeholder="Phone Number" required>
-    <button type="submit">Sign Up</button>
-</form>
