@@ -1,4 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const userName = localStorage.getItem('userName');
+    const userEmail = localStorage.getItem('userEmail');
+
+    if (isLoggedIn) {
+
+        const contactDetails = document.getElementById('contactDetails');
+        contactDetails.style.display = 'none';
+
+        const nameField = document.getElementById('name');
+        nameField.value = userName;
+    }
+});
+
   const basketItems = JSON.parse(localStorage.getItem('basket')) || [];
   const orderSummaryContainer = document.querySelector('.order-summary');
 
@@ -29,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
       <span>£${totalPrice.toFixed(2)}</span>
   `;
   orderSummaryContainer.appendChild(totalElement);
-});
 
 document.getElementById('checkoutButton').addEventListener('click', function () {
   const email = document.getElementById('email').value.trim();
