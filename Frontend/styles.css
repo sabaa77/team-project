@@ -609,6 +609,13 @@
         .search-result-image:hover img {
             transform: scale(1.2);
         }
+
+        .search-result-name {
+            margin: 10px 0 5px;
+            text-align: right;
+            font-family: 'Lemon Milk', sans-serif;
+            font-size: large;
+        }
         
         
 
