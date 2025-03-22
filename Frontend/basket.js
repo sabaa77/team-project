@@ -127,7 +127,6 @@ function addToBasket(product) {
             product_id: product.product_id,
             product_name: product.product_name,
             price: product.price,
-            size: product.size,
             quantity: 1,
         });
     }
