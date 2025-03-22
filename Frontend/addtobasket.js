@@ -10,8 +10,6 @@ if (localStorageBasket) {
 
 function addToBasket(product) {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    console.log(product);
-
 
     if (!product.product_name || !product.price || !product.size || !product.product_id) {
         alert('Failed to add product to basket. Please try again.');
