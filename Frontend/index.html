@@ -87,12 +87,16 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const userType = localStorage.getItem('user_type');
+        console.log('User Type:', userType);
+
         const adminSection = document.getElementById('admin-section');
 
         if (userType === 'admin') {
             adminSection.innerHTML = '<a href="admin_products.html">Admin Panel</a>';
+            console.log('Admin Panel link added');
         } else {
             adminSection.innerHTML = '';
+            console.log('Admin Panel not shown');
         }
     });
 </script>
