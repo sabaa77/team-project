@@ -667,12 +667,12 @@
         }
         
         .btn-primary {
-            background-color: #007bff;
+            background-color: #000000;
             color: #fff;
         }
         
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #363738;
         }
 
         .message {
