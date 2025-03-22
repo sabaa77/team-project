@@ -9,23 +9,23 @@ async function fetchAlerts() {
         const response = await fetch('alerts.php');
         const data = await response.json();
 
-        const alertsDiv = document.getElementById('alerts');
-        alertsDiv.innerHTML = '';
+        const alertsContainer = document.getElementById('alerts-container');
+        alertsContainer.innerHTML = '';
 
         if (data.success && data.alerts.length > 0) {
             data.alerts.forEach(alert => {
                 const alertDiv = document.createElement('div');
                 alertDiv.classList.add('alert');
                 alertDiv.textContent = `${alert.alert_message} (Stock: ${alert.stock_balance})`;
-                alertsDiv.appendChild(alertDiv);
+                alertsContainer.appendChild(alertDiv);
             });
         } else {
-            alertsDiv.textContent = 'No low stock alerts.';
+            alertsContainer.innerHTML = '<p>No low stock alerts.</p>';
         }
     } catch (error) {
         console.error('Error fetching alerts:', error);
-        const alertsDiv = document.getElementById('alerts');
-        alertsDiv.textContent = 'Failed to load alerts.';
+        const alertsContainer = document.getElementById('alerts-container');
+        alertsContainer.innerHTML = '<p>Failed to load alerts.</p>';
     }
 }
 
