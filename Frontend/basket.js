@@ -103,11 +103,15 @@ async function updateBackendBasket(basket) {
         });
 
         const result = await response.json();
+        console.log('Backend response:', result);
+
         if (!result.success) {
             console.error('Error saving basket to backend:', result.message);
+            alert('Failed to sync basket with the server. Please try again.');
         }
     } catch (error) {
         console.error('Error updating backend basket:', error);
+        alert('An error occurred while syncing your basket. Please try again.');
     }
 }
 
