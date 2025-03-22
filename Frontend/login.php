@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     try {
-        $stmt = $pdo->prepare("SELECT user_id, name, password_hash FROM users WHERE email = ?");
+        $stmt = $pdo->prepare("SELECT user_id, name, password_hash, user_type FROM users WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -60,11 +60,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 setcookie('session_id', $session_id, time() + 3600, "/", "", false, true);
                 $_SESSION['userID'] = $user['user_id'];
                 $_SESSION['loggedin'] = true;
+                $_SESSION['user_type'] = $user['user_type']; // Store user_type in session
 
                 echo json_encode([
                     'success' => true,
                     'userName' => $user['name'],
                     'userEmail' => $email,
+                    'userType' => $user['user_type'], // Include user_type in the response
                     'redirect' => 'index.html'
                 ]);
                 exit();

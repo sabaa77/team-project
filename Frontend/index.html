@@ -98,6 +98,9 @@
             adminSection.innerHTML = '';
             console.log('Admin Panel not shown');
         }
+        function logout() {
+    localStorage.removeItem('user_type');
+}
     });
 </script>
 </body> 
