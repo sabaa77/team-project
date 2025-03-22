@@ -4,7 +4,6 @@ if (localStorageBasket) {
     try {
         basketObject = JSON.parse(localStorageBasket);
     } catch (error) {
-        console.error('Error parsing basket from localStorage:', error);
         basketObject = [];
     }
 }
@@ -50,17 +49,12 @@ async function renderBasket() {
             if (result.success) {
                 basketObject = result.basket;
                 localStorage.setItem('basket', JSON.stringify(basketObject));
-            } else {
-                console.error('Error loading basket:', result.message);
             }
-        } catch (error) {
-            console.error('Error fetching basket from backend:', error);
-        }
+        } catch (error) {}
     }
 
     const basketItemsDiv = document.getElementById('basketItems');
     if (!basketItemsDiv) {
-        console.error('Basket items container not found in the DOM.');
         return;
     }
 
@@ -83,7 +77,6 @@ async function renderBasket() {
 
 function removeFromBasket(index) {
     if (index < 0 || index >= basketObject.length) {
-        console.error('Invalid index for removing item from basket:', index);
         return;
     }
 
@@ -101,7 +94,6 @@ function removeFromBasket(index) {
 async function saveBasket() {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (!isLoggedIn) {
-        console.warn('User is not logged in. Basket will not be saved to the backend.');
         return;
     }
 
@@ -114,11 +106,33 @@ async function saveBasket() {
 
         const result = await response.json();
         if (!result.success) {
-            console.error('Failed to save basket to backend:', result.message);
             alert('Failed to sync basket with the server. Please try again.');
         }
     } catch (error) {
-        console.error('Error saving basket to backend:', error);
         alert('An error occurred while syncing your basket. Please try again.');
     }
+}
+
+function displaySuccessMessage(message) {
+    let messageContainer = document.getElementById('success-message');
+    if (!messageContainer) {
+        messageContainer = document.createElement('div');
+        messageContainer.id = 'success-message';
+        messageContainer.style.position = 'fixed';
+        messageContainer.style.top = '10px';
+        messageContainer.style.right = '10px';
+        messageContainer.style.backgroundColor = '#4CAF50';
+        messageContainer.style.color = 'white';
+        messageContainer.style.padding = '10px 20px';
+        messageContainer.style.borderRadius = '5px';
+        messageContainer.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)';
+        messageContainer.style.zIndex = '1000';
+        document.body.appendChild(messageContainer);
+    }
+
+    messageContainer.innerText = message;
+
+    setTimeout(() => {
+        messageContainer.remove();
+    }, 3000);
 }
