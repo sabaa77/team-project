@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $user_type = $_POST['user_type'];
 
-    if (empty($name) || empty($email) || empty($password) || empty($user_type)) {
+    if (empty($name) || empty($email) || empty($password)) {
         $error_message = "All fields are required.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error_message = "Invalid Email";
