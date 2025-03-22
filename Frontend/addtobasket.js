@@ -73,7 +73,7 @@ async function renderBasket() {
     basketObject.forEach((item, index) => {
         const div = document.createElement('div');
         div.innerHTML = `
-            ${item.name} - £${item.price} (x${item.quantity}) 
+            ${item.product_name} - £${item.price} (x${item.quantity}) 
             <button onclick="removeFromBasket(${index})">Remove</button>
         `;
         basketItemsDiv.appendChild(div);
