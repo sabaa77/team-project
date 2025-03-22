@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
-    $user_type = $_POST['user_type'];
+    $user_type = $_POST['user_type'] ?? '';
 
     if (empty($name) || empty($email) || empty($password) || empty($user_type)) {
         echo json_encode(['success' => false, 'message' => 'All fields are required.']);
@@ -21,6 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo json_encode(['success' => false, 'message' => 'Invalid email address.']);
+        exit();
+    }
+
+    $valid_user_types = ['user', 'admin'];
+    if (!in_array($user_type, $valid_user_types)) {
+        echo json_encode(['success' => false, 'message' => 'Invalid user type.']);
         exit();
     }
 
@@ -36,11 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
         $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash, user_type) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$name, $email, $hashed_password]);
+        $stmt->execute([$name, $email, $hashed_password, $user_type]);
 
         echo json_encode(['success' => true, 'message' => 'Signup successful.', 'redirect' => 'login.html']);
         exit();
     } catch (PDOException $e) {
+        file_put_contents('error_log.txt', $e->getMessage() . PHP_EOL, FILE_APPEND);
         echo json_encode(['success' => false, 'message' => 'Error: ' . $e->getMessage()]);
         exit();
     }
