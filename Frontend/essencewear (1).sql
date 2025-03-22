@@ -355,7 +355,9 @@ CREATE TABLE `products` (
   `image_url` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-ALTER TABLE `products` ADD COLUMN `product_page_url` VARCHAR(500) DEFAULT NULL;
+ALTER TABLE `products`
+ADD COLUMN `stock_level` INT NOT NULL DEFAULT 0, 
+ADD COLUMN `product_page_url` VARCHAR(500) DEFAULT NULL;
 --
 -- Dumping data for table `products`
 --
