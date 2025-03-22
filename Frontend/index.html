@@ -86,21 +86,26 @@
 <script src="search.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         const userType = localStorage.getItem('user_type');
+        console.log('Is Logged In:', isLoggedIn);
         console.log('User Type:', userType);
 
         const adminSection = document.getElementById('admin-section');
 
-        if (userType === 'admin') {
+        if (isLoggedIn && userType === 'admin') {
             adminSection.innerHTML = '<a href="admin_products.html">Admin Panel</a>';
             console.log('Admin Panel link added');
         } else {
             adminSection.innerHTML = '';
             console.log('Admin Panel not shown');
         }
+
         function logout() {
-    localStorage.removeItem('user_type');
-}
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('user_type');
+            window.location.href = 'index.html';
+        }
     });
 </script>
 </body> 
