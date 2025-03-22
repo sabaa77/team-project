@@ -12,7 +12,6 @@ if (!isset($admin_id)) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Handle product addition
     $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);
     $product_description = mysqli_real_escape_string($conn, $_POST['product_description']);
     $price = mysqli_real_escape_string($conn, $_POST['price']);
@@ -44,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // Fetch products
     $products = [];
     $select_products = mysqli_query($conn, "SELECT * FROM products") or die('Query failed');
     while ($row = mysqli_fetch_assoc($select_products)) {
