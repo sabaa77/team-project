@@ -52,7 +52,7 @@ async function renderBasket() {
         const row = document.createElement('tr');
 
         const productCell = document.createElement('td');
-        productCell.innerText = `${item.product_name} (Size: ${item.size})`;
+        productCell.innerText = `${item.product_name}`;
 
         const priceCell = document.createElement('td');
         priceCell.innerText = `£${item.price}`;
@@ -117,7 +117,7 @@ function addToBasket(product) {
     const basketItems = getBasket();
 
     const existingItem = basketItems.find(
-        item => item.product_id === product.product_id && item.size === product.size
+        item => item.product_id === product.product_id
     );
 
     if (existingItem) {

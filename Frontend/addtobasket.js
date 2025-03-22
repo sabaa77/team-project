@@ -11,19 +11,14 @@ if (localStorageBasket) {
 function addToBasket(product) {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
-    if (!product.product_name || !product.price || !product.size || !product.product_id) {
+    if (!product.product_name || !product.price || !product.product_id) {
         alert('Failed to add product to basket. Please try again.');
         return;
     }
 
     const itemExists = basketObject.findIndex(
-        (item) => item.product_id === product.product_id && item.size === product.size
+        (item) => item.product_id === product.product_id
     );
-
-    if (!product.size) {
-        alert('Please select a size before adding the product to the basket.');
-        return;
-    }
 
     if (itemExists !== -1) {
         basketObject[itemExists].quantity += 1;
