@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Add Products</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin_style.css">
+</head>
+<body>
+
+<header>
+
+</header>
+
+<section class="add-products">
+    <h1 class="title">Add New Product</h1>
+    <div id="message"></div>
+    <form id="addProductForm" enctype="multipart/form-data">
+        <input type="text" name="product_name" placeholder="Enter product name" class="box" required>
+        <textarea name="product_description" placeholder="Enter product description" class="box"></textarea>
+        <input type="number" name="price" placeholder="Enter product price" class="box" required>
+        <input type="number" name="category_id" placeholder="Enter category ID" class="box" required>
+        <input type="text" name="product_page_url" placeholder="Enter product page URL (optional)" class="box">
+        <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box" required>
+        <button type="submit" class="btn">Add Product</button>
+    </form>
+</section>
+
+<section class="show-products">
+    <h1 class="title">Your Products</h1>
+    <div class="box-container" id="productsContainer">
+    
+    </div>
+</section>
+
+<script>
+    async function fetchProducts() {
+        const response = await fetch('admin_products.php');
+        const data = await response.json();
+
+        if (data.success) {
+            const productsContainer = document.getElementById('productsContainer');
+            productsContainer.innerHTML = '';
+
+            data.products.forEach(product => {
+                const productBox = document.createElement('div');
+                productBox.classList.add('box');
+                productBox.innerHTML = `
+                    <img src="${product.image_url}" alt="">
+                    <div class="name">${product.product_name}</div>
+                    <div class="description">${product.product_description}</div>
+                    <div class="price">$${product.price}/-</div>
+                    <div class="category">Category ID: ${product.category_id}</div>
+                    ${product.product_page_url ? `<a href="${product.product_page_url}" target="_blank" class="btn">View Product</a>` : ''}
+                `;
+                productsContainer.appendChild(productBox);
+            });
+        } else {
+            console.error('Failed to fetch products:', data.message);
+        }
+    }
+
+    document.getElementById('addProductForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const response = await fetch('admin_products.php', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.json();
+
+        const messageDiv = document.getElementById('message');
+        messageDiv.textContent = data.message;
+        messageDiv.className = data.success ? 'success' : 'error';
+
+        if (data.success) {
+            e.target.reset();
+            fetchProducts();
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', fetchProducts);
+</script>
+
+</body>
+</html>
