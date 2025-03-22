@@ -107,6 +107,7 @@ async function saveBasket() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(basketObject),
+            credentials: 'include',
         });
 
         const result = await response.json();
