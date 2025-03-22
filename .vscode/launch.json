@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Open Home Page.html",
-            "file": "c:\\Users\\sabaa\\OneDrive - Aston University\\Documents\\GitHub\\team-project\\Frontend\\Home Page.html"
+            "file": "c:\\Users\\sabaa\\OneDrive - Aston University\\Documents\\GitHub\\team-project\\Frontend\\index.html"
         }
     ]
 }
