@@ -13,9 +13,10 @@ document.getElementById('signupForm').addEventListener('submit', async function 
         });
 
         const result = await response.json();
+        console.log('Backend response:', result);
 
         if (result.success) {
-            window.location.href = 'login.html';
+            window.location.href = result.redirect;
         } else {
             document.getElementById('errorMsg').innerText = result.message;
         }

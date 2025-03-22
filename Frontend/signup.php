@@ -34,8 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-        $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash, user_type) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$name, $email, $hashed_password, $user_type]);
+        $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)");
+        $stmt->execute([$name, $email, $hashed_password]);
 
         echo json_encode(['success' => true, 'message' => 'Signup successful.', 'redirect' => 'login.html']);
         exit();
