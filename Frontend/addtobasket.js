@@ -11,7 +11,7 @@ if (localStorageBasket) {
 function addToBasket(product) {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
-    if (!product.name || !product.price || !product.size || !product.product_id) {
+    if (!product.product_name || !product.price || !product.size || !product.product_id) {
         alert('Failed to add product to basket. Please try again.');
         return;
     }
@@ -35,7 +35,7 @@ function addToBasket(product) {
 
     renderBasket();
 
-    displaySuccessMessage(`${product.name} (Size: ${product.size}) has been added to your basket.`);
+    displaySuccessMessage(`${product.product_name} (Size: ${product.size}) has been added to your basket.`);
 }
 
 async function renderBasket() {
