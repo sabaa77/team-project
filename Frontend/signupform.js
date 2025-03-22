@@ -4,12 +4,13 @@ document.getElementById('signupForm').addEventListener('submit', async function 
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
+    const user_type = document.getElementById('user_type').value;
 
     try {
         const response = await fetch('signup.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({ name, email, password })
+            body: new URLSearchParams({ name, email, password, user_type })
         });
 
         const result = await response.json();
