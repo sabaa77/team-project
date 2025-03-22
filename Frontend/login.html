@@ -36,10 +36,10 @@
     <script>
         document.getElementById('loginForm').addEventListener('submit', function (event) {
             event.preventDefault();
-
+    
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value.trim();
-
+  
             fetch('login.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -51,13 +51,19 @@
                     localStorage.setItem('isLoggedIn', 'true');
                     localStorage.setItem('userName', data.userName);
                     localStorage.setItem('userEmail', data.userEmail);
+                    localStorage.setItem('user_type', data.userType);
 
-                    window.location.href = 'index.html';
+                    window.location.href = data.redirect;
                 } else {
-                    alert(data.message);
+                    const errorMsg = document.getElementById('errorMsg');
+                    errorMsg.textContent = data.message;
                 }
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                console.error('Error:', error);
+                const errorMsg = document.getElementById('errorMsg');
+                errorMsg.textContent = 'An error occurred. Please try again.';
+            });
         });
     </script>
 </body>
