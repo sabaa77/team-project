@@ -4,12 +4,12 @@ include "db.php";
 
 header('Content-Type: application/json');
 
-if (!isset($_SESSION['userID'])) {
+if (!isset($_SESSION['user_id'])) {
     echo json_encode(['success' => false, 'message' => 'User not logged in.']);
     exit();
 }
 
-$user_id = $_SESSION['userID'];
+$user_id = $_SESSION['user_id'];
 $data = json_decode(file_get_contents('php://input'), true);
 
 if (!$data || !is_array($data)) {
@@ -25,6 +25,11 @@ try {
 
     $stmt = $pdo->prepare("INSERT INTO basket (user_id, product_id, product_name, price, size, quantity) VALUES (?, ?, ?, ?, ?, ?)");
     foreach ($data as $item) {
+
+        if (!isset($item['product_id'], $item['name'], $item['price'], $item['size'], $item['quantity'])) {
+            throw new Exception('Missing required basket item fields.');
+        }
+
         $stmt->execute([
             $user_id,
             $item['product_id'],
@@ -36,7 +41,7 @@ try {
     }
 
     $pdo->commit();
-    echo json_encode(['success' => true]);
+    echo json_encode(['success' => true, 'message' => 'Basket saved successfully.']);
 } catch (Exception $e) {
     $pdo->rollBack();
     echo json_encode(['success' => false, 'message' => 'Error saving basket: ' . $e->getMessage()]);
