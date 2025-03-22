@@ -12,8 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
+    $user_type = $_POST['user_type'];
 
-    if (empty($name) || empty($email) || empty($password)) {
+    if (empty($name) || empty($email) || empty($password) || empty($user_type)) {
         echo json_encode(['success' => false, 'message' => 'All fields are required.']);
         exit();
     }
@@ -34,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-        $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO users (name, email, password_hashh, user_type) VALUES (?, ?, ?, ?)");
         $stmt->execute([$name, $email, $hashed_password]);
 
         echo json_encode(['success' => true, 'message' => 'Signup successful.', 'redirect' => 'login.html']);
