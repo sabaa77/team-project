@@ -35,47 +35,12 @@
         </form>
     </section>
 
-    <section class="show-products">
-        <h1 class="section-title">Your Products</h1>
-        <div class="box-container" id="productsContainer">
-
-        </div>
-    </section>
-</main>
-
 <footer class="footer">
     <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
 </footer>
 
 <script>
-
-    async function fetchProducts() {
-        const response = await fetch('admin_products.php');
-        const data = await response.json();
-
-        if (data.success) {
-            const productsContainer = document.getElementById('productsContainer');
-            productsContainer.innerHTML = '';
-
-            data.products.forEach(product => {
-                const productBox = document.createElement('div');
-                productBox.classList.add('box');
-                productBox.innerHTML = `
-                    <img src="${product.image_url}" alt="" class="product-image">
-                    <div class="product-name">${product.product_name}</div>
-                    <div class="product-description">${product.product_description}</div>
-                    <div class="product-price">$${product.price}/-</div>
-                    <div class="product-category">Category ID: ${product.category_id}</div>
-                    ${product.product_page_url ? `<a href="${product.product_page_url}" target="_blank" class="btn btn-secondary">View Product</a>` : ''}
-                `;
-                productsContainer.appendChild(productBox);
-            });
-        } else {
-            console.error('Failed to fetch products:', data.message);
-        }
-    }
-
-
+    
     document.getElementById('addProductForm').addEventListener('submit', async (e) => {
         e.preventDefault();
 
