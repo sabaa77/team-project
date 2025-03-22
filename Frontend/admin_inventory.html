@@ -15,29 +15,37 @@
         <h1 class="header-title">Inventory Management</h1>
     </div>
 </header>
-    <nav class="nav">
-        <a href="index.html" class="nav-link">Home</a>
-    </nav>
-    <main class="main-content">
+<nav class="nav">
+    <a href="index.html" class="nav-link">Home</a>
+</nav>
+<main class="main-content">
 
-        <section class="add-products">
-            <h1 class="section-title">Add New Product</h1>
-            <div id="message" class="message"></div>
-            <form id="addProductForm" class="form" enctype="multipart/form-data">
-                <input type="text" name="product_name" placeholder="Enter product name" class="form-input" required>
-                <textarea name="product_description" placeholder="Enter product description" class="form-textarea"></textarea>
-                <input type="number" name="price" placeholder="Enter product price" class="form-input" required>
-                <input type="number" name="category_id" placeholder="Enter category ID" class="form-input" required>
-                <input type="text" name="product_page_url" placeholder="Enter product page URL (optional)" class="form-input">
-                <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="form-input" required>
-                <button type="submit" class="btn btn-primary">Add Product</button>
-            </form>
-        </section>
-    <h2>Low Stock Alerts</h2>
-    <div id="alerts"></div>
+    <section class="add-products">
+        <h1 class="section-title">Add New Product</h1>
+        <div id="message" class="message"></div>
+        <form id="addProductForm" class="form" enctype="multipart/form-data">
+            <input type="text" name="product_name" placeholder="Enter product name" class="form-input" required>
+            <textarea name="product_description" placeholder="Enter product description" class="form-textarea"></textarea>
+            <input type="number" name="price" placeholder="Enter product price" class="form-input" required>
+            <input type="number" name="category_id" placeholder="Enter category ID" class="form-input" required>
+            <input type="text" name="product_page_url" placeholder="Enter product page URL (optional)" class="form-input">
+            <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="form-input" required>
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+    </section>
 
-    <footer class="footer">
-        <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
-    </footer> 
+    <section class="low-stock-alerts">
+        <h2 class="section-title">Low Stock Alerts</h2>
+        <div id="alerts" class="alerts-container">
+
+        </div>
+    </section>
+
+</main>
+<footer class="footer">
+    <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
+</footer>
+
+<script src="inventory.js"></script>
 </body>
 </html>

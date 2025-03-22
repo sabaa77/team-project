@@ -5,20 +5,27 @@ async function fetchInventory() {
 }
 
 async function fetchAlerts() {
-    const response = await fetch('alerts.php');
-    const data = await response.json();
+    try {
+        const response = await fetch('alerts.php');
+        const data = await response.json();
 
-    const alertsDiv = document.getElementById('alerts');
-    alertsDiv.innerHTML = '';
+        const alertsDiv = document.getElementById('alerts');
+        alertsDiv.innerHTML = '';
 
-    if (data.success) {
-        data.alerts.forEach(alert => {
-            const alertDiv = document.createElement('div');
-            alertDiv.textContent = alert.alert_message;
-            alertsDiv.appendChild(alertDiv);
-        });
-    } else {
-        alertsDiv.textContent = 'No alerts.';
+        if (data.success && data.alerts.length > 0) {
+            data.alerts.forEach(alert => {
+                const alertDiv = document.createElement('div');
+                alertDiv.classList.add('alert');
+                alertDiv.textContent = `${alert.alert_message} (Stock: ${alert.stock_balance})`;
+                alertsDiv.appendChild(alertDiv);
+            });
+        } else {
+            alertsDiv.textContent = 'No low stock alerts.';
+        }
+    } catch (error) {
+        console.error('Error fetching alerts:', error);
+        const alertsDiv = document.getElementById('alerts');
+        alertsDiv.textContent = 'Failed to load alerts.';
     }
 }
 
