@@ -10,34 +10,45 @@
 </head>
 <body>
 
-<header>
-    <h1>Add Products</h1>
-    <nav>
-        <a href="index.html">Home</a>
+<header class="header">
+    <div class="header-container">
+        <h1 class="header-title">Admin Panel</h1>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Home</a>
+        </nav>
+    </div>
 </header>
 
-<section class="add-products">
-    <h1 class="title">Add New Product</h1>
-    <div id="message"></div>
-    <form id="addProductForm" enctype="multipart/form-data">
-        <input type="text" name="product_name" placeholder="Enter product name" class="box" required>
-        <textarea name="product_description" placeholder="Enter product description" class="box"></textarea>
-        <input type="number" name="price" placeholder="Enter product price" class="box" required>
-        <input type="number" name="category_id" placeholder="Enter category ID" class="box" required>
-        <input type="text" name="product_page_url" placeholder="Enter product page URL (optional)" class="box">
-        <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box" required>
-        <button type="submit" class="btn">Add Product</button>
-    </form>
-</section>
+<main class="main-content">
 
-<section class="show-products">
-    <h1 class="title">Your Products</h1>
-    <div class="box-container" id="productsContainer">
-    
-    </div>
-</section>
+    <section class="add-products">
+        <h1 class="section-title">Add New Product</h1>
+        <div id="message" class="message"></div>
+        <form id="addProductForm" class="form" enctype="multipart/form-data">
+            <input type="text" name="product_name" placeholder="Enter product name" class="form-input" required>
+            <textarea name="product_description" placeholder="Enter product description" class="form-textarea"></textarea>
+            <input type="number" name="price" placeholder="Enter product price" class="form-input" required>
+            <input type="number" name="category_id" placeholder="Enter category ID" class="form-input" required>
+            <input type="text" name="product_page_url" placeholder="Enter product page URL (optional)" class="form-input">
+            <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="form-input" required>
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+    </section>
+
+    <section class="show-products">
+        <h1 class="section-title">Your Products</h1>
+        <div class="box-container" id="productsContainer">
+
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
+</footer>
 
 <script>
+
     async function fetchProducts() {
         const response = await fetch('admin_products.php');
         const data = await response.json();
@@ -50,12 +61,12 @@
                 const productBox = document.createElement('div');
                 productBox.classList.add('box');
                 productBox.innerHTML = `
-                    <img src="${product.image_url}" alt="">
-                    <div class="name">${product.product_name}</div>
-                    <div class="description">${product.product_description}</div>
-                    <div class="price">$${product.price}/-</div>
-                    <div class="category">Category ID: ${product.category_id}</div>
-                    ${product.product_page_url ? `<a href="${product.product_page_url}" target="_blank" class="btn">View Product</a>` : ''}
+                    <img src="${product.image_url}" alt="" class="product-image">
+                    <div class="product-name">${product.product_name}</div>
+                    <div class="product-description">${product.product_description}</div>
+                    <div class="product-price">$${product.price}/-</div>
+                    <div class="product-category">Category ID: ${product.category_id}</div>
+                    ${product.product_page_url ? `<a href="${product.product_page_url}" target="_blank" class="btn btn-secondary">View Product</a>` : ''}
                 `;
                 productsContainer.appendChild(productBox);
             });
@@ -63,6 +74,7 @@
             console.error('Failed to fetch products:', data.message);
         }
     }
+
 
     document.getElementById('addProductForm').addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -76,7 +88,7 @@
 
         const messageDiv = document.getElementById('message');
         messageDiv.textContent = data.message;
-        messageDiv.className = data.success ? 'success' : 'error';
+        messageDiv.className = data.success ? 'message success' : 'message error';
 
         if (data.success) {
             e.target.reset();
