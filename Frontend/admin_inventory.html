@@ -3,6 +3,7 @@
 <head>
     <title>Admin Inventory Management</title>
     <script src="inventory.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Inventory Management</h1>
@@ -25,33 +26,7 @@
     
     <footer class="footer">
         <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
-    </footer>
-    
-    <script>
-        
-        document.getElementById('addProductForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-    
-            const formData = new FormData(e.target);
-            const response = await fetch('admin_products.php', {
-                method: 'POST',
-                body: formData
-            });
-            const data = await response.json();
-    
-            const messageDiv = document.getElementById('message');
-            messageDiv.textContent = data.message;
-            messageDiv.className = data.success ? 'message success' : 'message error';
-    
-            if (data.success) {
-                e.target.reset();
-                fetchProducts();
-            }
-        });
-    
-        document.addEventListener('DOMContentLoaded', fetchProducts);
-    </script>
-    
+    </footer> 
     </body>
     </html>
     <button onclick="addProduct()">Add Product</button>
