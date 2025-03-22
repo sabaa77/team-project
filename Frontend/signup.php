@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    $valid_user_types = ['user', 'admin'];
+    $valid_user_types = ['customer', 'admin'];
     if (!in_array($user_type, $valid_user_types)) {
         echo json_encode(['success' => false, 'message' => 'Invalid user type.']);
         exit();
