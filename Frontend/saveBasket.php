@@ -26,14 +26,14 @@ try {
     $stmt = $pdo->prepare("INSERT INTO basket (user_id, product_id, product_name, price, size, quantity) VALUES (?, ?, ?, ?, ?, ?)");
     foreach ($data as $item) {
 
-        if (!isset($item['product_id'], $item['name'], $item['price'], $item['size'], $item['quantity'])) {
+        if (!isset($item['product_id'], $item['product_name'], $item['price'], $item['size'], $item['quantity'])) {
             throw new Exception('Missing required basket item fields.');
         }
 
         $stmt->execute([
             $user_id,
             $item['product_id'],
-            $item['name'],
+            $item['product_name'],
             $item['price'],
             $item['size'],
             $item['quantity']
