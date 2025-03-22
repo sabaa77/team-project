@@ -11,13 +11,13 @@ if (localStorageBasket) {
 function addToBasket(product) {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
-    if (!product.name || !product.price || !product.size) {
+    if (!product.name || !product.price || !product.size || !product.product_id) {
         alert('Failed to add product to basket. Please try again.');
         return;
     }
 
     const itemExists = basketObject.findIndex(
-        (item) => item.name === product.name && item.size === product.size
+        (item) => item.product_id === product.product_id && item.size === product.size
     );
 
     if (itemExists !== -1) {

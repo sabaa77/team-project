@@ -9,7 +9,7 @@ function saveBasket(basket) {
 
 async function fetchBasketFromBackend() {
     try {
-        const response = await fetch('saveBasket.php');
+        const response = await fetch('loadBasket.php');
         const result = await response.json();
 
         if (result.success) {
