@@ -1,7 +1,11 @@
 async function fetchInventory() {
     const response = await fetch('inventory.php');
-    const data = await response.json();
-    console.log(data);
+    try {
+        const data = await response.json();
+        console.log('Inventory data:', data);
+    } catch (error) {
+        console.error('Error parsing inventory data:', error);
+    }
 }
 
 async function fetchAlerts() {
@@ -31,23 +35,34 @@ async function fetchAlerts() {
 
 async function addProduct() {
     const product = {
-        name: 'New Product',
-        description: 'Description here',
+        product_name: 'New Product',
+        product_description: 'Description here',
         price: 100,
         stock_level: 10,
-        sizes: ['S', 'M', 'L'],
         image_url: 'image.jpg',
-        product_page_url: 'product.html'
+        product_page_url: 'product.html',
+        category_id: 1
     };
 
-    const response = await fetch('inventory.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'add_product', ...product })
-    });
+    try {
+        const response = await fetch('inventory.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'add_product', ...product })
+        });
 
-    const data = await response.json();
-    console.log(data);
+        const data = await response.json();
+        console.log('Add product response:', data);
+
+        if (data.success) {
+            alert(data.message);
+        } else {
+            alert(`Error adding product: ${data.message}`);
+        }
+    } catch (error) {
+        console.error('Error adding product:', error);
+        alert('Failed to add product.');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
