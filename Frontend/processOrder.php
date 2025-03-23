@@ -34,7 +34,7 @@ try {
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare("INSERT INTO orders (user_id, email, name, address, city, country, postal_code) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$order_id, $user_id, $product_id, $email, $name, $address, $city, $country, $postal_code]);
+    $stmt->execute([$user_id, $email, $name, $address, $city, $country, $postal_code]);
     $order_id = $pdo->lastInsertId();
 
     $stmt = $pdo->prepare("INSERT INTO order_items (order_id, product_id, product_name, size, quantity, price) VALUES (?, ?, ?, ?, ?, ?)");
