@@ -789,16 +789,19 @@ nav > ul > li:not(:first-child) > a::after {
         }
 
         #keep-shoppingButton {
-            display: inline-block;
+            position: absolute;
+            left: 20px;
+            top: 20px;
             padding: 10px 20px;
             font-size: 16px;
             font-weight: bold;
             color: rgb(0, 0, 0);
             background-color: rgb(255, 255, 255);
-            border: 2px solid rgb(255, 255, 255);
+            border: none;
             text-decoration: none;
             text-align: center;
             border-radius: 5px;
+            cursor: pointer;
             transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
         }
         
