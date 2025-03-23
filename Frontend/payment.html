@@ -19,11 +19,11 @@
   </footer>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const orderId = urlParams.get('order_id');
-    console.log('Order ID from URL:', orderId);
+    const order_id = urlParams.get('order_id');
+    console.log('Order ID from URL:', order_id);
 
-    if (orderId) {
-      document.getElementById('order_id').textContent = orderId;
+    if (order_id) {
+      document.getElementById('order_id').textContent = order_id;
     } else {
       document.getElementById('order_id').textContent = 'N/A';
     }
