@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const checkoutButton = document.getElementById('checkoutButton');
-    checkoutButton.disabled = true;
     if (checkoutButton) {
         const handleCheckout = async () => {
             const email = document.getElementById('email').value;
@@ -75,8 +74,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             } catch (error) {
                 console.error('Error processing order:', error);
                 alert('An error occurred while processing your order. Please try again.');
-            } finally {
-                checkoutButton.disabled = false;
             }
         };
 
