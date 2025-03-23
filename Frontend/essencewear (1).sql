@@ -302,6 +302,7 @@ CREATE TABLE `orders` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('pending','shipped','delivered','cancelled') NOT NULL DEFAULT 'pending',
+  `name` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
   `address` text NOT NULL,
   `city` varchar(100) NOT NULL,
