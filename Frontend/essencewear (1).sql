@@ -300,20 +300,17 @@ INSERT INTO `notifications` (`notification_id`, `message`, `created_at`, `user_i
 CREATE TABLE `orders` (
   `order_id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
+  `product_id` int(10) UNSIGNED NOT NULL,
   `total_price` decimal(10,2) NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` enum('pending','shipped','delivered','cancelled') NOT NULL DEFAULT 'pending'
+  `status` enum('pending','shipped','delivered','cancelled') NOT NULL DEFAULT 'pending',
+  `email` varchar(255) NOT NULL,
+  `address` text NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `country` varchar(100) NOT NULL,
+  `postal_code` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`order_id`, `user_id`, `total_price`, `order_date`, `status`) VALUES
-(1, 1, 895.00, '2025-03-12 12:38:05', ''),
-(2, 2, 825.00, '2025-03-12 12:38:05', 'shipped'),
-(3, 3, 690.00, '2025-03-12 12:38:05', ''),
-(4, 4, 1560.00, '2025-03-12 12:38:05', '');
 
 -- --------------------------------------------------------
 
@@ -325,20 +322,11 @@ CREATE TABLE `order_items` (
   `order_item_id` int(10) UNSIGNED NOT NULL,
   `order_id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
+  `product_name` varchar(255) NOT NULL,
   `size` enum('S','M','L','XL','2','3','4','5','6','7','8','9','10','11','12') NOT NULL,
   `quantity` int(10) UNSIGNED NOT NULL,
   `price_per_unit` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `order_items`
---
-
-INSERT INTO `order_items` (`order_item_id`, `order_id`, `product_id`, `size`, `quantity`, `price_per_unit`) VALUES
-(1, 1, 1, 'S', 1, 895.00),
-(2, 2, 2, 'S', 1, 825.00),
-(3, 3, 3, 'S', 1, 690.00),
-(4, 4, 7, 'S', 1, 1560.00);
 
 -- --------------------------------------------------------
 

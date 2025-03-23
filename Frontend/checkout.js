@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const summaryItem = document.createElement('div');
         summaryItem.className = 'summary-item';
         summaryItem.innerHTML = `
-            <span>${item.product_name} (x${item.quantity})</span>
+            <span>${item.product_name} (Size: ${item.size}) x${item.quantity}</span>
             <span>£${(item.price * item.quantity).toFixed(2)}</span>
         `;
         orderSummaryContainer.appendChild(summaryItem);
@@ -75,3 +75,61 @@ async function fetchBasketFromBackend() {
         return [];
     }
 }
+
+document.getElementById('checkoutButton').addEventListener('click', async () => {
+    const email = document.getElementById('email').value;
+    const name = document.getElementById('name').value;
+    const address = document.getElementById('address').value;
+    const city = document.getElementById('city').value;
+    const country = document.getElementById('country').value;
+    const zip = document.getElementById('zip').value;
+    const cardNumber = document.getElementById('cardNumber').value;
+    const cardName = document.getElementById('cardName').value;
+    const expiryDate = document.getElementById('expiryDate').value;
+    const cvv = document.getElementById('cvv').value;
+
+    const basketItems = JSON.parse(localStorage.getItem('basket')) || [];
+
+    if (basketItems.length === 0) {
+        alert('Your basket is empty.');
+        return;
+    }
+
+    const orderDetails = {
+        email,
+        name,
+        address,
+        city,
+        country,
+        zip,
+        cardNumber,
+        cardName,
+        expiryDate,
+        cvv,
+        basket: basketItems,
+    };
+
+    console.log('Order details:', orderDetails);
+
+    try {
+        const response = await fetch('processOrder.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderDetails),
+        });
+
+        const result = await response.json();
+        console.log('Order response:', result);
+
+        if (result.success) {
+            alert('Order placed successfully!');
+            localStorage.removeItem('basket');
+            window.location.href = 'payment.html';
+        } else {
+            alert(`Failed to place order: ${result.message}`);
+        }
+    } catch (error) {
+        console.error('Error processing order:', error);
+        alert('An error occurred while processing your order. Please try again.');
+    }
+});
