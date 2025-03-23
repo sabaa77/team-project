@@ -14,14 +14,6 @@
 .header-text {
   text-align: center;
 }
-#keep-shopping{
-  position: absolute;
-  top: 170px;
-  padding-left:50px;
-  text-decoration: none; 
-  color: white; 
-  font-size: 20px; 
-}
 
 .header {
   padding-top: 70px;
@@ -172,7 +164,7 @@ nav a:hover {
 }
 
 .form-group input, .form-group select {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -207,7 +199,27 @@ nav a:hover {
   font-size: 1.2rem;
 }
 
+.payment {
+  margin-left: 30px;
+}
+
 .btn {
+  display: block;
+  width: 40%;
+  padding: 15px;
+  background-color: #000;
+  color: white;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 60px;
+  margin-top: 3px;
+  margin-bottom: 5px;
+}
+
+.checkoutbtn {
   display: block;
   width: 100%;
   padding: 15px;
@@ -218,12 +230,16 @@ nav a:hover {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
 }
 
 .btn:hover {
   background-color: #444;
 }
+
+.checkoutbtn:hover {
+  background-color: #444;
+}
+
 footer {
   background-color: #000;
   color: #fff;
@@ -233,10 +249,16 @@ footer {
   position: relative;
 }
 
-#keep-shoppingButton {
+#keep-shopping{
   position: absolute;
-  left: 20px;
-  top: 20px;
+  left: 100px;
+  top: 10px;
+  position: absolute;
+  text-align: center;
+}
+
+#keep-shoppingButton {
+  display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;

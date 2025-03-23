@@ -42,7 +42,6 @@
             font-size: 1.2em;
         }
 
-/* General Nav Styling */
 nav {
     background-color: #000;
     padding: 10px;
@@ -76,7 +75,6 @@ nav ul li a:hover {
     color: #ccc;
 }
 
-/* Dropdown Menu Styling */
 nav ul li ul {
     display: none;
     position: absolute;
