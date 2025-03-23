@@ -10,9 +10,10 @@ if (!isset($_SESSION['userID'])) {
 $user_id = $_SESSION['userID'];
 
 try {
-    $stmt = $pdo->prepare("SELECT product_id, product_name, price, quantity, size FROM basket WHERE user_id = ?");
+    $stmt = $pdo->prepare("SELECT product_id, product_name, price, size, quantity FROM basket WHERE user_id = ?");
     $stmt->execute([$user_id]);
     $basket = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($basket);
 
     echo json_encode(['success' => true, 'basket' => $basket]);
 } catch (Exception $e) {
