@@ -793,8 +793,8 @@ nav > ul > li:not(:first-child) > a::after {
             padding: 10px 20px;
             font-size: 16px;
             font-weight: bold;
-            color: rgb(255, 255, 255);
-            background-color: rgb(0, 0, 0);
+            color: rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);
             border: 2px solid rgb(255, 255, 255);
             text-decoration: none;
             text-align: center;
