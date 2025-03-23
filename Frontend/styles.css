@@ -787,6 +787,27 @@ nav > ul > li:not(:first-child) > a::after {
             color: #721c24;
             font-weight: bold;
         }
+
+        #keep-shopping {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+        
+        #keep-shopping:hover {
+            background-color: grey;
+            color: white;
+            transform: scale(1.1);
+            cursor: pointer;
+        }
         
         
 

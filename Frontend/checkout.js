@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const summaryItem = document.createElement('div');
         summaryItem.className = 'summary-item';
         summaryItem.innerHTML = `
-            <span>${item.name} (x${item.quantity})</span>
+            <span>${item.product_name} (x${item.quantity})</span>
             <span>£${(item.price * item.quantity).toFixed(2)}</span>
         `;
         orderSummaryContainer.appendChild(summaryItem);
