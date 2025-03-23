@@ -808,6 +808,22 @@ nav > ul > li:not(:first-child) > a::after {
             transform: scale(1.1);
             cursor: pointer;
         }
+
+        #returnHomeButton {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        #returnHomeButton:hover {
+            background-color: grey;
+            transform: scale(1.1);
+        }
         
         
 
