@@ -24,11 +24,11 @@
         <h1 class="section-title">Add New Product</h1>
         <div id="message" class="message"></div>
         <form id="addProductForm" class="form" enctype="multipart/form-data">
-            <input type="text" name="name" placeholder="Enter product name" class="form-input" required>
-            <textarea name="description" placeholder="Enter product description" class="form-textarea"></textarea>
+            <input type="text" name="product_name" placeholder="Enter product name" class="form-input" required>
+            <input type="text" name="category_id" placeholder="Enter product category" class="form-input" required>
+            <textarea name="product_description" placeholder="Enter product description" class="form-textarea"></textarea>
             <input type="number" name="price" placeholder="Enter product price" class="form-input" required>
             <input type="number" name="stock_level" placeholder="Enter stock level" class="form-input" required>
-            <input type="text" name="sizes" placeholder="Enter sizes (comma-separated)" class="form-input">
             <input type="text" name="image_url" placeholder="Enter image URL" class="form-input" required>
             <input type="text" name="product_page_url" placeholder="Enter product page URL (optional)" class="form-input">
             <button type="submit" class="btn btn-primary">Add Product</button>
