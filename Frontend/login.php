@@ -32,8 +32,8 @@ function updateShoppingSession($session_id, $new_total, $pdo) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
     if (empty($email) || empty($password)) {
         echo json_encode(['success' => false, 'message' => 'Please enter both email and password.']);
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     try {
-        $stmt = $pdo->prepare("SELECT user_id, name, password_hash, user_type FROM users WHERE email = ?");
+        $stmt = $pdo->prepare("SELECT user_id, name, password_hash FROM users WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -58,15 +58,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($session_id !== false) {
                 setcookie('id', $session_id, time() + 3600, "/", "", false, true);
-                $_SESSION['user_id'] = $user['user_id'];
-                $_SESSION['isLoggedIn'] = true;
-                $_SESSION['user_type'] = $user['user_type'];
+                $_SESSION['userID'] = $user['user_id'];
+                $_SESSION['loggedin'] = true;
 
                 echo json_encode([
                     'success' => true,
                     'userName' => $user['name'],
-                    'userEmail' => $email['email'],
-                    'userType' => $user['user_type'],
+                    'userEmail' => $email,
                     'redirect' => 'index.html'
                 ]);
                 exit();
