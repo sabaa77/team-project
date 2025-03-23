@@ -325,7 +325,7 @@ CREATE TABLE `order_items` (
   `order_item_id` int(10) UNSIGNED NOT NULL,
   `order_id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
-  `size` enum('S','M','L','XL') NOT NULL,
+  `size` enum('S','M','L','XL','2','3','4','5','6','7','8','9','10','11','12') NOT NULL,
   `quantity` int(10) UNSIGNED NOT NULL,
   `price_per_unit` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -479,9 +479,11 @@ CREATE TABLE `shoppingSession` (
 CREATE TABLE `basket` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` int(10) UNSIGNED NOT NULL,
+  `product_id` INT NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `quantity` int(10) NOT NULL,
+  `size` enum('S','M','L','XL','2','3','4','5','6','7','8','9','10','11','12','One Size') NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

@@ -1,6 +1,6 @@
 <?php
 
-$host = "cs2410-web01pvm.aston.ac.uk";  // Or "localhost" if instructed by your host’s documentation
+$host = "cs2410-web01pvm.aston.ac.uk"; 
 $user = "cs2team49";
 $password = "wHP74YYCEr1LqhK";
 $database = "cs2team49_db";

@@ -1,5 +1,6 @@
 function getBasket() {
     const basket = localStorage.getItem('basket');
+    console.log('Basket retrieved from localStorage:', basket);
     return basket ? JSON.parse(basket) : [];
 }
 
@@ -57,6 +58,9 @@ async function renderBasket() {
         const priceCell = document.createElement('td');
         priceCell.innerText = `£${item.price}`;
 
+        const sizeCell = document.createElement('td');
+        sizeCell.innerText = item.size
+
         const quantityCell = document.createElement('td');
         quantityCell.innerText = item.quantity;
 
@@ -70,15 +74,19 @@ async function renderBasket() {
         removeBtn.innerText = 'Remove';
         removeBtn.className = 'remove-btn';
         removeBtn.addEventListener('click', async () => {
-            basketItems.splice(index, 1);
-            saveBasket(basketItems);
-            await updateBackendBasket(basketItems);
-            renderBasket();
-        });
+         const currentBasket = getBasket();
+         const updatedBasket = currentBasket.filter(
+             bItem => !(bItem.product_id === item.product_id && bItem.size === item.size)
+         );
+         saveBasket(updatedBasket);
+         await updateBackendBasket(updatedBasket);
+         await renderBasket();
+     });
         removeCell.appendChild(removeBtn);
 
         row.appendChild(productCell);
         row.appendChild(priceCell);
+        row.appendChild(sizeCell);
         row.appendChild(quantityCell);
         row.appendChild(totalCell);
         row.appendChild(removeCell);
@@ -91,6 +99,8 @@ async function renderBasket() {
 
 async function updateBackendBasket(basket) {
     console.log('updateBackendBasket() triggered');
+    console.log('Basket being sent to backend:', basket);
+
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (!isLoggedIn) {
         console.log('User not logged in, skipping backend sync');
@@ -121,9 +131,10 @@ async function updateBackendBasket(basket) {
 
 function addToBasket(product) {
     const basketItems = getBasket();
+    console.log('Current basket before adding product:', basketItems);
 
     const existingItem = basketItems.find(
-        item => item.product_id === product.product_id
+        item => item.product_id === product.product_id && item.size === product.size
     );
 
     if (existingItem) {
@@ -133,6 +144,7 @@ function addToBasket(product) {
             product_id: product.product_id,
             product_name: product.product_name,
             price: product.price,
+            size: product.size,
             quantity: 1,
         });
     }
