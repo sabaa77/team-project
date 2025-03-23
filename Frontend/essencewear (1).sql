@@ -479,6 +479,7 @@ CREATE TABLE `shoppingSession` (
 CREATE TABLE `basket` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` int(10) UNSIGNED NOT NULL,
+  `product_id` INT NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `quantity` int(10) NOT NULL,
