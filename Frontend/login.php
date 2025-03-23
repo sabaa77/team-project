@@ -32,8 +32,8 @@ function updateShoppingSession($session_id, $new_total, $pdo) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
 
     if (empty($email) || empty($password)) {
         echo json_encode(['success' => false, 'message' => 'Please enter both email and password.']);
