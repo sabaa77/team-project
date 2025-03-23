@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Essence Wear | Home</title>
+    <title>Essence Wear | Shoes</title>
     <link rel="icon" type="image/png" href="essence wear logo (black).png">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -23,7 +23,6 @@
                 <input type="text" placeholder="Search...">
                 <button type="button">Go</button>
             </div>
-            <div id="searchResults"></div>
         </div>
         <a href="basket.html" title="Basket">
             <img src="basketlogo.png" alt="basket-logo" class="basket-logo">
@@ -38,6 +37,7 @@
         
         <li><a href="index.html">HOME</a></li>
 
+        
         <li><a href="Mens.html">MEN'S</a>
             <ul>
                 <li><a href="Mens.html">CLOTHES</a></li>
@@ -46,14 +46,14 @@
             </ul>
         </li>
 
-        <li><a href="Womens.html">WOMEN'S</a>
+          <li><a href="Womens.html">WOMEN'S</a>
             <ul>
                 <li><a href="Womens.html">CLOTHES</a></li>
                 <li><a href="WomensShoes.html">SHOES</a></li>
                 <li><a href="WomensAccessories.html">ACCESSORIES</a></li>
             </ul>
         </li>
-
+  
         <li><a href="Kids.html">KIDS</a>
             <ul>
                 <li><a href="Kids.html">CLOTHES</a></li>
@@ -61,7 +61,7 @@
                 <li><a href="Accessories.html">ACCESSORIES</a></li>
             </ul>
         </li>
-
+        
         <li><a href="About Us Page.html">INFO</a>
             <ul>
                 <li><a href="About Us Page.html">ABOUT US</a></li>
@@ -71,69 +71,31 @@
         </li>
     </ul>
 </nav>
-
-   <div class="container">
-    <h2>Categories</h2>
-    <p>Check out our range of Categories</p>
-   <div class="product">
-        <a href="Mens.html"><img src="BalenciagaTshirt.png" alt="Product 1"></a> 
-       <h3>Men's Clothing</h3>
-       <p></p>
-   </div>
-
-   <div class="product">
-    <a href="Womens.html"><img src="BalenciagaPants.png" alt="Product 2"></a>
-    <h3>Women's Clothing</h3>
-    <p></p>
-   </div>
-
-   <div class="product">
-    <a href="Kids.html"><img src="BoysMonclerCoat.png" alt="Product 3"></a>
-    <h3>Kid's Clothing</h3>
-    <p></p>
-   </div>  
-
-   <div class="product">
-    <a href="Accessories.html"><img src="PradaBracelet.png" alt="Product 4"></a>
-    <h3>Accessories</h3>
-    <p></p>
-   </div>
-
-   <div class="product">
-    <a href="shoes.html"><img src="MensGucciTrainers.png" alt="Product 5"></a>
-    <h3>Shoes</h3>
-    <p></p>
-   </div>
-   </div>
-
-<footer>
-    <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
-</footer>
-
-<script src="search.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-        const userType = localStorage.getItem('user_type');
-        console.log('Is Logged In:', isLoggedIn);
-        console.log('User Type:', userType);
-
-        const adminSection = document.getElementById('admin-section');
-
-        if (isLoggedIn && userType === 'admin') {
-            adminSection.innerHTML = '<a href="admin.html">Admin Panel</a>';
-            console.log('Admin Panel link added');
-        } else {
-            adminSection.innerHTML = '';
-            console.log('Admin Panel not shown');
-        }
-
-        function logout() {
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('user_type');
-            window.location.href = 'index.html';
-        }
-    });
-</script>
-</body> 
-</html>
+    <div class="container">
+        <h2>Men's Shoes</h2>
+        <div class="product">
+             <a href="ShoesProduct1.html"><img src="MensLouboutinShoes.png" alt="Product 1"></a> 
+            <h3>Men's Louboutin Shoes</h3>
+            <p>£1,075</p>
+        </div>
+    
+        <div class="product">
+            <a href="ShoesProduct3.html"><img src="MensjimmyChooLoafer.png" alt="Product 3"></a>
+            <h3>Men's Jimmy Choo Loafers</h3>
+            <p>£725</p>
+        </div>
+    
+        <div class="product">
+            <a href="ShoesProduct5.html"><img src="MensGucciTrainers.png" alt="Product 5"></a>
+            <h3>Men's Gucci Trainers</h3>
+            <p>£620</p>
+        </div>
+        </div>
+    
+    <footer>
+        <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
+    </footer>
+    
+    <script src="search.js"></script>
+    </body> 
+    </html>

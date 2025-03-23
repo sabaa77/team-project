@@ -42,7 +42,7 @@
             font-size: 1.2em;
         }
 
-
+/* General Nav Styling */
 nav {
     background-color: #000;
     padding: 10px;
@@ -76,7 +76,7 @@ nav ul li a:hover {
     color: #ccc;
 }
 
-
+/* Dropdown Menu Styling */
 nav ul li ul {
     display: none;
     position: absolute;
@@ -109,7 +109,7 @@ nav ul li:hover > ul {
     display: block;
 }
 
-nav > ul > li > a::after {
+nav > ul > li:not(:first-child) > a::after {
     content: " ▼";
     font-size: 0.8em;
 }
