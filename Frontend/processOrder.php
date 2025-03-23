@@ -13,7 +13,6 @@ if (!$data || !isset($data['email'], $data['name'], $data['address'], $data['bas
     exit();
 }
 
-$order_id = $data['order_id'];
 $user_id = $_SESSION['user_id'];
 $product_id = $data['product_id'];
 $email = $data['email'];
