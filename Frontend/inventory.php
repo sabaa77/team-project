@@ -45,5 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo json_encode(['success' => true, 'message' => 'Product deleted successfully!']);
     }
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        echo json_encode(['success' => true, 'inventory' => []]);
+        exit();
+    }
 }
 ?>
