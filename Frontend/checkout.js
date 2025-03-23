@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const checkoutButton = document.getElementById('checkoutButton');
     if (checkoutButton) {
-        checkoutButton.addEventListener('click', async () => {
+        const handleCheckout = async () => {
             const email = document.getElementById('email').value;
             const name = document.getElementById('name').value;
             const address = document.getElementById('address').value;
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 basket: basketItems,
             };
 
-            console.log('Order details:', orderDetails);
+            console.log('Order details being sent:', orderDetails);
 
             try {
                 const response = await fetch('processOrder.php', {
@@ -56,8 +56,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 console.error('Error processing order:', error);
                 alert('An error occurred while processing your order. Please try again.');
             }
-        });
+        };
+
+        checkoutButton.removeEventListener('click', handleCheckout);
+        checkoutButton.addEventListener('click', handleCheckout);
     }
+
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     const userName = localStorage.getItem('userName');
     const userEmail = localStorage.getItem('userEmail');
