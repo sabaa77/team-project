@@ -300,8 +300,6 @@ INSERT INTO `notifications` (`notification_id`, `message`, `created_at`, `user_i
 CREATE TABLE `orders` (
   `order_id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
-  `product_id` int(10) UNSIGNED NOT NULL,
-  `price` decimal(10,2) NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('pending','shipped','delivered','cancelled') NOT NULL DEFAULT 'pending',
   `email` varchar(255) NOT NULL,
