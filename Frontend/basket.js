@@ -77,7 +77,7 @@ async function renderBasket() {
             basketItems.splice(index, 1);
             saveBasket(basketItems);
             renderBasket();
-            updateBackendBasket(basketItems);
+            await updateBackendBasket(basketItems);
         });
         removeCell.appendChild(removeBtn);
 
