@@ -2,6 +2,11 @@
 session_start();
 include 'db.php';
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo json_encode(['success' => true, 'inventory' => []]);
+    exit();
+}
+
 if ($_SESSION['user_type'] !== 'admin') {
     echo json_encode(['success' => false, 'message' => 'Unauthorized']);
     exit();
@@ -44,11 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$product_id]);
 
         echo json_encode(['success' => true, 'message' => 'Product deleted successfully!']);
-    }
-
-    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        echo json_encode(['success' => true, 'inventory' => []]);
-        exit();
     }
 }
 ?>
