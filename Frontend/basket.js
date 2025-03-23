@@ -4,7 +4,7 @@ function getBasket() {
     return basket ? JSON.parse(basket) : [];
 }
 
-function saveBasket(basketItems) {
+function saveBasket(basket) {
     localStorage.setItem('basket', JSON.stringify(basket));
 }
 
@@ -77,7 +77,7 @@ async function renderBasket() {
             basketItems.splice(index, 1);
             saveBasket(basketItems);
             renderBasket();
-            await updateBackendBasket(basketItems);
+            updateBackendBasket(basketItems);
         });
         removeCell.appendChild(removeBtn);
 
@@ -94,7 +94,7 @@ async function renderBasket() {
     totalPriceContainer.innerText = `Total: £${totalPrice}`;
 }
 
-async function updateBackendBasket(basketItems) {
+async function updateBackendBasket(basket) {
     console.log('updateBackendBasket() triggered');
     console.log('Basket being sent to backend:', basket);
 
