@@ -75,6 +75,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             } catch (error) {
                 console.error('Error processing order:', error);
                 alert('An error occurred while processing your order. Please try again.');
+            } finally {
+                checkoutButton.disabled = false;
             }
         };
 
