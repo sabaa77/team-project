@@ -25,7 +25,7 @@ $basket = $data['basket'];
 
 try {
 
-    $stmt = $pdo->prepare("INSERT INTO orders (order_id, user_id, product_id, email, name, address, city, country, postal_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO orders (user_id, product_id, email, name, address, city, country, postal_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->execute([$order_id, $user_id, $product_id, $email, $name, $address, $city, $country, $postal_code]);
     $order_id = $pdo->lastInsertId();
 
