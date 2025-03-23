@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo json_encode([
                     'success' => true,
                     'userName' => $user['name'],
-                    'userEmail' => $email['email'],
+                    'userEmail' => $email,
                     'userType' => $user['user_type'],
                     'redirect' => 'index.html'
                 ]);
