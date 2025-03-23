@@ -4,7 +4,7 @@ function getBasket() {
     return basket ? JSON.parse(basket) : [];
 }
 
-function saveBasket(basket) {
+function saveBasket(basketItems) {
     localStorage.setItem('basket', JSON.stringify(basket));
 }
 
@@ -94,7 +94,7 @@ async function renderBasket() {
     totalPriceContainer.innerText = `Total: £${totalPrice}`;
 }
 
-async function updateBackendBasket(basket) {
+async function updateBackendBasket(basketItems) {
     console.log('updateBackendBasket() triggered');
     console.log('Basket being sent to backend:', basket);
 
