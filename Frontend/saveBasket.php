@@ -23,7 +23,7 @@ try {
     $stmt = $pdo->prepare("DELETE FROM basket WHERE user_id = ?");
     $stmt->execute([$user_id]);
 
-    $stmt = $pdo->prepare("INSERT INTO basket (user_id, product_id, product_name, price) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO basket (user_id, product_id, product_name, price) VALUES (?, ?, ?, ?)");
     foreach ($data as $item) {
 
         if (!isset($item['product_id'], $item['product_name'], $item['price'])) {
