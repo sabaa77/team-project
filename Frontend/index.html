@@ -122,7 +122,7 @@
         const adminSection = document.getElementById('admin-section');
 
         if (isLoggedIn && userType === 'admin') {
-            adminSection.innerHTML = '<a href="admin.html">Admin Panel</a>';
+            adminSection.innerHTML = '<li><a href="admin.html">Admin Panel</a></li>';
             console.log('Admin Panel link added');
         } else {
             adminSection.innerHTML = '';
