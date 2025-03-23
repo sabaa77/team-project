@@ -57,6 +57,9 @@ async function renderBasket() {
         const priceCell = document.createElement('td');
         priceCell.innerText = `£${item.price}`;
 
+        const sizeCell = document.createElement('td');
+        sizeCell.innerText = item.size
+
         const quantityCell = document.createElement('td');
         quantityCell.innerText = item.quantity;
 
@@ -79,6 +82,7 @@ async function renderBasket() {
 
         row.appendChild(productCell);
         row.appendChild(priceCell);
+        row.appendChild(sizeCell);
         row.appendChild(quantityCell);
         row.appendChild(totalCell);
         row.appendChild(removeCell);
