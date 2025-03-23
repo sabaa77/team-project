@@ -13,7 +13,13 @@ if ($_SESSION['user_type'] !== 'admin') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $action = $_POST['action'];
+    $data = json_decode(file_get_contents('php://input'), true);
+    if (!$data || !isset($data['action'])) {
+        echo json_encode(['success' => false, 'message' => 'No data received']);
+        exit();
+    }
+    
+    $action = $data['action'];
 
     if ($action === 'add_product') {
         $name = $_POST['product_name'];
