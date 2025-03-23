@@ -4,8 +4,6 @@ include "db.php";
 
 header('Content-Type: application/json');
 
-$pdo->beginTransaction();
-
 $data = json_decode(file_get_contents('php://input'), true);
 
 if (!$data || !isset($data['email'], $data['name'], $data['address'], $data['basket'])) {
@@ -14,7 +12,6 @@ if (!$data || !isset($data['email'], $data['name'], $data['address'], $data['bas
 }
 
 $user_id = $_SESSION['user_id'];
-$product_id = $data['product_id'];
 $email = $data['email'];
 $name = $data['name'];
 $address = $data['address'];
@@ -23,9 +20,20 @@ $country = $data['country'];
 $postal_code = $data['postal_code'];
 $basket = $data['basket'];
 
+$totalPrice = 0;
+foreach ($basket as $item) {
+    if (!isset($item['price'], $item['quantity'])) {
+        echo json_encode(['success' => false, 'message' => 'Invalid basket item data.']);
+        exit();
+    }
+    $totalPrice += $item['price'] * $item['quantity'];
+}
+
 try {
 
-    $stmt = $pdo->prepare("INSERT INTO orders (user_id, product_id, email, name, address, city, country, postal_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $pdo->beginTransaction();
+
+    $stmt = $pdo->prepare("INSERT INTO orders (user_id, email, name, address, city, country, postal_code) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->execute([$order_id, $user_id, $product_id, $email, $name, $address, $city, $country, $postal_code]);
     $order_id = $pdo->lastInsertId();
 

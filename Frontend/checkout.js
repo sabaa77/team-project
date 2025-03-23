@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const address = document.getElementById('address').value;
             const city = document.getElementById('city').value;
             const country = document.getElementById('country').value;
-            const zip = document.getElementById('postal_code').value;
+            const postal_code = document.getElementById('postal_code').value;
             const cardNumber = document.getElementById('cardNumber').value;
             const cardName = document.getElementById('cardName').value;
             const expiryDate = document.getElementById('expiryDate').value;
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 address,
                 city,
                 country,
-                zip,
+                postal_code,
                 cardNumber,
                 cardName,
                 expiryDate,
