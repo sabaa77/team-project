@@ -301,7 +301,7 @@ CREATE TABLE `orders` (
   `order_id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
-  `total_price` decimal(10,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('pending','shipped','delivered','cancelled') NOT NULL DEFAULT 'pending',
   `email` varchar(255) NOT NULL,
@@ -325,7 +325,7 @@ CREATE TABLE `order_items` (
   `product_name` varchar(255) NOT NULL,
   `size` enum('S','M','L','XL','2','3','4','5','6','7','8','9','10','11','12') NOT NULL,
   `quantity` int(10) UNSIGNED NOT NULL,
-  `price_per_unit` decimal(10,2) NOT NULL
+  `price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
