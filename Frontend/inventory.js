@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (addProductForm) {
         addProductForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const product_name = addProductForm.querySelector('input[name="name"]').value;
-            const product_description = addProductForm.querySelector('textarea[name="description"]').value;
+            const product_name = addProductForm.querySelector('input[name="product_name"]').value;
+            const product_description = addProductForm.querySelector('textarea[name="product_description"]').value;
             const price = parseFloat(addProductForm.querySelector('input[name="price"]').value);
             const stock_level = parseInt(addProductForm.querySelector('input[name="stock_level"]').value, 10);
             const image_url = addProductForm.querySelector('input[name="image_url"]').value;
