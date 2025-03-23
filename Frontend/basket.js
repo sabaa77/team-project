@@ -95,6 +95,8 @@ async function renderBasket() {
 
 async function updateBackendBasket(basket) {
     console.log('updateBackendBasket() triggered');
+    console.log('Basket being sent to backend:', basket);
+
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (!isLoggedIn) {
         console.log('User not logged in, skipping backend sync');
