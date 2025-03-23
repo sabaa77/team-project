@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     } catch (clearError) {
                         console.error('Error clearing basket in backend:', clearError);
                     }
-
+                    console.log('Redirecting to payment page with order_id:', result.order_id);
                     window.location.href = 'payment.html';
                 } else {
                     alert(`Failed to place order: ${result.message}`);

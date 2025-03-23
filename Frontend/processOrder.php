@@ -53,7 +53,7 @@ try {
 }
 
     $pdo->commit();
-    echo json_encode(['success' => true, 'message' => 'Order placed successfully.']);
+    echo json_encode(['success' => true, 'order_id' => $order_id, 'message' => 'Order placed successfully.']);
 } catch (Exception $e) {
     $pdo->rollback();
     error_log("Error processing order: " . $e->getMessage());

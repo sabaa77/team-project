@@ -20,6 +20,7 @@
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const orderId = urlParams.get('order_id');
+    console.log('Order ID from URL:', orderId);
 
     if (orderId) {
       document.getElementById('order_id').textContent = orderId;
