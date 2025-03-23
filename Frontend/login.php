@@ -58,14 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($session_id !== false) {
                 setcookie('session_id', $session_id, time() + 3600, "/", "", false, true);
-                $_SESSION['userID'] = $user['user_id'];
+                $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['loggedin'] = true;
                 $_SESSION['user_type'] = $user['user_type'];
 
                 echo json_encode([
                     'success' => true,
                     'userName' => $user['name'],
-                    'userEmail' => $email,
+                    'userEmail' => $email['email'],
                     'userType' => $user['user_type'],
                     'redirect' => 'index.html'
                 ]);
