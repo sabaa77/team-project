@@ -75,12 +75,10 @@ async function renderBasket() {
         removeBtn.className = 'remove-btn';
         removeBtn.addEventListener('click', async () => {
          const currentBasket = getBasket();
-         const updatedBasket = currentBasket.filter(
-             bItem => !(bItem.product_id === item.product_id && bItem.size === item.size)
-         );
+         const updatedBasket = currentBasket.filter((_, i) => i !== index);
          saveBasket(updatedBasket);
          await updateBackendBasket(updatedBasket);
-         await renderBasket();
+         renderBasket();
      });
         removeCell.appendChild(removeBtn);
 

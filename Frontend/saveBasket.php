@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $data = json_decode(file_get_contents('php://input'), true);
 
-if (!$data || !is_array($data)) {
+if (!is_array($data)) {
     echo json_encode(['success' => false, 'message' => 'Invalid basket data.']);
     exit();
 }
