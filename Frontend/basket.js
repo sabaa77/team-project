@@ -90,31 +90,34 @@ async function renderBasket() {
 }
 
 async function updateBackendBasket(basket) {
+    console.log('updateBackendBasket() triggered');
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    if (!isLoggedIn) return;
-
-    console.log("Syncing basket:", basket);
+    if (!isLoggedIn) {
+        console.log('User not logged in, skipping backend sync');
+        return;
+    }
 
     try {
+        console.log('Sending basket to backend:', JSON.stringify(basket));
         const response = await fetch('saveBasket.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(basketObject),
-            credentials: 'include',
+            body: JSON.stringify(basket),
         });
 
         const result = await response.json();
-        console.log("Server response:", result);
+        console.log('Backend response:', result);
 
         if (!result.success) {
-            console.error('Error saving basket to backend:', result.message);
+            console.error('Failed to sync basket:', result.message);
             alert('Failed to sync basket with the server. Please try again.');
         }
     } catch (error) {
-        console.error('Error updating backend basket:', error);
+        console.error('Error syncing backend basket:', error);
         alert('An error occurred while syncing your basket. Please try again.');
     }
 }
+
 
 function addToBasket(product) {
     const basketItems = getBasket();

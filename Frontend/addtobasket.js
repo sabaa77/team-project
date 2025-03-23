@@ -92,27 +92,34 @@ function removeFromBasket(index) {
 }
 
 async function saveBasket() {
+    console.log('saveBasket() triggered');
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (!isLoggedIn) {
+        console.log('User not logged in, skipping sync');
         return;
     }
 
     try {
+        console.log('Sending basket to backend:', JSON.stringify(basketObject));
         const response = await fetch('saveBasket.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(basketObject),
-            credentials: 'include',
         });
 
         const result = await response.json();
+        console.log('Response:', result);
+
         if (!result.success) {
+            console.error('Failed to save basket:', result.message);
             alert('Failed to sync basket with the server. Please try again.');
         }
     } catch (error) {
+        console.error('Error updating backend basket:', error);
         alert('An error occurred while syncing your basket. Please try again.');
     }
 }
+
 
 function displaySuccessMessage(message) {
     let messageContainer = document.getElementById('success-message');
