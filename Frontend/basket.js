@@ -75,8 +75,8 @@ async function renderBasket() {
         removeBtn.addEventListener('click', async () => {
             basketItems.splice(index, 1);
             saveBasket(basketItems);
-            await updateBackendBasket(basketItems);
             renderBasket();
+            await updateBackendBasket(basketItems);
         });
         removeCell.appendChild(removeBtn);
 
