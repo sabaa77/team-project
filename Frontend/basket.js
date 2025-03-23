@@ -76,8 +76,8 @@ async function renderBasket() {
         removeBtn.addEventListener('click', async () => {
          const currentBasket = getBasket();
          const updatedBasket = currentBasket.filter((_, i) => i !== index);
-         saveBasket(basket);
-         await updateBackendBasket(basket);
+         saveBasket(updatedBasket);
+         await updateBackendBasket(updatedBasket);
          renderBasket();
      });
         removeCell.appendChild(removeBtn);
