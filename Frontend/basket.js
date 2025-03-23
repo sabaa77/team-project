@@ -1,6 +1,6 @@
 function getBasket() {
     const basket = localStorage.getItem('basket');
-        console.log('Basket retrieved from localStorage:', basket);
+    console.log('Basket retrieved from localStorage:', basket);
     return basket ? JSON.parse(basket) : [];
 }
 
@@ -74,11 +74,14 @@ async function renderBasket() {
         removeBtn.innerText = 'Remove';
         removeBtn.className = 'remove-btn';
         removeBtn.addEventListener('click', async () => {
-            basketItems.splice(index, 1);
-            saveBasket(basketItems);
-            renderBasket();
-            await updateBackendBasket(basketItems);
-        });
+         const currentBasket = getBasket();
+         const updatedBasket = currentBasket.filter(
+             bItem => !(bItem.product_id === item.product_id && bItem.size === item.size)
+         );
+         saveBasket(updatedBasket);
+         await updateBackendBasket(updatedBasket);
+         await renderBasket();
+     });
         removeCell.appendChild(removeBtn);
 
         row.appendChild(productCell);
@@ -128,6 +131,7 @@ async function updateBackendBasket(basket) {
 
 function addToBasket(product) {
     const basketItems = getBasket();
+    console.log('Current basket before adding product:', basketItems);
 
     const existingItem = basketItems.find(
         item => item.product_id === product.product_id && item.size === product.size
