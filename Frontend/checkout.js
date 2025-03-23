@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const checkoutButton = document.getElementById('checkoutButton');
+    checkoutButton.disabled = true;
     if (checkoutButton) {
         const handleCheckout = async () => {
             const email = document.getElementById('email').value;
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (basketItems.length === 0) {
                 alert('Your basket is empty.');
+                checkoutButton.disabled = false;
                 return;
             }
 
@@ -48,6 +50,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (result.success) {
                     localStorage.removeItem('basket');
+
+                    try {
+                        const clearResponse = await fetch('saveBasket.php', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ clearBasket: true }),
+                        });
+
+                        const clearResult = await clearResponse.json();
+                        console.log('Backend basket clear response:', clearResult);
+
+                        if (!clearResult.success) {
+                            console.error('Failed to clear basket in backend:', clearResult.message);
+                        }
+                    } catch (clearError) {
+                        console.error('Error clearing basket in backend:', clearError);
+                    }
+
                     window.location.href = 'payment.html';
                 } else {
                     alert(`Failed to place order: ${result.message}`);

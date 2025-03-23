@@ -12,6 +12,19 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $data = json_decode(file_get_contents('php://input'), true);
 
+if (isset($data['clearBasket']) && $data['clearBasket'] === true) {
+    try {
+        $stmt = $pdo->prepare("DELETE FROM basket WHERE user_id = ?");
+        $stmt->execute([$user_id]);
+
+        echo json_encode(['success' => true, 'message' => 'Basket cleared successfully.']);
+    } catch (Exception $e) {
+        error_log("Error clearing basket: " . $e->getMessage());
+        echo json_encode(['success' => false, 'message' => 'Error clearing basket: ' . $e->getMessage()]);
+    }
+    exit();
+}
+
 if (!is_array($data)) {
     echo json_encode(['success' => false, 'message' => 'Invalid basket data.']);
     exit();
