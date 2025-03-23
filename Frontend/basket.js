@@ -1,5 +1,6 @@
 function getBasket() {
     const basket = localStorage.getItem('basket');
+    console.log('Basket retrieved from localStorage:', basket);
     return basket ? JSON.parse(basket) : [];
 }
 
@@ -127,6 +128,7 @@ async function updateBackendBasket(basket) {
 
 function addToBasket(product) {
     const basketItems = getBasket();
+    console.log('Current basket before adding product:', basketItems);
 
     const existingItem = basketItems.find(
         item => item.product_id === product.product_id && item.size === product.size
