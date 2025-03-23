@@ -97,6 +97,7 @@
             document.getElementById('product-price').innerText = `£${product.price}`;
             document.getElementById('product-description').innerText = product.product_description;
             document.getElementById('product-image').src = product.image_url;
+            document.getElementById('product-size').innerText = product.size;
 
             const featuresList = document.getElementById('product-features');
             const features = product.features ? product.features.split(',') : [];
