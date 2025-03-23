@@ -10,7 +10,7 @@ if (!isset($_SESSION['userID'])) {
 $user_id = $_SESSION['userID'];
 
 try {
-    $stmt = $pdo->prepare("SELECT product_id, name AS product_name, price, quantity FROM basket WHERE user_id = ?");
+    $stmt = $pdo->prepare("SELECT product_id, product_name, price, quantity, size FROM basket WHERE user_id = ?");
     $stmt->execute([$user_id]);
     $basket = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
