@@ -52,7 +52,7 @@ INSERT INTO `categories` (`category_id`, `category_name`) VALUES
 CREATE TABLE `inventory` (
   `inventory_id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
-  `size` enum('S','M','L','XL','2','3','4','5','6','7','8','9','10','11','12') NOT NULL,
+  `size` enum('S','M','L','XL','2','3','4','5','6','7','8','9','10','11','12', 'One Size') NOT NULL,
   `stock_added` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `stock_removed` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `stock_balance` int(11) NOT NULL DEFAULT 0
