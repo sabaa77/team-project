@@ -104,6 +104,7 @@ async function updateBackendBasket(basket) {
         });
 
         const result = await response.json();
+        console.log("Server response:", result);
 
         if (!result.success) {
             console.error('Error saving basket to backend:', result.message);
