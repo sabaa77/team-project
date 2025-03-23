@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 console.log('Order response:', result);
 
                 if (result.success) {
-                    alert('Order placed successfully!');
                     localStorage.removeItem('basket');
                     window.location.href = 'payment.html';
                 } else {
