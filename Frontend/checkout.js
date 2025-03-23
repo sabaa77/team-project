@@ -16,8 +16,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             const basketItems = JSON.parse(localStorage.getItem('basket')) || [];
 
             if (basketItems.length === 0) {
-                alert('Your basket is empty.');
+                alert('Your basket is empty. Please add items to your basket before proceeding.');
                 checkoutButton.disabled = false;
+                return;
+            }
+
+            if (!email || !name || !address || !city || !country || !postal_code || !cardNumber || !cardName || !expiryDate || !cvv) {
+                alert('Please fill out all required fields.');
                 return;
             }
 
