@@ -114,7 +114,10 @@ nav > ul > li:not(:first-child) > a::after {
 
         .container {
             max-width: 1200px;
-            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 0 auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
@@ -136,19 +139,17 @@ nav > ul > li:not(:first-child) > a::after {
         }
 
         .product {
-            display:inline-block;
+            display: inline-block;
             width: 30%;
             margin: 1%;
             text-align: center;
-            opacity: 0;
-            animation: fadeIn 1s ease-in forwards;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .product img {
             width: 50%;
             border-radius: 8px;
             height: 200px;
+            display: block;
             margin: 0 auto;
             transition: transform 0.3s ease;
         }
