@@ -160,8 +160,8 @@ INSERT INTO inventory (product_id, size, stock_added, stock_removed, stock_balan
 (21, 'One Size', 50, 10, 40),
 (22, 'One Size', 50, 10, 40),
 (23, 'One Size', 50, 10, 40),
-(24, 'One Size', 50, 10, 40);
-(31, 'One Size', 50, 10, 40);
+(24, 'One Size', 50, 10, 40),
+(31, 'One Size', 50, 10, 40),
 (32, 'One Size', 50, 10, 40);
 
 
@@ -212,7 +212,7 @@ INSERT INTO inventory (product_id, size, stock_added, stock_removed, stock_balan
 (30, '5', 10, 0, 10),
 (30, '6', 10, 0, 10),
 (30, '7', 10, 0, 10),
-(30, '8', 10, 0, 10);
+(30, '8', 10, 0, 10),
 
 (33, '2', 10, 0, 10),
 (33, '3', 10, 0, 10),
