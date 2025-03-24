@@ -33,8 +33,6 @@ function addToBasket(product) {
 }
 
 async function renderBasket() {
-    const basketItemsDiv = document.getElementById('basket-items');
-    if (!basketItemsDiv) return;
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (isLoggedIn) {
         try {
@@ -48,6 +46,8 @@ async function renderBasket() {
             console.error('Error fetching basket from backend:', error);
         }
     }
+    const basketItemsDiv = document.getElementById('basket-items');
+    if (!basketItemsDiv) return;
     basketItemsDiv.innerHTML = '';
     if (basketObject.length === 0) {
         basketItemsDiv.innerHTML = '<tr><td colspan="6">Your basket is empty.</td></tr>';
@@ -69,6 +69,9 @@ async function renderBasket() {
         `;
         basketItemsDiv.appendChild(row);
     });
+    let totalPrice = basketObject.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const totalPriceContainer = document.getElementById('total-price-container');
+    totalPriceContainer.innerText = `Total: £${totalPrice}`;
 }
 
 function updateQuantity(index, action) {
