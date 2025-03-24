@@ -178,15 +178,50 @@ nav > ul > li:not(:first-child) > a::after {
             color: #666
         }
 
-       /* footer {
-            background-color: #000;
-            color: #fff;
-            text-align: center;
-            padding: 5px 0;
-            bottom: 0;
-            width: 100%;
-        } 
-            */
+       
+.home-section {
+    padding-top: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    height: 100vh; 
+}
+
+
+.home-image {
+    flex: 1; 
+    background-color: #000; 
+    overflow: hidden; 
+}
+
+.home-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.home-text {
+    flex: 1; 
+    background-color: #000; 
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-top h2, h3 {
+    color: #ffffff;
+    font-size: 28px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.home-top p {
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
 footer {
     background-color: #000; 
     color: #fff; 
