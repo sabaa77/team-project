@@ -161,6 +161,8 @@ INSERT INTO inventory (product_id, size, stock_added, stock_removed, stock_balan
 (22, 'One Size', 50, 10, 40),
 (23, 'One Size', 50, 10, 40),
 (24, 'One Size', 50, 10, 40);
+(31, 'One Size', 50, 10, 40);
+(32, 'One Size', 50, 10, 40);
 
 
 INSERT INTO inventory (product_id, size, stock_added, stock_removed, stock_balance) VALUES
@@ -211,6 +213,14 @@ INSERT INTO inventory (product_id, size, stock_added, stock_removed, stock_balan
 (30, '6', 10, 0, 10),
 (30, '7', 10, 0, 10),
 (30, '8', 10, 0, 10);
+
+(33, '2', 10, 0, 10),
+(33, '3', 10, 0, 10),
+(33, '4', 10, 0, 10),
+(33, '5', 10, 0, 10),
+(33, '6', 10, 0, 10),
+(33, '7', 10, 0, 10),
+(33, '8', 10, 0, 10);
 
 
 
@@ -379,7 +389,11 @@ INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `pr
 (27, 'Mens Jimmy Choo Loafers', 'Our Marti Reverse loafers are crafted in a buffalo leather.', 620.00, 5, 'MensJimmyChooLoafer.png', 'ShoesProduct3.html'),
 (28, 'Womens Prada Slides', 'Minimalist geometric pattern enriches the design of these Prada slides.', 730.00, 5, 'WomensPradaSlides.png', 'ShoesProduct4.html'),
 (29, 'Mens Gucci Trainers', 'Inspired by the summer spirit and beach clubs on the Italian coast, this item is part of Gucci Lido.', 150.00, 5, 'MensGucciTrainers.png', 'ShoesProduct5.html'),
-(30, 'Womens Balenciaga Boots', 'Strike Platform Bootie in black soft bullskin.', 180.00, 5, 'WomensBalenciagaBoots.png', 'ShoesProduct6.html');
+(30, 'Womens Balenciaga Boots', 'Strike Platform Bootie in black soft bullskin.', 180.00, 5, 'WomensBalenciagaBoots.png', 'ShoesProduct6.html'),
+(31, 'Miu Miu Aventure Nappa Leather Bag', 'Inspired by the iconic style of 2009, the Aventure bag reflects a sleek, casual charm. This version with larger proportions features refined touches like the snap-hook closure and the distinctive trick.', 3000.00, 4, 'Miu Miu Aventure nappa leather bag.png', 'AccessoriesProduct7.html'),
+(32, 'Womens Mohair Checked Scarf', 'Checked scarf is made of a soft mohair blend with fringed ends. Detailed with an Acne Studios embroidered logo. Crafted from carefully selected material known for its soft and hairy fibres.', 350.00, 4, 'womens Scarf.png', 'AccessoriesProduct8.html'),
+(33, 'Mens Rick Owens Mega Bumper Sneakers', 'Black sneakers, made in Italy', 1025.00, 5, 'RickOwens.png', 'ShoesProduct7.html');
+
 
 -- --------------------------------------------------------
 
