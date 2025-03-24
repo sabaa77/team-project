@@ -37,10 +37,10 @@ try {
 
     if (isset($data['password']) && !empty($data['password'])) {
         $password_hash = password_hash($data['password'], PASSWORD_DEFAULT);
-        $stmt = $pdo->prepare('UPDATE users SET name = ?, email = ?, password_hash = ?, WHERE user_id = ? AND user_type = "customer"');
+        $stmt = $pdo->prepare('UPDATE users SET name = ?, email = ?, password_hash = ? WHERE user_id = ? AND user_type = "customer"');
         $stmt->execute([$data['name'], $data['email'], $password_hash, $data['id']]);
     } else {
-        $stmt = $pdo->prepare('UPDATE users SET name = ?, email = ?, WHERE user_id = ? AND user_type = "customer"');
+        $stmt = $pdo->prepare('UPDATE users SET name = ?, email = ? WHERE user_id = ? AND user_type = "customer"');
         $stmt->execute([$data['name'], $data['email'], $data['id']]);
     }
     echo json_encode(['success' => true]);

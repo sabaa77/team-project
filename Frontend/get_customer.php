@@ -17,7 +17,7 @@ if (!isset($_GET['user_id'])) {
 
 try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $pdo->prepare('SELECT user_id, name, email, FROM users WHERE user_id = ? AND user_type = "customer"');
+    $stmt = $pdo->prepare('SELECT user_id, name, email FROM users WHERE user_id = ? AND user_type = "customer"');
     $stmt->execute([$_GET['user_id']]);
     $customer = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($customer) {

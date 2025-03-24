@@ -67,7 +67,7 @@ document.getElementById('customer-form').addEventListener('submit', function(eve
 });
 
 function editCustomer(id) {
-    fetch(`get_customer.php?id=${id}`)
+    fetch(`get_customer.php?user_id=${id}`)
         .then(response => response.json())
         .then(customer => {
             document.getElementById('user_id').value = customer.user_id;
@@ -82,7 +82,7 @@ function editCustomer(id) {
 function deleteCustomer(id) {
     if (confirm('Are you sure you want to delete this customer?')) {
         fetch('delete_customer.php', {
-            method: 'DELETE',
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id })
         })
