@@ -76,6 +76,7 @@
         <img src="ValentinoHoodie.png" alt="ValentinoHoodie">
     </div>
     <div class="product-details">
+        <p id="product_id" style="display: none;"></p>
         <h3 id="product-name"></h3>
         <p class="price" id="product-price"></p>
         <p class="description" id="product-description"></p>
@@ -156,13 +157,17 @@
             document.addEventListener('DOMContentLoaded', async () => {
         const product_id = 2;
         try {
-            const response = await fetch(`getProduct.php?id=${product_id}`);
+            const response = await fetch(`getProduct.php?product_id=${product_id}`);
             const result = await response.json();
     
             if (result.success) {
                 const product = result.product;
 
-                document.getElementById('product_id').innerText = product.product_id;
+                const productIdElement = document.getElementById('product_id');
+                if (productIdElement) {
+               productIdElement.innerText = product.product_id;
+               }
+
                 document.getElementById('product_name').innerText = product.product_name;
                 document.getElementById('price').innerText = `£${product.price}`;
                 document.getElementById('product_description').innerText = product.product_description;
