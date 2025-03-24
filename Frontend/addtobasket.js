@@ -11,33 +11,30 @@ if (localStorageBasket) {
 
 function addToBasket(product) {
     if (!product.product_name || !product.price || !product.product_id || !product.size) {
-        alert('Failed to add product to basket. Please ensure all product details are filled.');
+        alert('Failed to add product to basket. Please try again.');
         return;
     }
-
     const itemExists = basketObject.findIndex(
         (item) => item.product_id === product.product_id && item.size === product.size
     );
-
     if (itemExists !== -1) {
         basketObject[itemExists].quantity += 1;
     } else {
         product.quantity = 1;
         basketObject.push(product);
     }
-
     localStorage.setItem('basket', JSON.stringify(basketObject));
-
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (isLoggedIn) {
         saveBasket();
     }
-
     renderBasket();
     displaySuccessMessage(`${product.product_name} (Size: ${product.size}) has been added to your basket.`);
 }
 
 async function renderBasket() {
+    const basketItemsDiv = document.getElementById('basket-items');
+    if (!basketItemsDiv) return;
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (isLoggedIn) {
         try {
@@ -51,43 +48,52 @@ async function renderBasket() {
             console.error('Error fetching basket from backend:', error);
         }
     }
-
-    const basketItemsDiv = document.getElementById('basketItems');
-    if (!basketItemsDiv) {
-        return;
-    }
-
     basketItemsDiv.innerHTML = '';
-
     if (basketObject.length === 0) {
-        basketItemsDiv.innerHTML = '<p>Your basket is empty.</p>';
+        basketItemsDiv.innerHTML = '<tr><td colspan="6">Your basket is empty.</td></tr>';
         return;
     }
-
     basketObject.forEach((item, index) => {
-        const div = document.createElement('div');
-        div.classList.add('basket-item');
-        div.innerHTML = `
-            <p>${item.product_name} - £${item.price} (x${item.quantity}, Size: ${item.size})</p>
-            <button onclick="removeFromBasket(${index})">Remove</button>
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${item.product_name}</td>
+            <td>£${item.price}</td>
+            <td>${item.size}</td>
+            <td>
+                <button onclick="updateQuantity(${index}, 'decrease')">-</button>
+                <span>${item.quantity}</span>
+                <button onclick="updateQuantity(${index}, 'increase')">+</button>
+            </td>
+            <td>£${(item.price * item.quantity).toFixed(2)}</td>
+            <td><button onclick="removeFromBasket(${index})">Remove</button></td>
         `;
-        basketItemsDiv.appendChild(div);
+        basketItemsDiv.appendChild(row);
     });
 }
 
-function removeFromBasket(index) {
-    if (index < 0 || index >= basketObject.length) {
-        return;
+function updateQuantity(index, action) {
+    if (index < 0 || index >= basketObject.length) return;
+    if (action === 'increase') {
+        basketObject[index].quantity += 1;
+    } else if (action === 'decrease') {
+        basketObject[index].quantity = Math.max(1, basketObject[index].quantity - 1);
     }
-
-    basketObject.splice(index, 1);
     localStorage.setItem('basket', JSON.stringify(basketObject));
-
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (isLoggedIn) {
         saveBasket();
     }
+    renderBasket();
+}
 
+function removeFromBasket(index) {
+    if (index < 0 || index >= basketObject.length) return;
+    basketObject.splice(index, 1);
+    localStorage.setItem('basket', JSON.stringify(basketObject));
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (isLoggedIn) {
+        saveBasket();
+    }
     renderBasket();
 }
 
@@ -98,7 +104,6 @@ async function saveBasket() {
         console.log('User not logged in, skipping server sync.');
         return;
     }
-
     try {
         console.log('Sending basket to backend:', JSON.stringify(basketObject));
         const response = await fetch('saveBasket.php', {
@@ -106,10 +111,8 @@ async function saveBasket() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(basketObject)
         });
-
         const result = await response.json();
         console.log('Response:', result);
-
         if (!result.success) {
             console.error('Failed to save basket:', result.message);
             alert('Failed to sync basket with the server. Please try again.');
@@ -136,7 +139,6 @@ function displaySuccessMessage(message) {
         messageContainer.style.zIndex = '1000';
         document.body.appendChild(messageContainer);
     }
-
     messageContainer.innerText = message;
     setTimeout(() => {
         messageContainer.remove();
