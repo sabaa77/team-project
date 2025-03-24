@@ -210,7 +210,14 @@ nav > ul > li:not(:first-child) > a::after {
     justify-content: center;
 }
 
-.home-top h2, h3 {
+.home-top h2{
+    color: #000000;
+    font-size: 28px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.home-top h3 {
     color: #000000;
     font-size: 28px;
     line-height: 1.4;
@@ -219,7 +226,7 @@ nav > ul > li:not(:first-child) > a::after {
 
 .home-top h4 {
     color: #ffffff;
-    font-size: 28px;
+    font-size: 20px;
     line-height: 1.4;
     margin-bottom: 20px;
 }
