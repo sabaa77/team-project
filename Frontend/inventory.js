@@ -10,9 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const stock_level = parseInt(addProductForm.querySelector('input[name="stock_level"]').value, 10);
             const image_url = addProductForm.querySelector('input[name="image_url"]').value;
             const product_page_url = addProductForm.querySelector('input[name="product_page_url"]').value;
-            let category_id = addProductForm.querySelector('input[name="category_id"]') 
-                                ? addProductForm.querySelector('input[name="category_id"]').value 
-                                : '1';
+            let category_id = addProductForm.querySelector('input[name="category_id"]').value || '1';
             category_id = parseInt(category_id, 10);
             const payload = {
                 action: action,
@@ -25,8 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 category_id
             };
             if (action === 'update_product') {
-                const product_id = addProductForm.querySelector('input[name="product_id"]').value;
-                payload.product_id = product_id;
+                const productIdElement = addProductForm.querySelector('input[name="product_id"]');
+                if (productIdElement) {
+                    payload.product_id = productIdElement.value;
+                } else {
+                    console.error('Product ID missing for update.');
+                    alert('No product ID found for update.');
+                    return;
+                }
             }
             try {
                 const response = await fetch('inventory.php', {
