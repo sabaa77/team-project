@@ -920,6 +920,18 @@ footer .footer-bottom a:hover {
         .status-select {
             margin: 10px 0;
         }
+
+        .btn btn-update {
+            padding: 10px 20px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #4f4f4f;
+            transform: scale(1.1);
+        }
         
 
 
