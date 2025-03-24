@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Essence Wear | Miu Miu Aventure Nappa Leather Bag</title>
+    <title>Essence Wear | Women's Mohair Checked Scarf</title>
     <link rel="icon" type="image/png" href="essence wear logo (black).png">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -57,8 +57,6 @@
         <li><a href="Kids.html">KIDS</a>
             <ul>
                 <li><a href="Kids.html">CLOTHES</a></li>
-                <li><a href="Shoes.html">SHOES</a></li>
-                <li><a href="Accessories.html">ACCESSORIES</a></li>
             </ul>
         </li>
 
@@ -76,7 +74,7 @@
 
 <div class="product-container">
     <div class="product-image">
-        <img id="image_url" src="Miu Miu Aventure nappa leather bag.png" alt="Miu Miu Aventure nappa leather bag">
+        <img id="image_url" src="womens Scarf.png" alt="Women's Mohair Checked Scarf">
     </div>
     <div class="product-details">
         <p id="product_id" style="display: none;"></p>
@@ -84,11 +82,11 @@
         <p class="price" id="product_price"></p>
         <p class="description" id="product_description"></p>
         <ul class="features">
-                <li>Leather strap for use as a handbag or shoulder bag</li>
-                <li>Antiqued gold-tone hardware</li>
-                <li>Height 22.5cm</li>
-                <li>Width 44cm</li>
-                <li>Length 14.5cm</li>
+                <li>Check</li>
+                <li>Logo patch</li>
+                <li>Fringed ends</li>
+                <li>Measurements including fringe: 250 cm length; 28 cm width</li>
+             
             </ul>
             <form class="add-to-cart-form">
                 <label for="size">Select Size:</label>
@@ -152,7 +150,7 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
-            const product_id = 31;
+            const product_id = 33;
             try {
                 const response = await fetch(`getProduct.php?product_id=${product_id}`);
                 const result = await response.json();
