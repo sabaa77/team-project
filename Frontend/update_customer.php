@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
 }
 
 $data = json_decode(file_get_contents('php://input'), true);
-if (!isset($data['id']) || !isset($data['name']) || !isset($data['email'])) {
+if (!isset($data['user_id']) || !isset($data['name']) || !isset($data['email'])) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Missing required fields']);
     exit;
@@ -19,7 +19,7 @@ if (!isset($data['id']) || !isset($data['name']) || !isset($data['email'])) {
 try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $pdo->prepare('SELECT email FROM users WHERE user_id = ? AND user_type = "customer"');
-    $stmt->execute([$data['id']]);
+    $stmt->execute([$data['user_id']]);
     $current_email = $stmt->fetchColumn();
     if ($current_email === false) {
         echo json_encode(['success' => false, 'message' => 'Customer not found']);
@@ -38,10 +38,10 @@ try {
     if (isset($data['password']) && !empty($data['password'])) {
         $password_hash = password_hash($data['password'], PASSWORD_DEFAULT);
         $stmt = $pdo->prepare('UPDATE users SET name = ?, email = ?, password_hash = ? WHERE user_id = ? AND user_type = "customer"');
-        $stmt->execute([$data['name'], $data['email'], $password_hash, $data['id']]);
+        $stmt->execute([$data['name'], $data['email'], $password_hash, $data['user_id']]);
     } else {
         $stmt = $pdo->prepare('UPDATE users SET name = ?, email = ? WHERE user_id = ? AND user_type = "customer"');
-        $stmt->execute([$data['name'], $data['email'], $data['id']]);
+        $stmt->execute([$data['name'], $data['email'], $data['user_id']]);
     }
     echo json_encode(['success' => true]);
 } catch (PDOException $e) {

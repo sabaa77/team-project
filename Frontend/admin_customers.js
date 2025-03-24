@@ -28,7 +28,7 @@ function fetchCustomers() {
 document.getElementById('add-customer-btn').addEventListener('click', function() {
     document.getElementById('customer-modal').style.display = 'block';
     document.getElementById('customer-form').reset();
-    document.getElementById('customer-id').value = '';
+    document.getElementById('user_id').value = '';
 });
 
 document.getElementById('cancel-btn').addEventListener('click', function() {
@@ -47,7 +47,7 @@ document.getElementById('customer-form').addEventListener('submit', function(eve
     if (id) data.id = id;
 
     const url = id ? 'update_customer.php' : 'add_customer.php';
-    const method = id ? 'PUT' : 'POST';
+    const method = id ? 'POST' : 'POST';
 
     fetch(url, {
         method: method,
