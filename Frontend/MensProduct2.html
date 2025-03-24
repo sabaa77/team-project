@@ -76,7 +76,7 @@
         <img src="ValentinoHoodie.png" alt="ValentinoHoodie">
     </div>
     <div class="product-details">
-        <p id="product_id" style="display: none;"></p>
+
         <h3 id="product-name"></h3>
         <p class="price" id="product-price"></p>
         <p class="description" id="product-description"></p>
@@ -96,14 +96,14 @@
                 <option value="XL">Extra Large</option>
             </select>
             <button type="button" class="add-to-cart-btn" 
-                    onclick="addToBasket({
-                        product_id: 2,
-                        product_name: document.getElementById('product_name').innerText,
-                        price: parseFloat(document.getElementById('price').innerText.replace('£', '')),
-                        size: document.getElementById('size').value
-                    })">
-                    Add to Cart
-                </button>
+                onclick="addToBasket({
+                    product_id: parseInt(document.getElementById('product_id').innerText),
+                    product_name: document.getElementById('product_name').innerText,
+                    price: parseFloat(document.getElementById('price').innerText.replace('£', '')),
+                    size: document.getElementById('size').value
+                })">
+                Add to Cart
+            </button>
             </form>
             
             </div>
@@ -155,31 +155,28 @@
           </footer>
           <script>
             document.addEventListener('DOMContentLoaded', async () => {
-        const product_id = 2;
-        try {
-            const response = await fetch(`getProduct.php?product_id=${product_id}`);
-            const result = await response.json();
-    
-            if (result.success) {
-                const product = result.product;
+    const product_id = 2;
 
-                const productIdElement = document.getElementById('product_id');
-                if (productIdElement) {
-               productIdElement.innerText = product.product_id;
-               }
+    try {
+        const response = await fetch(`getProduct.php?product_id=${product_id}`);
+        const result = await response.json();
 
-                document.getElementById('product_name').innerText = product.product_name;
-                document.getElementById('price').innerText = `£${product.price}`;
-                document.getElementById('product_description').innerText = product.product_description;
-                document.getElementById('image_url').src = product.image_url;
+        if (result.success) {
+            const product = result.product;
 
-            } else {
-                console.error(result.message);
-            }
-        } catch (error) {
-            console.error('Error fetching product details:', error);
+            document.getElementById('product_id').innerText = product.product_id;
+            document.getElementById('product_name').innerText = product.product_name;
+            document.getElementById('price').innerText = `£${product.price}`;
+            document.getElementById('product_description').innerText = product.product_description;
+            document.getElementById('image_url').src = product.image_url;
+        } else {
+            console.error(result.message);
         }
-    });
+    } catch (error) {
+        console.error('Error fetching product details:', error);
+    }
+});
+
         </script>
         <script src="addtobasket.js"></script>
         <script src="search.js"></script>

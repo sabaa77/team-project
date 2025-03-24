@@ -4,15 +4,14 @@ if (localStorageBasket) {
     try {
         basketObject = JSON.parse(localStorageBasket);
     } catch (error) {
+        console.error('Error parsing basket data:', error);
         basketObject = [];
     }
 }
 
 function addToBasket(product) {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
     if (!product.product_name || !product.price || !product.product_id || !product.size) {
-        alert('Failed to add product to basket. Please try again.');
+        alert('Failed to add product to basket. Please ensure all product details are filled.');
         return;
     }
 
@@ -29,28 +28,28 @@ function addToBasket(product) {
 
     localStorage.setItem('basket', JSON.stringify(basketObject));
 
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (isLoggedIn) {
         saveBasket();
     }
 
     renderBasket();
-
     displaySuccessMessage(`${product.product_name} (Size: ${product.size}) has been added to your basket.`);
 }
 
 async function renderBasket() {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
     if (isLoggedIn) {
         try {
             const response = await fetch('loadBasket.php');
             const result = await response.json();
-
             if (result.success) {
                 basketObject = result.basket;
                 localStorage.setItem('basket', JSON.stringify(basketObject));
             }
-        } catch (error) {}
+        } catch (error) {
+            console.error('Error fetching basket from backend:', error);
+        }
     }
 
     const basketItemsDiv = document.getElementById('basketItems');
@@ -67,8 +66,9 @@ async function renderBasket() {
 
     basketObject.forEach((item, index) => {
         const div = document.createElement('div');
+        div.classList.add('basket-item');
         div.innerHTML = `
-            ${item.product_name} - £${item.price} (x${item.quantity}) 
+            <p>${item.product_name} - £${item.price} (x${item.quantity}, Size: ${item.size})</p>
             <button onclick="removeFromBasket(${index})">Remove</button>
         `;
         basketItemsDiv.appendChild(div);
@@ -95,7 +95,7 @@ async function saveBasket() {
     console.log('saveBasket() triggered');
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (!isLoggedIn) {
-        console.log('User not logged in, skipping sync');
+        console.log('User not logged in, skipping server sync.');
         return;
     }
 
@@ -104,7 +104,7 @@ async function saveBasket() {
         const response = await fetch('saveBasket.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(basketObject),
+            body: JSON.stringify(basketObject)
         });
 
         const result = await response.json();
@@ -119,7 +119,6 @@ async function saveBasket() {
         alert('An error occurred while syncing your basket. Please try again.');
     }
 }
-
 
 function displaySuccessMessage(message) {
     let messageContainer = document.getElementById('success-message');
@@ -139,8 +138,11 @@ function displaySuccessMessage(message) {
     }
 
     messageContainer.innerText = message;
-
     setTimeout(() => {
         messageContainer.remove();
     }, 3000);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderBasket();
+});

@@ -9,7 +9,7 @@ if (!isset($_GET['product_id'])) {
 $product_id = intval($_GET['product_id']);
 
 try {
-    $stmt = $pdo->prepare("SELECT product_name, product_description, price, image_url FROM products WHERE product_id = ?");
+    $stmt = $pdo->prepare("SELECT product_id, product_name, product_description, price, image_url FROM products WHERE product_id = ?");
     $stmt->execute([$product_id]);
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
