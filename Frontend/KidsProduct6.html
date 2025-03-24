@@ -74,16 +74,15 @@
 
 
    <div class="product-container">
-    <div class="product-image">
-        <img src="GirlsFendiPants.png" alt="GirlsFendiPants">
-    </div>
-    <div class="product-details">
-        <h3>Girls Fendi Denim Trousers</h3>
-        <p class="price">£410</p>
-        <p class="description">
-            Regular-fit, medium-wash denim junior trousers with chalk white 
-            FF Fendi Roma thread embroidery on the front below the pocket.
-        <ul class="features">
+        <div class="product-image">
+            <img id="image_url" src="GirlsFendiPants.png" alt="Girls Fendi Denim Trousers">
+        </div>
+        <div class="product-details">
+            <p id="product_id" style="display: none;"></p>
+            <h3 id="product_name"></h3>
+            <p class="price" id="product_price"></p>
+            <p class="description" id="product_description"></p>
+            <ul class="features">
             <li>Made in Italy</li>
         </ul>
         <form class="add-to-cart-form">
@@ -96,64 +95,81 @@
                 <option value="XL">Extra Large</option>
             </select>
             <button type="button" class="add-to-cart-btn" 
-            onclick="addToBasket({
-                name: 'Girls Fendi Denim Trousers',
-                price: 410,
-                size: document.getElementById('size').value
-            })">
-            Add to Cart
-            </button>
+                    onclick="addToBasket({
+                        product_id: parseInt(document.getElementById('product_id').innerText),
+                        product_name: document.getElementById('product_name').innerText,
+                        price: parseFloat(document.getElementById('product_price').innerText.replace('£', '')),
+                        size: document.getElementById('size').value
+                    })">
+                    Add to Cart
+                </button>
             </form>
-            
+        </div>
+    </div>
+    <footer>
+        <div class="footer-column">
+            <h3>About Essence Wear</h3>
+            <p>Curated pre-loved luxury fashion from top designers. Embrace sustainable style with authentic pieces at accessible prices.</p>
+            <a href="About Us Page.html">About Us</a>
+        </div>
+        <div class="footer-column">
+            <h3>Shop</h3>
+            <ul>
+                <li><a href="Womens.html">Women</a></li>
+                <li><a href="Mens.html">Men</a></li>
+                <li><a href="Accessories.html">Accessories</a></li>
+                <li><a href="shoes.html">Shoes</a></li>
+                <li><a href="newArrivals.html">New Arrivals</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Customer Care</h3>
+            <ul>
+                <li><a href="Contact us.html">Contact Us</a></li>
+                <li><a href="FAQ.html">FAQs</a></li>
+                <li><a href="FAQ.html">Shipping & Returns</a></li>
+                <li><a href="FAQ.html">Size Guide</a></li>
+                <li><a href="FAQ.html">Track Your Order</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Stay Connected</h3>
+            <p>Sign up for exclusive offers and early access to new arrivals.</p>
+            <input type="email" placeholder="Enter your email">
+            <button>Subscribe</button>
+            <div class="social-icons">
+                <a href="https://instagram.com/essencewear">Instagram</a>
+                <a href="https://facebook.com/essencewear">Facebook</a>
+                <a href="https://twitter.com/essencewear">X</a>
             </div>
-            <script src="addtobasket.js"></script>
-            </div>
-
-
-            <footer>
-                <div class="footer-column">
-                          <h3>About Essence Wear</h3>
-                          <p>Curated pre-loved luxury fashion from top designers. Embrace sustainable style with authentic pieces at accessible prices.</p>
-                          <a href="About Us Page.html">About Us</a> 
-                      </div>
-                      <div class="footer-column">
-                          <h3>Shop</h3>
-                          <ul>
-                              <li><a href="Womens.html">Women</a></li>
-                              <li><a href="Mens.html">Men</a></li>
-                              <li><a href="Accessories.html">Accessories</a></li>
-                              <li><a href="shoes.html">Shoes</a></li>
-                              <li><a href="newArrivals.html">New Arrivals</a></li>
-                          </ul>
-                      </div>
-                      <div class="footer-column">
-                          <h3>Customer Care</h3>
-                          <ul>
-                              <li><a href="Contact us.html">Contact Us</a></li>
-                              <li><a href="FAQ.html">FAQs</a></li>
-                              <li><a href="FAQ.html">Shipping & Returns</a></li>
-                              <li><a href="FAQ.html">Size Guide</a></li>
-                              <li><a href="FAQ.html">Track Your Order</a></li>
-                          </ul>
-                      </div>
-                      <div class="footer-column">
-                          <h3>Stay Connected</h3>
-                          <p>Sign up for exclusive offers and early access to new arrivals.</p>
-                          <input type="email" placeholder="Enter your email">
-                          <button>Subscribe</button>
-                          <div class="social-icons">
-                              <a href="https://instagram.com/essencewear">Instagram</a>
-                              <a href="https://facebook.com/essencewear">Facebook</a>
-                              <a href="https://twitter.com/essencewear">X</a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="footer-bottom">
-                      <p>&copy; 2025 Essence Wear. All Rights Reserved.</p>
-                      <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-                  </div>
-          </footer>
-
-<script src="search.js"></script>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Essence Wear. All Rights Reserved.</p>
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const product_id = 18;
+            try {
+                const response = await fetch(`getProduct.php?product_id=${product_id}`);
+                const result = await response.json();
+                if (result.success) {
+                    const product = result.product;
+                    document.getElementById('product_id').innerText = product.product_id;
+                    document.getElementById('product_name').innerText = product.product_name;
+                    document.getElementById('product_price').innerText = `£${product.price}`;
+                    document.getElementById('product_description').innerText = product.product_description;
+                    document.getElementById('image_url').src = product.image_url;
+                } else {
+                    console.error(result.message);
+                }
+            } catch (error) {
+                console.error('Error fetching product details:', error);
+            }
+        });
+    </script>
+    <script src="addtobasket.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>
