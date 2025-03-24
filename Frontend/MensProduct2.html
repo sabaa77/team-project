@@ -157,7 +157,7 @@
             document.addEventListener('DOMContentLoaded', async () => {
         const product_id = 2;
         try {
-            const response = await fetch(`getProduct.php?id=${productId}`);
+            const response = await fetch(`getProduct.php?id=${product_id}`);
             const result = await response.json();
     
             if (result.success) {
