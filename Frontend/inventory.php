@@ -50,12 +50,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo json_encode(['success' => true, 'message' => 'Product updated successfully!']);
     } elseif ($action === 'delete_product') {
-        $product_id = $_POST['product_id'];
-
-        $stmt = $pdo->prepare("DELETE FROM products WHERE product_id = ?");
-        $stmt->execute([$product_id]);
-
-        echo json_encode(['success' => true, 'message' => 'Product deleted successfully!']);
+        if (isset($data['product_id']) && !empty($data['product_id'])) {
+            $product_id = $data['product_id'];
+    
+            $stmt = $pdo->prepare("DELETE FROM products WHERE product_id = ?");
+            $stmt->execute([$product_id]);
+    
+            if ($stmt->rowCount() > 0) {
+                echo json_encode(['success' => true, 'message' => 'Product deleted successfully!']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'No product found with this ID.']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'No product ID provided.']);
+        }
     }
 }
 ?>
