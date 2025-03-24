@@ -1,6 +1,5 @@
 function getBasket() {
     const basket = localStorage.getItem('basket');
-    console.log('Basket retrieved from localStorage:', basket);
     return basket ? JSON.parse(basket) : [];
 }
 
@@ -12,7 +11,6 @@ async function fetchBasketFromBackend() {
     try {
         const response = await fetch('loadBasket.php');
         const result = await response.json();
-
         if (result.success) {
             return result.basket || [];
         } else {
@@ -59,10 +57,24 @@ async function renderBasket() {
         priceCell.innerText = `£${item.price}`;
 
         const sizeCell = document.createElement('td');
-        sizeCell.innerText = item.size
+        sizeCell.innerText = item.size;
 
         const quantityCell = document.createElement('td');
-        quantityCell.innerText = item.quantity;
+
+        const decreaseBtn = document.createElement('button');
+        decreaseBtn.innerText = '-';
+        decreaseBtn.onclick = () => updateQuantity(index, 'decrease');
+
+        const quantitySpan = document.createElement('span');
+        quantitySpan.innerText = item.quantity;
+
+        const increaseBtn = document.createElement('button');
+        increaseBtn.innerText = '+';
+        increaseBtn.onclick = () => updateQuantity(index, 'increase');
+
+        quantityCell.appendChild(decreaseBtn);
+        quantityCell.appendChild(quantitySpan);
+        quantityCell.appendChild(increaseBtn);
 
         const totalCell = document.createElement('td');
         const itemTotal = item.price * item.quantity;
@@ -74,12 +86,12 @@ async function renderBasket() {
         removeBtn.innerText = 'Remove';
         removeBtn.className = 'remove-btn';
         removeBtn.addEventListener('click', async () => {
-         const currentBasket = getBasket();
-         const updatedBasket = currentBasket.filter((_, i) => i !== index);
-         saveBasket(updatedBasket);
-         await updateBackendBasket(updatedBasket);
-         renderBasket();
-     });
+            const currentBasket = getBasket();
+            const updatedBasket = currentBasket.filter((_, i) => i !== index);
+            saveBasket(updatedBasket);
+            await updateBackendBasket(updatedBasket);
+            renderBasket();
+        });
         removeCell.appendChild(removeBtn);
 
         row.appendChild(productCell);
@@ -95,18 +107,29 @@ async function renderBasket() {
     totalPriceContainer.innerText = `Total: £${totalPrice}`;
 }
 
-async function updateBackendBasket(basket) {
-    console.log('updateBackendBasket() triggered');
-    console.log('Basket being sent to backend:', basket);
+function updateQuantity(index, action) {
+    const basket = getBasket();
 
+    if (index < 0 || index >= basket.length) return;
+
+    if (action === 'increase') {
+        basket[index].quantity += 1;
+    } else if (action === 'decrease') {
+        basket[index].quantity = Math.max(1, basket[index].quantity - 1);
+    }
+
+    saveBasket(basket);
+    updateBackendBasket(basket);
+    renderBasket();
+}
+
+async function updateBackendBasket(basket) {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (!isLoggedIn) {
-        console.log('User not logged in, skipping backend sync');
         return;
     }
 
     try {
-        console.log('Sending basket to backend:', JSON.stringify(basket));
         const response = await fetch('saveBasket.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -114,7 +137,6 @@ async function updateBackendBasket(basket) {
         });
 
         const result = await response.json();
-        console.log('Backend response:', result);
 
         if (!result.success) {
             console.error('Failed to sync basket:', result.message);
@@ -124,32 +146,6 @@ async function updateBackendBasket(basket) {
         console.error('Error syncing backend basket:', error);
         alert('An error occurred while syncing your basket. Please try again.');
     }
-}
-
-
-function addToBasket(product) {
-    const basketItems = getBasket();
-    console.log('Current basket before adding product:', basketItems);
-
-    const existingItem = basketItems.find(
-        item => item.product_id === product.product_id && item.size === product.size
-    );
-
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        basketItems.push({
-            product_id: product.product_id,
-            product_name: product.product_name,
-            price: product.price,
-            size: product.size,
-            quantity: 1,
-        });
-    }
-
-    saveBasket(basketItems);
-    updateBackendBasket(basketItems);
-    renderBasket();
 }
 
 document.getElementById('checkout-btn').addEventListener('click', () => {
