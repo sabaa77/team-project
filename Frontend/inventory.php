@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $category_id = $data['category_id'];
 
         $stmt = $pdo->prepare("UPDATE products SET product_name = ?, product_description = ?, price = ?, stock_level = ?, image_url = ?, product_page_url = ?, category_id = ? WHERE product_id = ?");
-        $stmt->execute([$name, $description, $price, $stock_level, $image_url, $product_page_url, $product_id, $category_id]);
+        $stmt->execute([$name, $description, $price, $stock_level, $image_url, $product_page_url, $category_id, $product_id]);
 
         echo json_encode(['success' => true, 'message' => 'Product updated successfully!']);
     } elseif ($action === 'delete_product') {
