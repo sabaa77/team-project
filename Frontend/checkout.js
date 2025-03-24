@@ -81,8 +81,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 alert('An error occurred while processing your order. Please try again.');
             }
         };
-
-        checkoutButton.removeEventListener('click', handleCheckout);
+        
         checkoutButton.addEventListener('click', handleCheckout);
     }
 
