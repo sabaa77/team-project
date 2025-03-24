@@ -112,18 +112,14 @@ nav > ul > li:not(:first-child) > a::after {
     font-size: 0.8em;
 }
 
-        .container {
-            max-width: 1200px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 1); 
-            color:#000;
-        }
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}   
         .factory-image {
             width: 60%;
             height: 60%;
@@ -215,6 +211,13 @@ nav > ul > li:not(:first-child) > a::after {
 .home-top h2, h3 {
     color: #ffffff;
     font-size: 28px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.home-top h4 {
+    color: #ffffff;
+    font-size: 20px;
     line-height: 1.4;
     margin-bottom: 20px;
 }
