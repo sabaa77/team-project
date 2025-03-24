@@ -6,12 +6,17 @@
     <title>Manage Customers</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<body>
+
 <nav class="nav">
     <a href="index.html" class="nav-link">Home</a>
 </nav>
-<body>
-    <h1>Customers</h1>
-    <button id="add-customer-btn">Add New Customer</button>
+
+<div class="container">
+    <h1 class="container-heading">Customers</h1>
+
+    <button id="add-customer-btn" class="btn btn-primary">Add New Customer</button>
+
     <table id="customers-table">
         <thead>
             <tr>
@@ -24,25 +29,79 @@
         <tbody>
         </tbody>
     </table>
+</div>
 
-    <div id="customer-modal" style="display:none;">
-        <form id="customer-form">
-            <input type="hidden" id="customer-id">
+<div id="customer-modal" class="modal" style="display:none;">
+    <form id="customer-form" class="form">
+        <input type="hidden" id="customer-id">
+
+        <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" id="name" required><br>
+            <input type="text" id="name" class="form-input" required>
+        </div>
+
+        <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" required><br>
+            <input type="email" id="email" class="form-input" required>
+        </div>
+
+        <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" id="password"><br>
-            <button type="submit" id="btn">Save</button>
-            <button type="button" id="btn">Cancel</button>
-        </form>
-    </div>
+            <input type="password" id="password" class="form-input">
+        </div>
 
-    <footer>
-        <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
-    </footer>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn" onclick="closeModal()">Cancel</button>
+        </div>
+    </form>
+</div>
 
-    <script src="admin_customers.js"></script>
+<footer>
+    <div class="footer-column">
+              <h3>About Essence Wear</h3>
+              <p>Curated pre-loved luxury fashion from top designers. Embrace sustainable style with authentic pieces at accessible prices.</p>
+              <a href="About Us Page.html">About Us</a> 
+          </div>
+          <div class="footer-column">
+              <h3>Shop</h3>
+              <ul>
+                  <li><a href="Womens.html">Women</a></li>
+                  <li><a href="Mens.html">Men</a></li>
+                  <li><a href="Accessories.html">Accessories</a></li>
+                  <li><a href="shoes.html">Shoes</a></li>
+                  <li><a href="newArrivals.html">New Arrivals</a></li>
+              </ul>
+          </div>
+          <div class="footer-column">
+              <h3>Customer Care</h3>
+              <ul>
+                  <li><a href="Contact us.html">Contact Us</a></li>
+                  <li><a href="FAQ.html">FAQs</a></li>
+                  <li><a href="FAQ.html">Shipping & Returns</a></li>
+                  <li><a href="FAQ.html">Size Guide</a></li>
+                  <li><a href="FAQ.html">Track Your Order</a></li>
+              </ul>
+          </div>
+          <div class="footer-column">
+              <h3>Stay Connected</h3>
+              <p>Sign up for exclusive offers and early access to new arrivals.</p>
+              <input type="email" placeholder="Enter your email">
+              <button>Subscribe</button>
+              <div class="social-icons">
+                  <a href="https://instagram.com/essencewear">Instagram</a>
+                  <a href="https://facebook.com/essencewear">Facebook</a>
+                  <a href="https://twitter.com/essencewear">X</a>
+              </div>
+          </div>
+      </div>
+      <div class="footer-bottom">
+          <p>&copy; 2025 Essence Wear. All Rights Reserved.</p>
+          <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+      </div>
+</footer>
+
+<script src="admin_customers.js"></script>
+
 </body>
 </html>

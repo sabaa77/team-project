@@ -14,7 +14,6 @@ function fetchCustomers() {
                     <td>${customer.user_id}</td>
                     <td>${customer.name}</td>
                     <td>${customer.email}</td>
-                    <td>${customer.address || ''}</td>
                     <td>
                         <button onclick="editCustomer(${customer.user_id})">Edit</button>
                         <button onclick="deleteCustomer(${customer.user_id})">Delete</button>
