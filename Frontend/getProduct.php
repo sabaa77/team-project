@@ -1,12 +1,12 @@
 <?php
 include 'db.php';
 
-if (!isset($_GET['id'])) {
+if (!isset($_GET['product_id'])) {
     echo json_encode(['success' => false, 'message' => 'Product ID is required.']);
     exit();
 }
 
-$productId = intval($_GET['id']);
+$productId = intval($_GET['product_id']);
 
 try {
     $stmt = $pdo->prepare("SELECT product_name, product_description, price, image_url FROM products WHERE product_id = ?");
