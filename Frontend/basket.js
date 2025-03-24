@@ -60,9 +60,12 @@ async function renderBasket() {
         sizeCell.innerText = item.size;
 
         const quantityCell = document.createElement('td');
+        const quantityContainer = document.createElement('div');
+        quantityContainer.classList.add('quantity-container');
 
         const decreaseBtn = document.createElement('button');
         decreaseBtn.innerText = '-';
+        decreaseBtn.classList.add('quantity-btn');
         decreaseBtn.onclick = () => updateQuantity(index, 'decrease');
 
         const quantitySpan = document.createElement('span');
@@ -70,11 +73,13 @@ async function renderBasket() {
 
         const increaseBtn = document.createElement('button');
         increaseBtn.innerText = '+';
+        increaseBtn.classList.add('quantity-btn');
         increaseBtn.onclick = () => updateQuantity(index, 'increase');
 
-        quantityCell.appendChild(decreaseBtn);
-        quantityCell.appendChild(quantitySpan);
-        quantityCell.appendChild(increaseBtn);
+        quantityContainer.appendChild(decreaseBtn);
+        quantityContainer.appendChild(quantitySpan);
+        quantityContainer.appendChild(increaseBtn);
+        quantityCell.appendChild(quantityContainer);
 
         const totalCell = document.createElement('td');
         const itemTotal = item.price * item.quantity;

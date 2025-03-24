@@ -958,6 +958,36 @@ footer .footer-bottom a:hover {
             background-color: #f2f2f2;
             text-align: left;
         }
+
+        .quantity-btn {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: 0.3s, transform 0.2s;
+            font-size: 16px;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #333;
+            transform: scale(1.05);
+        }
+        
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .quantity-container span {
+            min-width: 30px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
         
 
 
