@@ -39,13 +39,14 @@ try {
 
     $stmt = $pdo->prepare("INSERT INTO order_items (order_id, product_id, product_name, size, quantity, price) VALUES (?, ?, ?, ?, ?, ?)");
     foreach ($basket as $item) {
-        if (!isset($item['product_id'], $item['product_name'], $item['quantity'], $item['price'])) {
+        if (!isset($item['product_id'], $item['product_name'], $item['size'], $item['quantity'], $item['price'])) {
             throw new Exception('Invalid basket item data.');
     }
     $stmt->execute([
         $order_id,
         $item['product_id'],
         $item['product_name'],
+        $item['size'],
         $item['quantity'],
         $item['price']
     ]);
