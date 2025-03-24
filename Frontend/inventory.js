@@ -3,16 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (addProductForm) {
         addProductForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const action = e.submitter.value;
             const product_name = addProductForm.querySelector('input[name="product_name"]').value;
             const product_description = addProductForm.querySelector('textarea[name="product_description"]').value;
             const price = parseFloat(addProductForm.querySelector('input[name="price"]').value);
             const stock_level = parseInt(addProductForm.querySelector('input[name="stock_level"]').value, 10);
             const image_url = addProductForm.querySelector('input[name="image_url"]').value;
             const product_page_url = addProductForm.querySelector('input[name="product_page_url"]').value;
-            let category_id = addProductForm.querySelector('input[name="category_id"]') ? addProductForm.querySelector('input[name="category_id"]').value : '1';
+            let category_id = addProductForm.querySelector('input[name="category_id"]') 
+                                ? addProductForm.querySelector('input[name="category_id"]').value 
+                                : '1';
             category_id = parseInt(category_id, 10);
             const payload = {
-                action: 'add_product',
+                action: action,
                 product_name,
                 product_description,
                 price,
@@ -21,6 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 product_page_url,
                 category_id
             };
+            if (action === 'update_product') {
+                const product_id = addProductForm.querySelector('input[name="product_id"]').value;
+                payload.product_id = product_id;
+            }
             try {
                 const response = await fetch('inventory.php', {
                     method: 'POST',
@@ -28,16 +35,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify(payload)
                 });
                 const data = await response.json();
-                console.log('Add product response:', data);
+                console.log('Product response:', data);
                 if (data.success) {
                     alert(data.message);
                     addProductForm.reset();
                 } else {
-                    alert(`Error adding product: ${data.message}`);
+                    alert(`Error: ${data.message}`);
                 }
             } catch (error) {
-                console.error('Error adding product:', error);
-                alert('Failed to add product.');
+                console.error('Error submitting form:', error);
+                alert('Failed to submit form.');
             }
         });
     }
@@ -47,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             console.log('Inventory data:', data);
         } catch (error) {
-            console.error('Error parsing inventory data:', error);
+            console.error('Error fetching inventory data:', error);
         }
     }
     async function fetchAlerts() {
