@@ -22,15 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 product_page_url,
                 category_id
             };
-            if (action === 'update_product') {
-                const productIdElement = addProductForm.querySelector('input[name="product_id"]');
-                if (productIdElement) {
-                    payload.product_id = productIdElement.value;
-                } else {
-                    console.error('Product ID missing for update.');
-                    alert('No product ID found for update.');
-                    return;
-                }
+            const productIdElement = addProductForm.querySelector('input[name="product_id"]');
+            if (productIdElement && productIdElement.value) {
+                payload.product_id = productIdElement.value;
+            } else if (action === 'update_product' || action === 'delete_product') {
+                alert('Product ID is required for this action.');
+                return;
             }
             try {
                 const response = await fetch('inventory.php', {

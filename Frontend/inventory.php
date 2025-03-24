@@ -46,16 +46,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $category_id = $data['category_id'];
 
         $stmt = $pdo->prepare("UPDATE products SET product_name = ?, product_description = ?, price = ?, stock_level = ?, image_url = ?, product_page_url = ?, category_id = ? WHERE product_id = ?");
-        $stmt->execute([$name, $description, $price, $stock_level, $image_url, $product_page_url, $product_id, $category_id]);
+        $stmt->execute([$name, $description, $price, $stock_level, $image_url, $product_page_url, $category_id, $product_id]);
 
         echo json_encode(['success' => true, 'message' => 'Product updated successfully!']);
     } elseif ($action === 'delete_product') {
-        $product_id = $_POST['product_id'];
-
-        $stmt = $pdo->prepare("DELETE FROM products WHERE product_id = ?");
-        $stmt->execute([$product_id]);
-
-        echo json_encode(['success' => true, 'message' => 'Product deleted successfully!']);
+        if (isset($data['product_id']) && !empty($data['product_id'])) {
+            $product_id = $data['product_id'];
+    
+            $stmt = $pdo->prepare("DELETE FROM products WHERE product_id = ?");
+            $stmt->execute([$product_id]);
+    
+            if ($stmt->rowCount() > 0) {
+                echo json_encode(['success' => true, 'message' => 'Product deleted successfully!']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'No product found with this ID.']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'No product ID provided.']);
+        }
     }
 }
 ?>
