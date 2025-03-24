@@ -76,11 +76,9 @@
         <img src="ValentinoHoodie.png" alt="ValentinoHoodie">
     </div>
     <div class="product-details">
-        <h3>Valentino Cotton Hooded Sweatshirt</h3>
-        <p class="price">£825</p>
-        <p class="description">
-            Cotton sweatshirt with hood and Chez Valentino print. 
-        </p>
+        <h3 id="product-name"></h3>
+        <p class="price" id="product-price"></p>
+        <p class="description" id="product-description"></p>
         <ul class="features">
             <li>Loose fit</li>
             <li>Chez Valentino print on the chest</li>
@@ -97,13 +95,14 @@
                 <option value="XL">Extra Large</option>
             </select>
             <button type="button" class="add-to-cart-btn" 
-            onclick="addToBasket({
-                name: 'Valentino Cotton Hooded Sweatshirt',
-                price: 825,
-                size: document.getElementById('size').value
-            })">
-            Add to Cart
-            </button>
+                    onclick="addToBasket({
+                        product_id: 2,
+                        product_name: document.getElementById('product-name').innerText,
+                        price: parseFloat(document.getElementById('product-price').innerText.replace('£', '')),
+                        size: document.getElementById('size').value
+                    })">
+                    Add to Cart
+                </button>
             </form>
             
             </div>

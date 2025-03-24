@@ -77,13 +77,9 @@
         <img src="GucciPolo.png" alt="GucciPolo">
     </div>
     <div class="product-details">
-        <h3>Gucci Cotton polo shirt</h3>
-        <p class="price">£830</p>
-        <p class="description">
-            The GG motif appears in unexpected colours and fabric combinations, 
-            from linen blend to nylon. This regular fit polo shirt is presented 
-            in a GG stretch cotton piquet jacquard and enriched with a Gucci embroidery.
-        </p>
+        <h3 id="product-name"></h3>
+        <p class="price" id="product-price"></p>
+        <p class="description" id="product-description"></p>
         <ul class="features">
             <li>Grey and white GG stretch cotton piquet jacquard</li>
             <li>Gucci embroidery</li>
@@ -101,13 +97,14 @@
                 <option value="XL">Extra Large</option>
             </select>
             <button type="button" class="add-to-cart-btn" 
-            onclick="addToBasket({
-                name: 'Gucci Cotton polo shirt',
-                price: 690,
-                size: document.getElementById('size').value
-            })">
-            Add to Cart
-            </button>
+                    onclick="addToBasket({
+                        product_id: 4,
+                        product_name: document.getElementById('product-name').innerText,
+                        price: parseFloat(document.getElementById('product-price').innerText.replace('£', '')),
+                        size: document.getElementById('size').value
+                    })">
+                    Add to Cart
+                </button>
             </form>
             
             </div>
