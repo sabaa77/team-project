@@ -211,7 +211,7 @@ nav > ul > li:not(:first-child) > a::after {
 }
 
 .home-top h2, h3 {
-    color: #ffffff;
+    color: #000000;
     font-size: 28px;
     line-height: 1.4;
     margin-bottom: 20px;
