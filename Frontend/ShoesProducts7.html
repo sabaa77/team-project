@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Essence Wear | Shoes</title>
+    <title>Essence Wear | Canada Goose HyBridge® Coat</title>
     <link rel="icon" type="image/png" href="essence wear logo (black).png">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-   <header>
-    <a href="index.html" class="logo-link">
-    <img src="essence wear logo (black).png" alt="logo" class="logo">
-    </a>
-    <div class="header-text">
-       <h1>Essence Wear</h1>
-       <p>Your Style, Your Way</p>
-    </div>
+    <header>
+        <a href="index.html" class="logo-link">
+        <img src="essence wear logo (black).png" alt="logo" class="logo">
+        </a>
+        <div class="header-text">
+           <h1>Essence Wear</h1>
+           <p>Your Style, Your Way</p>
+        </div>
     <div class="icons">
         <div class="search-container">
             <img src="searchlogo.png" alt="search-logo" class="search-logo" id="search-icon">
@@ -27,7 +27,7 @@
         <a href="basket.html" title="Basket">
             <img src="basketlogo.png" alt="basket-logo" class="basket-logo">
         </a>
-        <a href="User Page.html" title="User Profile">
+        <a href="User Page.html"title="User Profile">
             <img src="userlogo.png" alt="user-logo" class="user-logo">
         </a>
     </div>
@@ -72,50 +72,48 @@
     </ul>
 </nav>
 
-    <div class="container">
-        <h2>Shoes</h2>
-        <div class="product">
-             <a href="ShoesProduct1.html"><img src="MensLouboutinShoes.png" alt="Product 1"></a> 
-            <h3>Men's Louboutin Shoes</h3>
-            <p>£1,075</p>
+    <div class="product-container" data-name="Men's Rick Owens Mega Bumper Sneakers" data-price="£1,025">
+        <div class="product-image">
+            <img src="RickOwens.png" alt="Men's Rick Owens Mega Bumper Sneakers">
         </div>
-    
-        <div class="product">
-            <a href="ShoesProduct2.html"><img src="WomensLVHeels.png" alt="Product 2"></a>
-            <h3>Women's Louis Vuitton High Heels</h3>
-            <p>£845</p>
+        <div class="product-details">
+            <h3 id="product-name">Men's Rick Owens Mega Bumper Sneakers</h3>
+            <p class="price" id="product-price">£1,025</p>
+            <p class="description">
+                Black sneakers, made in Italy
+            </p>
+            <ul class="features">
+                <li>Soft bullskin</li>
+                <li>front lace-up fastening</li>
+                <li>side zip fastening</li>
+                <li>ankle-length</li>
+                <li>oversize tongue</li>
+            </ul>
+            <form class="add-to-cart-form">
+                <label for="size">Select Size:</label>
+                <select id="size" name="size" required>
+                    <option value="" disabled selected>Choose Size</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+                <button type="button" class="add-to-cart-btn" 
+                onclick="addToBasket({
+                    name: 'Mens Rick Owens Mega Bumper Sneakers',
+                    price: 1025,
+                    size: document.getElementById('size').value
+                })">
+                    Add to Cart
+                </button>
+            </form>
+            
         </div>
-    
-        <div class="product">
-            <a href="ShoesProduct3.html"><img src="MensjimmyChooLoafer.png" alt="Product 3"></a>
-            <h3>Men's Jimmy Choo Loafers</h3>
-            <p>£725</p>
-        </div>
-    
-        <div class="product">
-            <a href="ShoesProduct4.html"><img src="WomensPradaSlides.png" alt="Product 4"></a>
-            <h3>Women's Prada Slides</h3>
-            <p>£730</p>
-        </div>
-    
-        <div class="product">
-            <a href="ShoesProduct5.html"><img src="MensGucciTrainers.png" alt="Product 5"></a>
-            <h3>Men's Gucci Trainers</h3>
-            <p>£620</p>
-        </div>
-    
-        <div class="product">
-            <a href="ShoesProduct6.html"><img src="WomensBalenciagaBoots.png" alt="Product 6"></a>
-            <h3>Women's Balenciaga Boots</h3>
-            <p>£1,090</p>
-        </div>
-        <div class="product">
-            <a href="ShoesProducts7.html"><img src="RickOwens.png" alt="Product 7"></a>
-            <h3>Men's Rick Owens Mega Bumper Sneakers</h3>
-            <p>£1,025</p>
-        </div>
-        </div>
-    
+        <script src="addtobasket.js"></script>
+    </div>
     
 <footer>
     <div class="footer-column">
@@ -160,7 +158,6 @@
           <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
       </div>
 </footer>
-    
     <script src="search.js"></script>
-    </body> 
+    </body>
     </html>

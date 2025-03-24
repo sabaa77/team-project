@@ -164,6 +164,8 @@ nav > ul > li:not(:first-child) > a::after {
 
         .product h3 {
             margin: 10px 0 5px;
+            color: black;
+
         }
 
         .product h3, .product p {
@@ -222,6 +224,23 @@ nav > ul > li:not(:first-child) > a::after {
     line-height: 1.6;
     margin-bottom: 30px;
 }
+.new-arrivals {
+    text-align: center;
+    padding-top: 100px;
+  }
+  
+  .new-arrivals a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .new-arrivals h2 {
+    margin: 0;
+  }
+  
+  .new-arrivals p {
+    margin-top: 10px;
+  }
 footer {
     background-color: #000; 
     color: #fff; 
