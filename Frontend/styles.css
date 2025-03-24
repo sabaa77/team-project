@@ -932,6 +932,32 @@ footer .footer-bottom a:hover {
             background-color: #4f4f4f;
             transform: scale(1.1);
         }
+
+        #customer-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        #customers-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        #customers-table th, #customers-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        
+        #customers-table th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
         
 
 

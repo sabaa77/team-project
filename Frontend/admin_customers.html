@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Customers</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<nav class="nav">
+    <a href="index.html" class="nav-link">Home</a>
+</nav>
+<body>
+    <h1>Customers</h1>
+    <button id="add-customer-btn">Add New Customer</button>
+    <table id="customers-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <div id="customer-modal" style="display:none;">
+        <form id="customer-form">
+            <input type="hidden" id="customer-id">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password"><br>
+            <label for="address">Address:</label>
+            <textarea id="address"></textarea><br>
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone"><br>
+            <button type="submit">Save</button>
+            <button type="button" id="cancel-btn">Cancel</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Essence Wear. All Rights Reserved.</p>
+    </footer>
+
+    <script src="admin_customers.js"></script>
+</body>
+</html>
