@@ -910,6 +910,16 @@ footer .footer-bottom a:hover {
             transform: scale(1.1);
         }
         
+        .order {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f9f9f9;
+        }
+        
+        .status-select {
+            margin: 10px 0;
+        }
         
 
 
