@@ -906,11 +906,19 @@ footer .footer-bottom a:hover {
         }
         
         .btn {
-            padding: 10px 20px;
-            font-size: 1rem;
+            display: block;
+            width: 80%;
+            padding: 15px;
+            background-color: #000;
+            color: white;
+            font-size: 1.1rem;
+            text-transform: uppercase;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-left: 95px;
+            margin-top: 3px;
+            margin-bottom: 5px;
         }
         
         .btn-primary {
