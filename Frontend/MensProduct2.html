@@ -161,7 +161,8 @@
     
             if (result.success) {
                 const product = result.product;
-    
+
+                document.getElementById('product_id').innerText = product.product_id;
                 document.getElementById('product_name').innerText = product.product_name;
                 document.getElementById('price').innerText = `£${product.price}`;
                 document.getElementById('product_description').innerText = product.product_description;
