@@ -178,16 +178,124 @@ nav > ul > li:not(:first-child) > a::after {
             color: #666
         }
 
-        footer {
+       /* footer {
             background-color: #000;
             color: #fff;
             text-align: center;
             padding: 5px 0;
             bottom: 0;
             width: 100%;
-        }
+        } 
+            */
+footer {
+    background-color: #000; 
+    color: #fff; 
+    padding: 40px 20px;
+    bottom: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+}
 
-        .logo {
+footer .footer-column {
+    flex: 1;
+    min-width: 200px; 
+    margin-bottom: 20px;
+}
+
+footer .footer-column:first-child {
+    margin-right: 100px; 
+    margin-left: 30px;
+}
+
+footer .footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+footer .footer-column p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+footer .footer-column a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+footer .footer-column a:hover {
+    text-decoration: underline;
+}
+
+footer .footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer .footer-column ul li {
+    margin-bottom: 10px;
+}
+
+footer .footer-column input[type="email"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+footer .footer-column button {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+footer .footer-column button:hover {
+    background-color: #ddd;
+}
+
+footer .footer-column .social-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+footer .footer-column .social-icons a {
+    font-size: 14px;
+}
+
+
+footer .footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 14px;
+    width: 100%; 
+}
+
+footer .footer-bottom a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer .footer-bottom a:hover {
+    text-decoration: underline;
+}
+     
+.logo {
             position:absolute;
             left: 20px;
             height: 200px;
