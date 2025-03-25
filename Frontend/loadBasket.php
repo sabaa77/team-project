@@ -2,12 +2,12 @@
 session_start();
 include "db.php";
 
-if (!isset($_SESSION['userID'])) {
+if (!isset($_SESSION['user_id'])) {
     echo json_encode(['success' => false, 'message' => 'User not logged in.']);
     exit();
 }
 
-$user_id = $_SESSION['userID'];
+$user_id = $_SESSION['user_id'];
 
 try {
     $stmt = $pdo->prepare("SELECT product_id, product_name, price, size, quantity FROM basket WHERE user_id = ?");
