@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($session_id !== false) {
                 setcookie('id', $session_id, time() + 3600, "/", "", false, true);
                 $_SESSION['user_id'] = $user['user_id'];
-                $_SESSION['loggedin'] = true;
+                $_SESSION['isLoggedIn'] = true;
                 $_SESSION['user_type'] = $user['user_type'];
 
                 echo json_encode([
