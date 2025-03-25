@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $existing_session = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($existing_session) {
-                $session_id = $existing_session['id'];
+                $session_id = $existing_session['user_id'];
             } else {
                 $session_id = createShoppingSession($user['user_id'], $pdo);
             }
