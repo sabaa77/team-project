@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['password_hash'])) {
-            $stmt = $pdo->prepare("SELECT id FROM shoppingSession WHERE user_id = ?");
+            $stmt = $pdo->prepare("SELECT user_id FROM shoppingSession WHERE user_id = ?");
             $stmt->execute([$user['user_id']]);
             $existing_session = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($session_id !== false) {
                 setcookie('id', $session_id, time() + 3600, "/", "", false, true);
-                $_SESSION['userID'] = $user['user_id'];
+                $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['loggedin'] = true;
                 $_SESSION['user_type'] = $user['user_type'];
 
