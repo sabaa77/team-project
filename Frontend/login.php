@@ -22,7 +22,7 @@ function updateShoppingSession($session_id, $new_total, $pdo) {
     $modified_at = date("Y-m-d H:i:s");
 
     try {
-        $stmt = $pdo->prepare("UPDATE shoppingSession SET total = ?, modified_at = ? WHERE id = ?");
+        $stmt = $pdo->prepare("UPDATE shoppingSession SET total = ?, modified_at = ? WHERE user_id = ?");
         $stmt->execute([$new_total, $modified_at, $session_id]);
         return true;
     } catch (PDOException $e) {
